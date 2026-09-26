@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="parent_title">Для взрослых</string>
+    <string name="parent_description">Барьер, прогресс ребёнка, настройки и сброс профиля.</string>
+    <string name="parent_action_back">Назад</string>
+</resources>

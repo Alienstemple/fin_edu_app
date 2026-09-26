@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Все тексты интерфейса — в strings.xml (ТЗ: контент отдельно от кода). -->
+    <issue id="HardcodedText" severity="error" />
+</lint>

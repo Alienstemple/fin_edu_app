@@ -1,0 +1,16 @@
+.gradle/
+.kotlin/
+.idea/
+local.properties
+*.iml
+build/
+/captures
+.cxx
+.DS_Store
+.worktrees/
+.env
+
+# Ключи подписи и их параметры — только локально, в репозиторий не попадают
+keystore.properties
+*.jks
+*.keystore

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_title">Как играть</string>
+    <string name="onboarding_description">Дзынь расскажет, зачем планировать бюджет и чем «нужное» отличается от «хочу». Здесь же словарик.</string>
+    <string name="onboarding_action_create_hero">Создать героя</string>
+</resources>

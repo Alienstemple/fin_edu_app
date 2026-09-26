@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="period_summary_title">Итоги периода</string>
+    <string name="period_summary_description">План и факт, сколько отложено, реакция питомца и рост.</string>
+    <string name="period_summary_action_next_period">Следующий период</string>
+</resources>

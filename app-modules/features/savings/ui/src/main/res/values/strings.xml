@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="savings_title">Копилка</string>
+    <string name="savings_description">Цели, накоплено и сколько осталось, пополнение и снятие.</string>
+    <string name="savings_action_back">Назад</string>
+</resources>

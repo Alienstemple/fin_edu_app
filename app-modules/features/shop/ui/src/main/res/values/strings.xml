@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shop_title">Магазин</string>
+    <string name="shop_description">Товары «Нужное» и «Желаемое», покупка с подтверждением.</string>
+    <string name="shop_action_back">Назад</string>
+</resources>

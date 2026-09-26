@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_title">Главный</string>
+    <string name="home_loading">Дзынь пересчитывает монетки…</string>
+    <string name="home_summary">Дзыньки: %1$d. В копилке: %2$d. Неделя %3$d.</string>
+    <string name="home_action_budget">План бюджета</string>
+    <string name="home_action_shop">Магазин</string>
+    <string name="home_action_savings">Копилка</string>
+    <string name="home_action_quests">Задания</string>
+    <string name="home_action_finish_period">Завершить период</string>
+    <string name="home_action_parent">Для взрослых</string>
+    <string name="home_action_help">Помощь</string>
+</resources>

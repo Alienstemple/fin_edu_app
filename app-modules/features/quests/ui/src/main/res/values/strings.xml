@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quests_title">Задания</string>
+    <string name="quests_description">Задания по темам: бюджет, сбережения, покупки.</string>
+    <string name="quests_action_open_demo_quest">Открыть задание</string>
+    <string name="quests_action_back">Назад</string>
+    <string name="quest_title">Задание</string>
+    <string name="quest_description">Игровая ситуация, выбор, объяснение и награда.</string>
+    <string name="quest_action_back">Назад</string>
+</resources>

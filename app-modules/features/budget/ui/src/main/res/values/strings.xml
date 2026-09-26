@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="budget_title">План бюджета</string>
+    <string name="budget_description">Распределение по мешочкам «Нужное», «Хочу», «Копилка». После подтверждения — план и факт.</string>
+    <string name="budget_action_back">Назад</string>
+</resources>
