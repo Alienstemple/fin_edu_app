@@ -166,7 +166,15 @@ https://claude.ai/artifact/1ca36b42-ad4d-410b-abdd-fdf0c8d7aed1, ресурсы 
 - `MainActivity`: старт `Onboarding` или `Home`.
 - **verify:** unit-тесты мапперов и парсинга всего контента; состояние переживает перезапуск.
 
-### Этап 3. Общие компоненты `product-core:ui` — ~3 ч
+### Этап 3. Общие компоненты `product-core:ui` — ✅ сделано 28.09 (ветка `feature/core-ui`)
+Итог: `components/` — `FinTopBar`, `FinBottomBar` (`FinTab`), `DzynkiAmount` (монетка `ic_coin`), `BagChip` /
+`BagIcon`, `TubeIndicator` (пробирки), `SpeechBubble`, `AmountStepper`, `ConfirmDialog`, `FeedbackSheet`, стили
+мешочков и показателей (`GameStyle.kt`); `illustration/` — `PetView` (7 эмоций `PetMood`, 3 стадии, наш набор
+шёрсток и уборов), `RoomScene` (ночной уголок, предметы по id целей `RoomItems`, звёздочки, `dim`);
+`FinEduTheme(largeFont, reduceMotion)`. Проверено рендером через Robolectric (временный тест, удалён).
+Позы (прыжок, кружение) не делали — только эмоции; анимации — в этапе 4 по месту, с учётом `reduceMotion`.
+
+Исходный план этапа:
 Компоненты из п. 5 архитектуры. Самые дорогие — `PetView` и `RoomScene` (Canvas по SVG макетов).
 **verify:** превью всех состояний; 48dp тап-зоны, ≥ 16sp.
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Монетка-дзынька по coin3 из app_resources. Цветная иконка: tint не задавать. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFD92A"
+        android:pathData="M256 28a228 228 0 1 1 0 456a228 228 0 1 1 0-456z" />
+    <path
+        android:fillColor="#FCA91B"
+        android:pathData="M256 80a176 176 0 1 1 0 352a176 176 0 1 1 0-352z" />
+    <path
+        android:fillColor="#FFD92A"
+        android:pathData="M256 122l39 80 88 13-64 62 15 88-78-41-78 41 15-88-64-62 88-13z" />
+</vector>

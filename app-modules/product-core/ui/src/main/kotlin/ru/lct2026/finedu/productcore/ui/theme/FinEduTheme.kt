@@ -7,6 +7,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.dp
 
 // Тема только тёмная: светлой темы в приложении нет.
@@ -43,17 +44,24 @@ private val FinEduShapes = Shapes(
     extraLarge = RoundedCornerShape(22.dp)
 )
 
+private val LocalReduceMotion = staticCompositionLocalOf { false }
+
 /**
  * Тема приложения. Цвета и шрифты в UI берём только отсюда: `MaterialTheme.colorScheme.*`,
  * `MaterialTheme.typography.*`, `MaterialTheme.shapes.*` и токены макета `FinEduTheme.colors.*`.
  * Хардкод `Color(0xFF...)` в фичах запрещён.
+ *
+ * [largeFont] и [reduceMotion] — настройки из раздела для взрослого: «Крупный шрифт» и «Спокойный режим».
  */
 @Composable
-fun FinEduTheme(content: @Composable () -> Unit) {
-    CompositionLocalProvider(LocalFinEduColors provides DarkFinEduColors) {
+fun FinEduTheme(largeFont: Boolean = false, reduceMotion: Boolean = false, content: @Composable () -> Unit) {
+    CompositionLocalProvider(
+        LocalFinEduColors provides DarkFinEduColors,
+        LocalReduceMotion provides reduceMotion
+    ) {
         MaterialTheme(
             colorScheme = DarkColors,
-            typography = FinEduTypography,
+            typography = if (largeFont) FinEduTypography.scaled(LARGE_FONT_SCALE) else FinEduTypography,
             shapes = FinEduShapes,
             content = content
         )
@@ -66,4 +74,10 @@ object FinEduTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalFinEduColors.current
+
+    /** «Спокойный режим»: анимации отключены или короче. */
+    val reduceMotion: Boolean
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalReduceMotion.current
 }

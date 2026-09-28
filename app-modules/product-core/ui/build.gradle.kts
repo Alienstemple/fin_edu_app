@@ -7,6 +7,8 @@ android {
 }
 
 dependencies {
+    // Общие компоненты рисуют доменные сущности: мешочки, показатели, питомца, обратную связь.
+    api(projects.appModules.productCore.domain)
     // ViewModel — суперкласс StatelessViewModel, торчит в публичном API модуля
     api(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)

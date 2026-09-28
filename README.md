@@ -242,6 +242,13 @@ internal fun ShopRoute(onBack: () -> Unit, viewModel: ShopViewModel = hiltViewMo
 - фон экранов — `FinEduBackground` (подключён в `MainActivity`), экраны рисуются с прозрачным контейнером;
   карточки — `Modifier.glass()`
 - превью — `@Preview` внутри `FinEduPreview { }`
+- общие компоненты — `product-core:ui/components`: `FinTopBar`, `FinBottomBar`, `DzynkiAmount`, `BagChip`,
+  `TubeIndicator`, `SpeechBubble`, `AmountStepper`, `ConfirmDialog`, `FeedbackSheet` (обратная связь после любого
+  действия); цвет, иконка и подпись мешочков и показателей — `Bag.color` / `iconRes` / `labelRes` из `GameStyle.kt`
+- рисунки — `product-core:ui/illustration`: `PetView` (питомец и его эмоции `PetMood`), `RoomScene` (уголок).
+  Координаты в них — геометрия SVG из макета, поэтому пакет исключён из правила detekt `MagicNumber`
+- настройки взрослого «Крупный шрифт» и «Спокойный режим» — параметры `FinEduTheme(largeFont, reduceMotion)`;
+  анимации проверяют `FinEduTheme.reduceMotion`
 
 ## Доступность
 

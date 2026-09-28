@@ -46,3 +46,27 @@ internal val FinEduTypography = Typography(
     labelMedium = style(size = 15, lineHeight = 20, weight = FontWeight.SemiBold),
     labelSmall = style(size = 13, lineHeight = 18, weight = FontWeight.Bold).copy(letterSpacing = 0.06.em)
 )
+
+/** Во сколько раз «Крупный шрифт» увеличивает текст — поверх системного масштаба шрифта. */
+internal const val LARGE_FONT_SCALE = 1.2f
+
+internal fun Typography.scaled(factor: Float): Typography {
+    fun TextStyle.scaled() = copy(fontSize = fontSize * factor, lineHeight = lineHeight * factor)
+    return copy(
+        displayLarge = displayLarge.scaled(),
+        displayMedium = displayMedium.scaled(),
+        displaySmall = displaySmall.scaled(),
+        headlineLarge = headlineLarge.scaled(),
+        headlineMedium = headlineMedium.scaled(),
+        headlineSmall = headlineSmall.scaled(),
+        titleLarge = titleLarge.scaled(),
+        titleMedium = titleMedium.scaled(),
+        titleSmall = titleSmall.scaled(),
+        bodyLarge = bodyLarge.scaled(),
+        bodyMedium = bodyMedium.scaled(),
+        bodySmall = bodySmall.scaled(),
+        labelLarge = labelLarge.scaled(),
+        labelMedium = labelMedium.scaled(),
+        labelSmall = labelSmall.scaled()
+    )
+}
