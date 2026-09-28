@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="budget_title">План бюджета</string>
-    <string name="budget_description">Распределение по мешочкам «Нужное», «Хочу», «Копилка». После подтверждения — план и факт.</string>
-    <string name="budget_action_back">Назад</string>
+    <string name="budget_title">План недели</string>
+
+    <!-- Раскладка. -->
+    <string name="budget_income_title">Тебе пришло</string>
+    <string name="budget_source_pocket">регулярный доход</string>
+    <string name="budget_source_bonus">бонус</string>
+    <string name="budget_source_reward">награда</string>
+    <string name="budget_source_separator">" + "</string>
+    <string name="budget_left">Осталось разложить: %1$d из %2$d</string>
+    <string name="budget_bar_a11y">Нужное %1$d, Хочу %2$d, Копилка %3$d, не разложено %4$d</string>
+    <string name="budget_bag_a11y">%1$s: %2$d</string>
+    <string name="budget_dzyn_full">Мешочки полные. Больше не влезет</string>
+    <string name="budget_dzyn_left">Свободно ещё %1$d. Кнопка оживёт, когда разложено всё до нуля.</string>
+    <string name="budget_fix">Зафиксировать план</string>
+    <string name="budget_quest_reward">+%1$d за задание «%2$s»</string>
+    <string name="budget_quest_reward_hint">Награду тоже можно разложить по мешочкам.</string>
+
+    <!-- План зафиксирован. -->
+    <string name="budget_fixed_title">План зафиксирован</string>
+    <string name="budget_plan_vs_fact">План vs факт</string>
+    <string name="budget_plan">план %1$d</string>
+    <string name="budget_spent">потрачено %1$d</string>
+    <string name="budget_saved">отложено %1$d</string>
+    <string name="budget_rest">осталось %1$d</string>
+    <string name="budget_in_savings">в копилке %1$d</string>
+    <string name="budget_dzyn_behind">Факт отстаёт от плана — и это база. Неделя ещё идёт, мешочки не обязаны пустеть к середине недели.</string>
+    <string name="budget_dzyn_done">Всё по плану. Мешочки отработали как надо.</string>
+    <string name="budget_to_shop">В магазин</string>
+    <string name="budget_to_home">На главную</string>
 </resources>

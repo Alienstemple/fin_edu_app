@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="shop_title">Магазин</string>
-    <string name="shop_description">Товары «Нужное» и «Желаемое», покупка с подтверждением.</string>
-    <string name="shop_action_back">Назад</string>
+
+    <!-- Витрина. -->
+    <string name="shop_in_needs">В «Нужном»:</string>
+    <string name="shop_in_wants">В «Хочу»:</string>
+    <string name="shop_filter">до %1$d ✕</string>
+    <string name="shop_filter_a11y">Показать все товары</string>
+    <string name="shop_item_a11y">%1$s, %2$s</string>
+    <string name="shop_empty">Пока ничего не подходит. Загляни после задания или в новую неделю.</string>
+    <string name="shop_plan_pending">Сначала разложи дзыньки по мешочкам</string>
+    <string name="shop_plan_pending_action">Разложить</string>
+
+    <!-- Шторка покупки. -->
+    <string name="shop_from_needs">Из «Нужного»</string>
+    <string name="shop_from_wants">Из «Хочу»</string>
+    <string name="shop_change">%1$d → %2$d</string>
+    <string name="shop_stat">Дзыню: %1$s</string>
+    <string name="shop_stat_plus">+%1$d</string>
+    <string name="shop_note_needs">Скучно? Зато тепло и по плану. Нужное для того и отложено.</string>
+    <string name="shop_note_wants">Можно купить сейчас, а можно подождать: товар никуда не денется.</string>
+    <string name="shop_buy">Купить</string>
+    <string name="shop_wait">Подожду</string>
+
+    <!-- Шторка «Не хватает». -->
+    <string name="shop_shortage_title">Не хватает %1$s</string>
+    <string name="shop_shortage_note">%1$s %2$d. Можно подкопить, сделать задание или взять попроще.</string>
+    <string name="shop_shortage_line">Такая красивая штука… но мешочек пока лёгкий</string>
+    <string name="shop_save_up">Подкопить</string>
+    <string name="shop_do_quest">Выполнить задание</string>
+    <string name="shop_cheaper">Выбрать дешевле</string>
+
+    <!-- После покупки или паузы. -->
+    <string name="shop_more">Ещё в магазин</string>
+    <string name="shop_see_quests">Пока посмотреть задания</string>
 </resources>
