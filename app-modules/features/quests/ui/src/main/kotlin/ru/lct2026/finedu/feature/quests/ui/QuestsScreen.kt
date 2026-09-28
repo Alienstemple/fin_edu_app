@@ -3,7 +3,7 @@ package ru.lct2026.finedu.feature.quests.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.Preview
 import ru.lct2026.finedu.feature.quests.ui.R
 import ru.lct2026.finedu.productcore.navigation.api.FinEduRoute
 import ru.lct2026.finedu.productcore.ui.components.StubAction
@@ -28,7 +28,7 @@ internal fun QuestsScreen(onNavigate: (FinEduRoute) -> Unit, onBack: () -> Unit,
     )
 }
 
-@PreviewLightDark
+@Preview
 @Composable
 private fun QuestsScreenPreview() {
     FinEduPreview {

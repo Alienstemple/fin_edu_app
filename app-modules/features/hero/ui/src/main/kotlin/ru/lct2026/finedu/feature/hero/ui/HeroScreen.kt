@@ -3,7 +3,7 @@ package ru.lct2026.finedu.feature.hero.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.Preview
 import ru.lct2026.finedu.feature.hero.ui.R
 import ru.lct2026.finedu.productcore.navigation.api.FinEduRoute
 import ru.lct2026.finedu.productcore.ui.components.StubAction
@@ -22,7 +22,7 @@ internal fun HeroScreen(onNavigate: (FinEduRoute) -> Unit, modifier: Modifier = 
     )
 }
 
-@PreviewLightDark
+@Preview
 @Composable
 private fun HeroScreenPreview() {
     FinEduPreview {

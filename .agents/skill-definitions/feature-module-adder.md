@@ -65,7 +65,7 @@ Skill добавляет фичу или экран в многомодульн�
      с `@Binds` интерфейса.
    - `ui`: `<Name>UiState.kt` (`@Immutable`), `<Name>ViewModel.kt` (`@HiltViewModel`, наследует
      `StatefulViewModel<<Name>UiState>`, см. README → **ViewModel и состояние экрана**), `<Name>Screen.kt` (`<Name>Route` с
-     `hiltViewModel()` + stateless `<Name>Screen` + `@PreviewLightDark`), `<Feature>NavigationContribution.kt`,
+     `hiltViewModel()` + stateless `<Name>Screen` + `@Preview`), `<Feature>NavigationContribution.kt`,
      `di/<Feature>NavigationModule.kt` (`@Binds @IntoSet`), `di/` — `@Provides` для use case'ов из `domain`,
      `src/main/res/values/strings.xml` (префикс `<screen>_`).
 8. Переход на экран из других фич — через `onNavigate(FinEduRoute.<Name>)`.

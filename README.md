@@ -230,8 +230,12 @@ internal fun ShopRoute(onBack: () -> Unit, viewModel: ShopViewModel = hiltViewMo
 
 - если `@Composable` функция создает и возвращает объект – она ничего не добавляет в композицию
 - если `@Composable` функция добавляет что-то в композицию – она ничего не возвращает (внутри метода не используется `return`)
-- цвета и шрифты — только из `FinEduTheme` (`MaterialTheme.colorScheme` / `MaterialTheme.typography`)
-- превью — `@PreviewLightDark` внутри `FinEduPreview { }`
+- приложение только в тёмной теме; шрифт — Commissioner
+- цвета, шрифты и радиусы — только из `FinEduTheme` (`MaterialTheme.colorScheme` / `.typography` / `.shapes`);
+  токены макета, которых нет в Material (мешочки, золото, стекло), — `FinEduTheme.colors`
+- фон экранов — `FinEduBackground` (подключён в `MainActivity`), экраны рисуются с прозрачным контейнером;
+  карточки — `Modifier.glass()`
+- превью — `@Preview` внутри `FinEduPreview { }`
 
 ## Доступность
 
