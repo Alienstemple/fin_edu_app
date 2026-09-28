@@ -1,6 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="parent_title">Для взрослых</string>
-    <string name="parent_description">Барьер, прогресс ребёнка, настройки и сброс профиля.</string>
-    <string name="parent_action_back">Назад</string>
+    <!-- Барьер. -->
+    <string name="parent_barrier_back">Назад к Дзыню</string>
+    <string name="parent_barrier_title">Только для взрослых</string>
+    <string name="parent_barrier_lead">Тут скучная взрослая зона. Реши пример</string>
+    <string name="parent_barrier_example">%1$d × %2$d =</string>
+    <string name="parent_barrier_empty">?</string>
+    <string name="parent_barrier_answer_a11y">Ответ: %1$s</string>
+    <string name="parent_barrier_empty_a11y">Ответ пока не набран</string>
+    <string name="parent_barrier_wrong">Не то. Ещё раз?</string>
+    <string name="parent_barrier_hint">Наберите ответ и нажмите «Готово»</string>
+    <string name="parent_barrier_line_idle">Я не подглядываю. Почти</string>
+    <string name="parent_barrier_line_wrong">Бывает. Я тоже считаю на лапках</string>
+    <string name="parent_barrier_digit_a11y">Цифра %1$d</string>
+    <string name="parent_barrier_erase">Стереть цифру</string>
+    <string name="parent_barrier_done">Готово</string>
+
+    <!-- Вкладки. -->
+    <string name="parent_tab_progress">Прогресс</string>
+    <string name="parent_tab_articles">Статьи</string>
+    <string name="parent_tab_scams">Мошенники</string>
+    <string name="parent_tab_settings">Настройки</string>
+    <string name="parent_subtitle">Для взрослых</string>
+
+    <!-- Прогресс. -->
+    <string name="parent_progress_lead">Как растут %1$s и %2$s. Без оценок и рейтингов: сравниваем только с прошлой неделей.</string>
+    <string name="parent_progress_week">Неделя %1$d из %2$d</string>
+    <string name="parent_progress_story">Сюжет: «%1$s»</string>
+    <string name="parent_progress_stars_title">Звёздочки на пледе</string>
+    <string name="parent_progress_stars_a11y">Звёздочек на пледе: %1$d</string>
+    <string name="parent_progress_stars_none">Пока нет</string>
+    <string name="parent_progress_stars_hint">Звёздочка на пледе — неделя в рамках плана. Вышивается навсегда.</string>
+    <string name="parent_progress_savings">В копилке</string>
+    <string name="parent_progress_goal">Цель</string>
+    <string name="parent_progress_goal_value">%1$s · %2$d</string>
+    <string name="parent_progress_goal_none">Все цели в уголке</string>
+    <string name="parent_progress_chart_title">Копилка по неделям</string>
+    <string name="parent_progress_chart_forecast">Пунктир — если откладывать по %1$d в неделю.</string>
+    <string name="parent_progress_chart_empty">График появится, когда закончится первая неделя.</string>
+    <string name="parent_progress_chart_a11y">Копилка к концу недель: %1$s. Прогноз: %2$s.</string>
+    <string name="parent_progress_themes">Темы</string>
+    <string name="parent_progress_theme_budget">Бюджет</string>
+    <string name="parent_progress_theme_savings">Копилка</string>
+    <string name="parent_progress_theme_purchases">Покупки</string>
+    <string name="parent_progress_status_done">пройдено</string>
+    <string name="parent_progress_status_in_progress">в процессе</string>
+    <string name="parent_progress_status_ahead">впереди</string>
+    <string name="parent_progress_footer">Рейтингов и «а вот Петя уже» тут нет. Дзынь растёт в своём темпе.</string>
+
+    <!-- Статьи. -->
+    <string name="parent_articles_lead">Научпоп для взрослых. Коротко, без морали и паники — пока ребёнок кормит Дзыня кашей.</string>
+    <plurals name="parent_articles_minutes">
+        <item quantity="one">%d минута чтения</item>
+        <item quantity="few">%d минуты чтения</item>
+        <item quantity="many">%d минут чтения</item>
+        <item quantity="other">%d минут чтения</item>
+    </plurals>
+    <string name="parent_articles_soon">Скоро</string>
+    <string name="parent_articles_soon_a11y">Статья появится в следующей версии</string>
+    <string name="parent_article_back">Все статьи</string>
+    <string name="parent_article_meta">%1$s · %2$s</string>
+    <string name="parent_article_tips">Попробуйте дома</string>
+    <string name="parent_article_to_list">Ко всем статьям</string>
+
+    <!-- Мошенники. -->
+    <string name="parent_scams_title">Памятка для взрослых</string>
+    <string name="parent_scams_lead">Схемы, на которые ловят детей. Отмечайте то, что уже обсудили, — так проще ничего не забыть.</string>
+    <string name="parent_scams_discussed">обсудили</string>
+    <string name="parent_scams_talk_title">Что обсудить дома</string>
+    <string name="parent_scams_talk_lead">Три вопроса за ужином. Правильных ответов не ждём — ждём разговора.</string>
+    <string name="parent_scams_rule">В игре то же правило: непонятное сообщение → покажи взрослому.</string>
+
+    <!-- Настройки. -->
+    <string name="parent_bonus_title">Бонусные дзыньки</string>
+    <string name="parent_bonus_lead">Ребёнок разложит их по мешочкам сам</string>
+    <string name="parent_bonus_reason">За что</string>
+    <string name="parent_bonus_reason_helped">Помог дома</string>
+    <string name="parent_bonus_reason_studies">Хорошо учится</string>
+    <string name="parent_bonus_reason_just_because">Просто так</string>
+    <string name="parent_bonus_grant">Начислить %1$d</string>
+    <string name="parent_bonus_granted">Начислено %1$d. Дзынь уже слышит звон</string>
+    <string name="parent_age_title">Возрастной режим</string>
+    <string name="parent_age_younger">7–8 лет</string>
+    <string name="parent_age_older">9–11 лет</string>
+    <string name="parent_age_younger_hint">Крупные числа, шкалы без цифр, кнопки побольше.</string>
+    <string name="parent_age_older_hint">Всё с цифрами: остатки, сроки, проценты показателей.</string>
+    <string name="parent_calm_title">Спокойный режим</string>
+    <string name="parent_calm_hint">Без лишнего движения, анимации короче. Для тех, кого укачивает.</string>
+    <string name="parent_large_font_title">Крупный шрифт</string>
+    <string name="parent_large_font_hint">Текст крупнее во всей игре.</string>
+    <string name="parent_reset">Сбросить прогресс</string>
+    <string name="parent_delete">Удалить профиль</string>
+
+    <!-- Подтверждения. -->
+    <string name="parent_reset_title">Сбросить прогресс?</string>
+    <string name="parent_reset_lead">Игра вернётся к первой неделе. Обнулятся:</string>
+    <string name="parent_reset_item_weeks">недели, задания и звёздочки на пледе</string>
+    <string name="parent_reset_item_bags">мешочки, копилка и цели</string>
+    <string name="parent_reset_item_room">предметы в уголке</string>
+    <string name="parent_reset_note">Дзынь, его имя и наряд останутся. Настройки тоже.</string>
+    <string name="parent_reset_confirm">Сбросить</string>
+    <string name="parent_delete_title">Удалить профиль?</string>
+    <string name="parent_delete_lead">С этого телефона исчезнет всё, что связано с игроком «%1$s»:</string>
+    <string name="parent_delete_item_room">Дзынь и его уголок — плед, лампа, звёздочки</string>
+    <string name="parent_delete_item_bags">мешочки, копилка и цели</string>
+    <string name="parent_delete_item_quests">пройденные задания</string>
+    <string name="parent_delete_item_settings">настройки этого раздела</string>
+    <string name="parent_delete_note">Вернуть не получится. Игра начнётся с коробки у батареи.</string>
+    <string name="parent_delete_confirm">Удалить</string>
 </resources>

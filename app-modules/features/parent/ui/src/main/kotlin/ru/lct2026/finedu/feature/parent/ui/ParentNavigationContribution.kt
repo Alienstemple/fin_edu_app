@@ -11,8 +11,10 @@ internal class ParentNavigationContribution @Inject constructor() : FeatureNavig
 
     override fun NavGraphBuilder.register(navController: NavController) {
         composable<FinEduRoute.Parent> {
-            ParentScreen(
-                onBack = { navController.popBackStack() }
+            ParentRoute(
+                onBack = { navController.popBackStack() },
+                onOpenHome = { navController.navigate(FinEduRoute.Home) { popUpTo(0) } },
+                onOpenOnboarding = { navController.navigate(FinEduRoute.Onboarding) { popUpTo(0) } }
             )
         }
     }
