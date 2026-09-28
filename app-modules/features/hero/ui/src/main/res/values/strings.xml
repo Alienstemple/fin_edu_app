@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hero_title">Создание героя</string>
-    <string name="hero_description">Игровое имя, питомец (тип × цвет × аксессуар) и его имя.</string>
-    <string name="hero_action_done">Готово</string>
+    <string name="hero_title">Твой Дзынь</string>
+    <string name="hero_default_pet_name">Дзынь</string>
+    <string name="hero_fur">Шёрстка</string>
+    <string name="hero_fur_lilac">Сирень</string>
+    <string name="hero_fur_mint">Мята</string>
+    <string name="hero_fur_coral">Коралл</string>
+    <string name="hero_hat">На голове</string>
+    <string name="hero_hat_none">Без убора</string>
+    <string name="hero_hat_cap">Кепка</string>
+    <string name="hero_hat_headphones">Наушники</string>
+    <string name="hero_pet_name">Как зовут питомца?</string>
+    <string name="hero_player_name">Твоё игровое имя</string>
+    <string name="hero_player_name_placeholder">Капитан Носок</string>
+    <string name="hero_player_name_hint">Настоящие имена тут не нужны</string>
+    <string name="hero_done">Готово</string>
+    <string name="hero_demo">Демо-режим для проверки</string>
 </resources>
