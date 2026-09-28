@@ -11,12 +11,14 @@ internal class PeriodNavigationContribution @Inject constructor() : FeatureNavig
 
     override fun NavGraphBuilder.register(navController: NavController) {
         composable<FinEduRoute.PeriodSummary> {
-            PeriodSummaryScreen(
-                onNavigate = { route ->
-                    navController.navigate(route) {
+            PeriodSummaryRoute(
+                onNextWeek = {
+                    navController.navigate(FinEduRoute.Home) {
                         popUpTo(FinEduRoute.Home) { inclusive = true }
                     }
-                }
+                },
+                onHelpClick = { navController.navigate(FinEduRoute.Glossary) },
+                onParentClick = { navController.navigate(FinEduRoute.Parent) }
             )
         }
     }
