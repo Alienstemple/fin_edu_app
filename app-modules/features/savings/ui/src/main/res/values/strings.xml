@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Копилка. -->
     <string name="savings_title">Копилка</string>
-    <string name="savings_description">Цели, накоплено и сколько осталось, пополнение и снятие.</string>
-    <string name="savings_action_back">Назад</string>
+    <string name="savings_loading">Загружаем копилку…</string>
+    <string name="savings_pet_a11y">Дзынь с мешочком</string>
+    <string name="savings_pet_line">Мешочек тяжелеет — цель ближе</string>
+    <string name="savings_goal_label">Цель — %1$s</string>
+    <string name="savings_saved">Накоплено</string>
+    <string name="savings_left">Осталось</string>
+    <string name="savings_progress">%1$d / %2$d</string>
+    <string name="savings_progress_a11y">Накоплено %1$d из %2$d</string>
+    <plurals name="savings_weeks">
+        <item quantity="one">≈ %d неделя</item>
+        <item quantity="few">≈ %d недели</item>
+        <item quantity="many">≈ %d недель</item>
+        <item quantity="other">≈ %d недели</item>
+    </plurals>
+    <string name="savings_per_week">при %1$d в неделю</string>
+    <string name="savings_weeks_unknown">Срок посчитаем после первого пополнения</string>
+    <string name="savings_reached">Накоплено!</string>
+    <string name="savings_place_goal">Поставить в уголок</string>
+    <string name="savings_all_placed_title">Все цели уже в уголке!</string>
+    <string name="savings_all_placed_text">Ты накопил на всё. Копилка всё равно пригодится.</string>
+    <string name="savings_in_savings">В копилке</string>
+    <string name="savings_deposit">Пополнить</string>
+    <string name="savings_withdraw">Снять</string>
+    <string name="savings_deposit_unavailable">В «Хочу» пока пусто — пополнить не из чего.</string>
+    <string name="savings_goals_title">Цели для уголка</string>
+    <string name="savings_goal_placed">Стоит в уголке</string>
+    <string name="savings_goal_current">Копим сейчас</string>
+    <string name="savings_goal_next">Следующая цель</string>
+    <string name="savings_goals_done">Все цели стоят в уголке. Здорово!</string>
+
+    <!-- Шторка «Пополнить». -->
+    <string name="savings_deposit_title">Пополнить копилку</string>
+    <string name="savings_deposit_from_wants">Берём из «Хочу»: осталось %1$s</string>
+    <string name="savings_deposit_how_much">Сколько положить</string>
+    <string name="savings_deposit_confirm">Положить %1$d</string>
+
+    <!-- Шторка «Снять». -->
+    <string name="savings_withdraw_title">Снять из копилки</string>
+    <string name="savings_withdraw_line">Мы возьмём то, что нужно сейчас</string>
+    <string name="savings_withdraw_how_much">Сколько снять</string>
+    <string name="savings_withdraw_change">%1$d → %2$d</string>
+    <string name="savings_withdraw_term">Срок до цели «%1$s»</string>
+    <string name="savings_withdraw_term_change">было %1$s → станет %2$s</string>
+    <string name="savings_withdraw_term_unknown">пока не посчитать</string>
+    <string name="savings_withdraw_term_reached">накоплено</string>
+    <string name="savings_withdraw_confirm">Снять %1$d</string>
+    <string name="savings_withdraw_keep">Оставить</string>
+
+    <!-- Обратная связь. -->
+    <string name="savings_feedback_deposit_title">В копилку</string>
+    <string name="savings_feedback_withdraw_title">Из копилки</string>
+    <string name="savings_feedback_why_weeks">До цели «%1$s» %2$d — примерно %3$s.</string>
+    <string name="savings_feedback_why_reached">На «%1$s» уже накоплено! Можно ставить в уголок.</string>
+    <string name="savings_feedback_withdraw_prefix">Копилка для того и есть, чтобы выручать.</string>
+    <plurals name="savings_feedback_weeks">
+        <item quantity="one">%d неделя</item>
+        <item quantity="few">%d недели</item>
+        <item quantity="many">%d недель</item>
+        <item quantity="other">%d недели</item>
+    </plurals>
+
+    <!-- Ритуал цели. -->
+    <string name="savings_ritual_reached">Цель достигнута</string>
+    <string name="savings_ritual_goal">%1$s · %2$d / %2$d</string>
+    <string name="savings_ritual_where">Куда поставим?</string>
+    <string name="savings_ritual_line">Я донесу. Это почти не тяжело</string>
+    <string name="savings_ritual_forever">Предметы из уголка не пропадают. Никогда.</string>
+    <string name="savings_ritual_place">Поставить</string>
+    <string name="savings_ritual_placed">Теперь навсегда в уголке</string>
+    <string name="savings_ritual_next">Следующая цель — %1$s: %2$d из %3$d.</string>
+    <string name="savings_ritual_all_done">Все цели уже в уголке. Уютно!</string>
+    <string name="savings_ritual_line_window">Теперь я вижу небо. Спасибо</string>
+    <string name="savings_ritual_line_placed">Теперь тут ещё уютнее. Спасибо</string>
+    <string name="savings_ritual_go_home">В уголок</string>
 </resources>
