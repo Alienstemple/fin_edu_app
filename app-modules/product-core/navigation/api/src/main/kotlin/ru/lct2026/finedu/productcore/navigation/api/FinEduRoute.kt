@@ -3,7 +3,7 @@ package ru.lct2026.finedu.productcore.navigation.api
 import kotlinx.serialization.Serializable
 
 /**
- * Type-safe маршруты всех экранов MVP. Номера — из `decomposition.md`.
+ * Type-safe маршруты всех экранов. Экраны — по макету «Дзынь · 2026», см. `docs/implementation-plan.md`.
  */
 sealed interface FinEduRoute {
 
@@ -46,4 +46,12 @@ sealed interface FinEduRoute {
     /** 10. Раздел для взрослого. */
     @Serializable
     data object Parent : FinEduRoute
+
+    /** Словарик и помощь (фича `learn`). */
+    @Serializable
+    data object Glossary : FinEduRoute
+
+    /** Шортс «Дзынь объясняет за 15 секунд» и лента карточек (фича `learn`). */
+    @Serializable
+    data object Shorts : FinEduRoute
 }

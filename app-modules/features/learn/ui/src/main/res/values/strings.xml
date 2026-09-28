@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="glossary_title">Словарик</string>
+    <string name="shorts_title">Шортсы</string>
+    <string name="learn_action_back">Назад</string>
+</resources>

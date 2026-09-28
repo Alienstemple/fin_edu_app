@@ -75,6 +75,8 @@ dependencies {
     implementation(projects.appModules.features.period.data)
     implementation(projects.appModules.features.parent.ui)
     implementation(projects.appModules.features.parent.data)
+    implementation(projects.appModules.features.learn.ui)
+    implementation(projects.appModules.features.learn.data)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)

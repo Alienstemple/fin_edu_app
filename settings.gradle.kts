@@ -51,5 +51,8 @@ include(
     ":app-modules:features:period:ui",
     ":app-modules:features:parent:domain",
     ":app-modules:features:parent:data",
-    ":app-modules:features:parent:ui"
+    ":app-modules:features:parent:ui",
+    ":app-modules:features:learn:domain",
+    ":app-modules:features:learn:data",
+    ":app-modules:features:learn:ui"
 )

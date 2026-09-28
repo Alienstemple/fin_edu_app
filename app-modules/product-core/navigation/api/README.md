@@ -7,7 +7,7 @@
 ### `FinEduRoute`
 
 `sealed interface` с type-safe маршрутами (`@Serializable`) всех экранов MVP: `Onboarding`, `Hero`, `Home`,
-`Budget`, `Shop`, `Savings`, `Quests`, `Quest(questId)`, `PeriodSummary`, `Parent`.
+`Budget`, `Shop`, `Savings`, `Quests`, `Quest(questId)`, `PeriodSummary`, `Parent`, `Glossary`, `Shorts`.
 
 - Переход на экран другой фичи — только через `navController.navigate(FinEduRoute.X)`. Прямые зависимости
   между feature-модулями запрещены.
@@ -36,6 +36,17 @@ internal interface ShopNavigationModule {
 ```
 
 `:app` получает `Set<FeatureNavigationContribution>` и собирает `NavHost`.
+
+### `NavController.navigateToTab(route)`
+
+Переход в раздел нижней навигации (Главная / Задания / Магазин / Копилка): стек сбрасывается до главного,
+повторное нажатие на текущую вкладку не плодит копий экрана.
+
+```kotlin
+FinBottomBar(selected = FinTab.SHOP, onSelect = { tab -> navController.navigateToTab(tab.route) })
+```
+
+`FinTab.route` — в `product-core:ui` (`components/FinTabRoutes.kt`).
 
 ## Инварианты
 

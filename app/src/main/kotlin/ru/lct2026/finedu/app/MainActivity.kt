@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +40,12 @@ class MainActivity : ComponentActivity() {
             val startDestination by produceState<FinEduRoute?>(initialValue = null) {
                 value = if (gameRepository.state.first() == null) FinEduRoute.Onboarding else FinEduRoute.Home
             }
-            FinEduTheme {
+            // Настройки взрослого («Крупный шрифт», «Спокойный режим») применяются сразу после изменения.
+            val game by gameRepository.state.collectAsState(initial = null)
+            FinEduTheme(
+                largeFont = game?.settings?.largeFont == true,
+                reduceMotion = game?.settings?.calmMode == true
+            ) {
                 FinEduBackground {
                     startDestination?.let { start ->
                         FinEduNavHost(contributions = navigationContributions, startDestination = start)
