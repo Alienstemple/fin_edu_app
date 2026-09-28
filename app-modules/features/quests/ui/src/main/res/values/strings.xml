@@ -1,10 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Список заданий. -->
     <string name="quests_title">Задания</string>
-    <string name="quests_description">Задания по темам: бюджет, сбережения, покупки.</string>
-    <string name="quests_action_open_demo_quest">Открыть задание</string>
-    <string name="quests_action_back">Назад</string>
-    <string name="quest_title">Задание</string>
-    <string name="quest_description">Игровая ситуация, выбор, объяснение и награда.</string>
-    <string name="quest_action_back">Назад</string>
+    <string name="quests_week_label">Сюжет недели</string>
+    <string name="quests_week_title">Неделя %1$d: %2$s</string>
+    <string name="quests_week_number">Неделя %1$d</string>
+    <string name="quests_theme_budget">Бюджет</string>
+    <string name="quests_theme_budget_note">куда идут дзыньки</string>
+    <string name="quests_theme_savings">Копилка</string>
+    <string name="quests_theme_savings_note">копим и бережём</string>
+    <string name="quests_theme_purchases">Покупки</string>
+    <string name="quests_theme_purchases_note">сначала думаем</string>
+    <string name="quests_level">Уровень сложности: %1$s</string>
+    <string name="quests_level_easy">лёгкий</string>
+    <string name="quests_level_medium">средний</string>
+    <string name="quests_status_available">Доступно</string>
+    <string name="quests_status_done">Пройдено</string>
+    <string name="quests_reward">Награда: %1$s</string>
+    <string name="quests_reward_received">Получено: %1$s</string>
+    <string name="quests_challenge_label">Челлендж недели</string>
+    <string name="quests_challenge_optional">необязательный</string>
+    <string name="quests_challenge_title">Правило двух дней</string>
+    <string name="quests_challenge_text">Понравилась вещь из «Хочу»? Пусть два дня поживёт в голове. Хочется и потом — значит, правда хочется.</string>
+    <string name="quests_challenge_join">Попробую</string>
+    <string name="quests_challenge_join_hint">Можно и не пробовать — Дзынь не обидится.</string>
+    <string name="quests_challenge_joined">Челлендж в деле. Передумать можно в любой момент.</string>
+    <string name="quests_challenge_leave">Передумать</string>
+
+    <!-- Задание с выбором. -->
+    <string name="quest_tag_purchases">Задание · Покупки</string>
+    <string name="quest_review_title">Разбор</string>
+    <string name="quest_choice_question">Что делаешь?</string>
+    <string name="quest_choice_hint">Любой вариант подходит — дальше разберём, как это устроено.</string>
+    <string name="quest_choice_picked">Твой выбор: «%1$s».</string>
+    <string name="quest_reward_added">+%1$s в неразложенное — разложишь в плане недели.</string>
+    <string name="quest_reward_already">Задание уже пройдено, награда уже получена.</string>
+    <string name="quest_done">Готово</string>
+
+    <!-- «Никто: / Реклама:». -->
+    <string name="quest_ad_nobody">Никто:</string>
+    <string name="quest_ad_advert">Реклама:</string>
+    <string name="quest_ad_banner">ТОЛЬКО СЕГОДНЯ! КУПИ СЕЙЧАС!!!</string>
+    <string name="quest_ad_timer">00:09:59</string>
+    <string name="quest_ad_item">шляпа за 100</string>
+    <string name="quest_ad_pet_line">Ого. Это мне?</string>
+    <string name="quest_ad_note_only">«Только» — чтобы стало жалко упустить</string>
+    <string name="quest_ad_note_timer">Таймер завтра снова начнёт с 10 минут</string>
+
+    <!-- «Это развод?». -->
+    <string name="quest_scam_counter">%1$d из %2$d</string>
+    <string name="quest_scam_question">Такие сообщения прилетают всем. Как думаешь, что это?</string>
+    <string name="quest_scam_now">сейчас</string>
+    <string name="quest_scam_suspicious">Подозрительно</string>
+    <string name="quest_scam_normal">Нормально</string>
+    <string name="quest_scam_pet_line">Я рядом. Смотрим вместе</string>
+    <string name="quest_scam_sign">%1$d. %2$s</string>
+    <string name="quest_scam_picked">Твой вариант: %1$s.</string>
+    <string name="quest_scam_picked_suspicious">подозрительно</string>
+    <string name="quest_scam_picked_normal">нормально</string>
+    <string name="quest_scam_next">Следующее сообщение</string>
+    <string name="quest_scam_to_summary">К итогу</string>
+    <string name="quest_scam_summary_title">Итог</string>
+    <string name="quest_scam_main_rule">Главное правило</string>
+    <string name="quest_scam_main_rule_text">Непонятное сообщение — покажи взрослому</string>
+    <string name="quest_scam_pet_together">Вместе не страшно</string>
+    <string name="quest_scam_reward">+%1$s. Задание «%2$s» пройдено. Три сообщения — три разбора.</string>
+    <string name="quest_scam_finish">Понятно</string>
 </resources>
