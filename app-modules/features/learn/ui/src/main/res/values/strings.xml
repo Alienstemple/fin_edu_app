@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Словарик. -->
     <string name="glossary_title">Словарик</string>
+    <string name="glossary_intro">Да, у приложения про деньги есть словарик. Зато каждое слово — одной фразой.</string>
+    <string name="glossary_tag">без занудства</string>
+    <string name="glossary_shorts_link">Дзынь объясняет за 15 секунд</string>
+    <string name="glossary_onboarding_again">Показать знакомство ещё раз</string>
+
+    <!-- Шортс и лента. -->
     <string name="shorts_title">Шортсы</string>
-    <string name="learn_action_back">Назад</string>
+    <string name="shorts_mode_player">Смотреть</string>
+    <string name="shorts_mode_feed">Лента</string>
+    <string name="shorts_player_label">%1$s · 15 с</string>
+    <string name="shorts_progress_a11y">Кадр %1$d из %2$d</string>
+    <string name="shorts_previous">Назад</string>
+    <string name="shorts_next">Дальше</string>
+    <string name="shorts_like">Нравится</string>
+    <string name="shorts_understood">Понятно</string>
+    <string name="shorts_reward">+%1$s за задание «%2$s»</string>
+    <string name="shorts_reward_hint">Награда ждёт на главном — разложи её по мешочкам.</string>
+    <string name="feed_subtitle">Дзынь объясняет за 15 секунд</string>
+    <string name="feed_position">%1$d из %2$d</string>
+    <string name="feed_watch">Смотреть</string>
+    <string name="feed_duration">15 с</string>
+    <string name="feed_next">Следующая</string>
+    <string name="feed_swipe_hint">Свайп влево — следующая карточка</string>
 </resources>
