@@ -36,7 +36,8 @@ Multiplatform: `domain` уже чистый Kotlin и переносится в 
 app/                              — точка входа: Application, MainActivity, NavHost; собирает ui + data всех фич
 app-modules/
     product-core/                 — общее ядро
-        domain/                   — общие модели и игровая экономика (Dzynki, ...), чистый Kotlin/JVM
+        domain/                   — общие модели и игровая экономика (GameEngine, ...), чистый Kotlin/JVM
+        data/                     — профиль в DataStore, игровой контент из assets/content/*.json
         navigation/api/           — FinEduRoute и контракт FeatureNavigationContribution
         ui/                       — FinEduTheme, общие компоненты (FinButton, ...), превью
     features/<feature>/
@@ -79,7 +80,12 @@ config/detekt/                    — конфиг detekt
 - `ui` → `domain` своей фичи, `product-core:ui`, `product-core:navigation:api`.
 - `data` → `domain` своей фичи.
 - `domain` → `product-core:domain` (реэкспортируется через `api`), `kotlinx-coroutines-core`.
-- `app` подключает `ui` и `data` каждой фичи и связывает их в одном Hilt-графе.
+- `app` подключает `ui` и `data` каждой фичи и `product-core:data` и связывает их в одном Hilt-графе.
+- Общее состояние игры (`GameRepository`) и контент (`ContentRepository`) — интерфейсы в `product-core:domain`,
+  реализации в `product-core:data`. Фичи получают их через Hilt и не хранят игровое состояние сами.
+- Игровой контент (товары, цели, задания, сюжет, словарик, шортсы, материалы для взрослого) — JSON в
+  `product-core/data/src/main/assets/content/`. Новый товар или задание — новая запись без правки кода;
+  `ContentParserTest` проверяет, что файлы разбираются.
 - `ui` **не видит** `data` на уровне Gradle — случайный импорт реализации не скомпилируется.
 - Фичи не зависят друг от друга. Переходы — через `FinEduRoute`. Общие модели двух фич переезжают
   в `product-core:domain`.

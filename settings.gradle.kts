@@ -22,6 +22,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(
     ":app",
     ":app-modules:product-core:domain",
+    ":app-modules:product-core:data",
     ":app-modules:product-core:navigation:api",
     ":app-modules:product-core:ui",
     ":app-modules:features:onboarding:domain",

@@ -52,6 +52,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.appModules.productCore.domain)
+    implementation(projects.appModules.productCore.data)
     implementation(projects.appModules.productCore.ui)
     implementation(projects.appModules.productCore.navigation.api)
 

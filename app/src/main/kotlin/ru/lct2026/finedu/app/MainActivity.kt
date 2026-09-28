@@ -6,9 +6,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlinx.coroutines.flow.first
 import ru.lct2026.finedu.app.navigation.FinEduNavHost
+import ru.lct2026.finedu.productcore.domain.repository.GameRepository
 import ru.lct2026.finedu.productcore.navigation.api.FeatureNavigationContribution
 import ru.lct2026.finedu.productcore.navigation.api.FinEduRoute
 import ru.lct2026.finedu.productcore.ui.components.FinEduBackground
@@ -20,6 +24,9 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var navigationContributions: Set<@JvmSuppressWildcards FeatureNavigationContribution>
 
+    @Inject
+    lateinit var gameRepository: GameRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Тема только тёмная: светлые иконки статус-бара и навигации независимо от системной темы.
@@ -28,13 +35,15 @@ class MainActivity : ComponentActivity() {
             navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT)
         )
         setContent {
+            // Пока профиль читается с диска (доли секунды), виден только фон.
+            val startDestination by produceState<FinEduRoute?>(initialValue = null) {
+                value = if (gameRepository.state.first() == null) FinEduRoute.Onboarding else FinEduRoute.Home
+            }
             FinEduTheme {
                 FinEduBackground {
-                    FinEduNavHost(
-                        contributions = navigationContributions,
-                        // TODO: есть сохранённый профиль → Home, нет → Onboarding (decomposition.md, раздел 1)
-                        startDestination = FinEduRoute.Onboarding
-                    )
+                    startDestination?.let { start ->
+                        FinEduNavHost(contributions = navigationContributions, startDestination = start)
+                    }
                 }
             }
         }

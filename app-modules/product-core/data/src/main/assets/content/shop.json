@@ -1,0 +1,18 @@
+[
+  { "id": "kasha", "title": "Каша", "price": 20, "bag": "needs" },
+  { "id": "socks", "title": "Тёплые носки", "price": 40, "bag": "needs" },
+  { "id": "soap", "title": "Мыло с пузырями", "price": 30, "bag": "needs" },
+  { "id": "brush", "title": "Зубная щётка", "price": 20, "bag": "needs" },
+  { "id": "scarf", "title": "Шарф", "price": 50, "bag": "needs" },
+  { "id": "slippers", "title": "Тапочки", "price": 60, "bag": "needs" },
+  { "id": "hot_water_bottle", "title": "Грелка", "price": 40, "bag": "needs" },
+  { "id": "apples", "title": "Яблоки", "price": 20, "bag": "needs" },
+  { "id": "ball", "title": "Мячик-попрыгун", "price": 30, "bag": "wants" },
+  { "id": "hat", "title": "Шляпа с пером", "price": 100, "bag": "wants", "shortageLine": "Шляпа такая красивая… но на обед не осталось" },
+  { "id": "garland", "title": "Гирлянда", "price": 60, "bag": "wants" },
+  { "id": "stickers", "title": "Набор наклеек", "price": 40, "bag": "wants" },
+  { "id": "kite", "title": "Воздушный змей", "price": 80, "bag": "wants", "shortageLine": "Змей бы так полетел… но мешочек пока лёгкий" },
+  { "id": "bow_tie", "title": "Бабочка в горошек", "price": 50, "bag": "wants" },
+  { "id": "headphones", "title": "Наушники", "price": 150, "bag": "wants", "shortageLine": "Музыка — это мечта. Давай до неё дорастём" },
+  { "id": "puzzle", "title": "Пазл", "price": 70, "bag": "wants", "shortageLine": "Пазл я бы собрал… но мешочек пока лёгкий" }
+]
