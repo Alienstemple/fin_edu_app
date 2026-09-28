@@ -26,6 +26,9 @@ data class BagAmounts(
         Bag.SAVINGS -> savings
     }
 
+    operator fun plus(other: BagAmounts): BagAmounts =
+        BagAmounts(needs + other.needs, wants + other.wants, savings + other.savings)
+
     fun add(bag: Bag, amount: Dzynki): BagAmounts = when (bag) {
         Bag.NEEDS -> copy(needs = needs + amount)
         Bag.WANTS -> copy(wants = wants + amount)

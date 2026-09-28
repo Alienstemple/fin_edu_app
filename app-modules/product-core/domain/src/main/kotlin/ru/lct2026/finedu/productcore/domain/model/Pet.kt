@@ -70,6 +70,13 @@ data class Pet(
         }
     }
 
+    /** Поднимает каждый показатель минимум до [floor]. */
+    fun raiseTo(floor: Int): Pet = copy(
+        charge = maxOf(charge, floor),
+        vibe = maxOf(vibe, floor),
+        calm = maxOf(calm, floor)
+    )
+
     /** Фактические изменения показателей относительно [before], без нулевых. */
     fun changesSince(before: Pet): Map<PetStat, Int> =
         PetStat.entries.associateWith { get(it) - before[it] }.filterValues { it != 0 }

@@ -1,67 +1,39 @@
 package ru.lct2026.finedu.productcore.domain.model
 
-/** Прохождение заданий: последствия выбора и награда. */
+/** Прохождение заданий. Награда — за первое прохождение, при любом выборе: ошибка — сюжет, а не провал. */
 object QuestEngine {
 
-    /** Проходит задание с выбором. Награда — только за первое прохождение. */
-    fun completeChoice(state: GameState, quest: Quest.Choice, optionId: String): GameResult {
+    /** Задание с выбором: показатели меняются по варианту. */
+    fun choose(state: GameState, quest: Quest.Choice, optionId: String): QuestOutcome {
         val option = quest.options.first { it.id == optionId }
-        val paid = pay(state, option.cost, option.bag) ?: return GameResult.NotEnoughMoney(
-            shortfall(if (option.bag == Bag.SAVINGS) state.savings else state.balance, option.cost)
-        )
-        val pet = option.statChanges.entries.fold(paid.pet) { pet, (stat, delta) -> pet.change(stat, delta) }
-        return finishQuest(state, paid.copy(pet = pet), quest)
+        return complete(state, quest, option.statChanges)
     }
 
-    /** Проверка корзины: уложился ли в бюджет и взял ли всё нужное. */
-    fun checkBasket(quest: Quest.Basket, itemIds: Set<String>): BasketCheck {
-        val chosen = quest.items.filter { it.id in itemIds }
-        val total = chosen.fold(Dzynki.ZERO) { sum, item -> sum + item.price }
-        return BasketCheck(
-            total = total,
-            fitsBudget = total <= quest.budget,
-            hasAllNeeded = quest.items.filter { it.isNeeded }.all { it.id in itemIds }
-        )
-    }
-
-    /** Проходит задание-корзину. Корзина учебная: кошелёк не тратится, награда — при любом результате. */
-    fun completeBasket(state: GameState, quest: Quest.Basket): GameResult = finishQuest(state, state, quest)
-
-    /** Списывает [cost] из мешочка [bag]; `null`, если не хватает. */
-    private fun pay(state: GameState, cost: Dzynki, bag: Bag?): GameState? = when (bag) {
-        null -> state
-
-        Bag.SAVINGS -> state.savings.minusOrNull(cost)?.let {
-            state.copy(savings = it, period = state.period.copy(withdrawn = state.period.withdrawn + cost))
-        }
-
-        Bag.NEEDS, Bag.WANTS -> state.balance.minusOrNull(cost)?.let {
-            state.copy(balance = it, period = state.period.copy(actual = state.period.actual.add(bag, cost)))
-        }
-    }
-
-    private fun finishQuest(before: GameState, after: GameState, quest: Quest): GameResult {
-        val reward = if (quest.id in before.completedQuestIds) Dzynki.ZERO else quest.reward
-        val periodNumber = after.period.number
-        val newState = after.copy(
-            balance = after.balance + reward,
-            completedQuestIds = after.completedQuestIds + quest.id,
-            period = after.period.copy(completedQuestIds = after.period.completedQuestIds + quest.id),
+    /** Задание без последствий выбора: «Это развод?» или засчитанное действием. */
+    fun complete(state: GameState, quest: Quest, statChanges: Map<PetStat, Int> = emptyMap()): QuestOutcome {
+        val reward = if (quest.id in state.completedQuestIds) Dzynki.ZERO else quest.reward
+        val pet = statChanges.entries.fold(state.pet) { pet, (stat, delta) -> pet.change(stat, delta) }
+        val period = state.period
+        val after = state.copy(
+            unallocated = state.unallocated + reward,
+            pet = pet,
+            completedQuestIds = state.completedQuestIds + quest.id,
+            period = period.copy(completedQuestIds = period.completedQuestIds + quest.id),
             ledger = if (reward > Dzynki.ZERO) {
-                after.ledger + LedgerEntry(periodNumber, IncomeSource.QUEST_REWARD, reward, quest.id)
+                state.ledger + LedgerEntry(period.number, IncomeSource.QUEST_REWARD, reward, quest.id)
             } else {
-                after.ledger
+                state.ledger
             }
         )
-        return GameResult.Success(
-            newState,
-            Feedback(
-                FeedbackReason.QUEST_DONE,
-                balanceDelta = newState.balance.amount - before.balance.amount,
-                savingsDelta = newState.savings.amount - before.savings.amount,
-                statChanges = newState.pet.changesSince(before.pet),
-                reward = reward
-            )
-        )
+        return QuestOutcome(after, reward, pet.changesSince(state.pet))
     }
+
+    /** Задание, которое засчитывает [trigger], если оно ещё не пройдено. */
+    fun questFor(state: GameState, quests: List<Quest>, trigger: QuestTrigger): Quest.Action? =
+        quests.firstNotNullOfOrNull { quest ->
+            when (quest) {
+                is Quest.Action -> quest.takeIf { it.trigger == trigger && it.id !in state.completedQuestIds }
+                is Quest.Choice, is Quest.Scam -> null
+            }
+        }
 }
