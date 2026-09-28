@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="period_summary_title">Итоги периода</string>
-    <string name="period_summary_description">План и факт, сколько отложено, реакция питомца и рост.</string>
-    <string name="period_summary_action_next_period">Следующий период</string>
+    <!-- Итоги недели. -->
+    <string name="period_summary_title">Итоги недели</string>
+    <string name="period_summary_week">Неделя %1$d</string>
+    <string name="period_summary_expectation">Ожидание</string>
+    <string name="period_summary_reality">Реальность</string>
+    <string name="period_summary_no_plan">Плана не было — дзыньки так и не разложили по мешочкам.</string>
+    <string name="period_summary_value_closed">%1$d ✓</string>
+    <string name="period_summary_value_saved">+%1$d</string>
+    <string name="period_summary_row_a11y">%1$s: %2$s</string>
+    <string name="period_summary_row_closed_a11y">%1$s: %2$s, закрыто</string>
+    <string name="period_summary_row_saved_a11y">%1$s: плюс %2$s</string>
+    <string name="period_summary_tag_needs_closed">Нужное закрыто ✓</string>
+    <string name="period_summary_tag_saved">В копилке +%1$d</string>
+    <string name="period_summary_line_good">Я горжусь нами. Мешочек потяжелел</string>
+    <string name="period_summary_line_needs_open">Вайб есть, сил нет. На следующей неделе сначала Нужное</string>
+    <string name="period_summary_explain_wants">На «Хочу» ушло %1$d вместо %2$d — лишние %3$d уехали в копилку.</string>
+    <string name="period_summary_explain_leftover">Остатки недели — %1$s — уехали в копилку. Ничего не пропало.</string>
+    <string name="period_summary_explain_all_spent">Все дзыньки недели нашли своё место.</string>
+    <string name="period_summary_advice_title">Что попробуем на следующей неделе</string>
+    <string name="period_summary_advice_plan">Разложить дзыньки в начале недели. Так сразу видно, на что хватает.</string>
+    <string name="period_summary_advice_needs">Сначала закрыть Нужное, а потом — Хочу. Тогда Дзыню будет тепло всю неделю.</string>
+    <string name="period_summary_advice_save">Положить в копилку сразу в понедельник, а не в конце. Проверим, станет ли ждать проще.</string>
+    <string name="period_summary_advice_challenge">Попробовать челлендж недели. Он в «Заданиях» — без спешки и без штрафов.</string>
+    <string name="period_summary_xp_title">Опыт за неделю</string>
+    <string name="period_summary_xp_plus">+1</string>
+    <string name="period_summary_xp_planned">План зафиксирован</string>
+    <string name="period_summary_xp_needs_closed">Нужное закрыто</string>
+    <string name="period_summary_xp_saved">Отложил в копилку</string>
+    <string name="period_summary_xp_quest_done">Задание пройдено</string>
+    <string name="period_summary_xp_reason_a11y">Плюс 1 опыт: %1$s</string>
+    <string name="period_summary_xp_empty">На этой неделе опыт не прибавился. Ничего страшного: всё, что было, осталось с Дзынем.</string>
+    <string name="period_summary_xp_total">Всего опыта: %1$d · стадия «%2$s»</string>
+    <string name="period_summary_star_title">Звёздочка на пледе</string>
+    <string name="period_summary_star_text">Неделя прошла в рамках плана — на пледе вышивается %1$d-я звёздочка. Звёздочки не исчезают.</string>
+    <string name="period_summary_next_week">Следующая неделя</string>
+
+    <!-- Рост стадии. -->
+    <string name="period_growth_new_stage">Новая стадия · %1$d из %2$d</string>
+    <string name="period_growth_line">Я стал больше вместе с тобой</string>
+    <string name="period_growth_was">было: %1$s</string>
+    <string name="period_growth_why">Я расту от твоих решений: план, Нужное, копилка и задания.</string>
+    <string name="period_growth_stages_title">Стадии роста</string>
+    <string name="period_growth_last_stage">Это самая большая стадия. Опыт и звёздочки не пропадают.</string>
+    <string name="period_growth_stage_done_a11y">%1$s — пройдена</string>
+    <string name="period_growth_stage_current_a11y">%1$s — сейчас</string>
+    <string name="period_growth_stage_next_a11y">%1$s — впереди</string>
+    <string name="period_growth_next">Дальше</string>
+
+    <!-- Стадии питомца. -->
+    <string name="period_stage_baby">Малыш</string>
+    <string name="period_stage_spry">Шустрик</string>
+    <string name="period_stage_master">Мастер мешочка</string>
+
+    <plurals name="period_xp_to_next_stage">
+        <item quantity="one">До стадии «%2$s» ещё %1$d очко опыта</item>
+        <item quantity="few">До стадии «%2$s» ещё %1$d очка опыта</item>
+        <item quantity="many">До стадии «%2$s» ещё %1$d очков опыта</item>
+        <item quantity="other">До стадии «%2$s» ещё %1$d очка опыта</item>
+    </plurals>
 </resources>
