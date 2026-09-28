@@ -122,7 +122,16 @@
 - Иконка приложения: монетка `coin3` векторно на тёмно-фиолетовом градиенте; `docs/rustore/icon-512.png`.
 - Питомец (9 комбинаций, эмоции, стадии) переносится в этапе 3 как `PetView` на Compose Canvas по SVG макета.
 
-### Этап 1. Игровое ядро `product-core:domain` + тесты — ~3 ч
+### Этап 1. Игровое ядро `product-core:domain` + тесты — ✅ сделано 28.09 (ветка `feature/game-core`)
+- Сделано: модели (`Bag`/`BagAmounts`, `Pet`/`PetStage`, `GameState`, `PeriodResult`, `Feedback`, контент),
+  `GameRules` (числа), `GameEngine` (план, покупка, копилка, срок цели, закрытие недели, бонус; сброс =
+  `newGame(profile)`), `QuestEngine` (`completeChoice`, `checkBasket`, `completeBasket`), `GameRepository`,
+  `ContentRepository`. Покрытие модуля ~96% строк.
+- Числа: доход 500/нед., показатели 10..100 (старт 60, «устал» ≤ 30), −20 к каждому показателю в конце недели,
+  спокойствие ±1 за 5 дзынек в/из копилки, покупка поднимает показатель на `statBoost` товара. Корзина — учебная,
+  кошелёк не тратит.
+
+Исходный план этапа:
 - Модели и `GameEngine` из раздела выше, `GameRepository`, `ContentRepository`, модели контента
   (`ShopItem`, `Goal`, `Quest`, `WeekStory`, `GlossaryTerm`).
 - Unit-тесты на все формулы (обязательны по AGENTS.md): план ≤ дохода, покупка при нехватке, пополнение/снятие и
