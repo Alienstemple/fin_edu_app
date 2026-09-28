@@ -11,10 +11,13 @@ internal class LearnNavigationContribution @Inject constructor() : FeatureNaviga
 
     override fun NavGraphBuilder.register(navController: NavController) {
         composable<FinEduRoute.Glossary> {
-            GlossaryScreen(onBack = { navController.popBackStack() })
+            GlossaryRoute(
+                onBack = { navController.popBackStack() },
+                onNavigate = { route -> navController.navigate(route) }
+            )
         }
         composable<FinEduRoute.Shorts> {
-            ShortsScreen(onBack = { navController.popBackStack() })
+            ShortsRoute(onBack = { navController.popBackStack() })
         }
     }
 }
