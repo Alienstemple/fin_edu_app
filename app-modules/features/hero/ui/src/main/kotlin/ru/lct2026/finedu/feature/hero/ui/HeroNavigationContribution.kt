@@ -11,10 +11,12 @@ internal class HeroNavigationContribution @Inject constructor() : FeatureNavigat
 
     override fun NavGraphBuilder.register(navController: NavController) {
         composable<FinEduRoute.Hero> {
-            HeroScreen(
-                onNavigate = { route ->
-                    navController.navigate(route) {
-                        popUpTo(FinEduRoute.Onboarding) { inclusive = true }
+            HeroRoute(
+                onBack = { navController.popBackStack() },
+                onOpenHome = {
+                    // Стек очищается целиком: назад в онбординг и создание питомца не вернуться.
+                    navController.navigate(FinEduRoute.Home) {
+                        popUpTo(navController.graph.id) { inclusive = true }
                     }
                 }
             )
