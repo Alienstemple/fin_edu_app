@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -134,7 +133,7 @@ internal fun HomeScreen(
 
 @Composable
 private fun HomeTopBar(state: HomeUiState.Content, onNavigate: (FinEduRoute) -> Unit) {
-    Column(modifier = Modifier.statusBarsPadding()) {
+    Column {
         FinTopBar(
             title = state.weekTitle ?: stringResource(R.string.home_title_default),
             subtitle = if (state.weekNumber <= GameRules.DEMO_WEEKS) {

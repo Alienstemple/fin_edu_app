@@ -13,8 +13,22 @@ internal class ParentNavigationContribution @Inject constructor() : FeatureNavig
         composable<FinEduRoute.Parent> {
             ParentRoute(
                 onBack = { navController.popBackStack() },
-                onOpenHome = { navController.navigate(FinEduRoute.Home) { popUpTo(0) } },
-                onOpenOnboarding = { navController.navigate(FinEduRoute.Onboarding) { popUpTo(0) } }
+                onOpenHome = {
+                    navController.navigate(FinEduRoute.Home) {
+                        popUpTo(navController.graph.id) {
+                            inclusive =
+                                true
+                        }
+                    }
+                },
+                onOpenOnboarding = {
+                    navController.navigate(FinEduRoute.Onboarding) {
+                        popUpTo(navController.graph.id) {
+                            inclusive =
+                                true
+                        }
+                    }
+                }
             )
         }
     }

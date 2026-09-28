@@ -51,6 +51,8 @@ import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
  * Обратная связь после действия (ТЗ 2.5.9) — одна шторка на все действия: реакция Дзыня → что изменилось
  * (было → стало) → почему → что дальше. [title] — что купили или «В копилку»; [why] по умолчанию — общий текст
  * для [Feedback.reason], экран может передать точнее (например, с новым сроком цели).
+ * [onDismiss] — шторку смахнули или закрыли «назад»; [onPrimary] — нажали «Вернуться в уголок» (обычно переход на
+ * главный), по умолчанию просто закрывает шторку.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,6 +62,7 @@ fun FeedbackSheet(
     stage: PetStage,
     title: String,
     onDismiss: () -> Unit,
+    onPrimary: () -> Unit = onDismiss,
     why: String = stringResource(feedback.reason.whyRes),
     secondaryText: String? = null,
     onSecondary: (() -> Unit)? = null
@@ -75,7 +78,7 @@ fun FeedbackSheet(
             stage = stage,
             title = title,
             why = why,
-            onDismiss = onDismiss,
+            onPrimary = onPrimary,
             secondaryText = secondaryText,
             onSecondary = onSecondary,
             modifier = Modifier.navigationBarsPadding()
@@ -90,7 +93,7 @@ private fun FeedbackContent(
     stage: PetStage,
     title: String,
     why: String,
-    onDismiss: () -> Unit,
+    onPrimary: () -> Unit,
     secondaryText: String?,
     onSecondary: (() -> Unit)?,
     modifier: Modifier = Modifier
@@ -148,7 +151,7 @@ private fun FeedbackContent(
         SectionTitle(R.string.feedback_why)
         Text(text = why, style = MaterialTheme.typography.bodyMedium)
         SectionTitle(R.string.feedback_next)
-        FinButton(text = stringResource(R.string.feedback_back_home), onClick = onDismiss)
+        FinButton(text = stringResource(R.string.feedback_back_home), onClick = onPrimary)
         if (secondaryText != null && onSecondary != null) {
             FinButton(text = secondaryText, onClick = onSecondary, style = FinButtonStyle.Secondary)
         }
@@ -253,7 +256,7 @@ private fun FeedbackContentPreview() {
             stage = PetStage.SPRY,
             title = "Тёплые носки",
             why = "Скучная покупка, зато тёплая. Нужное всегда подзаряжает Дзыня.",
-            onDismiss = {},
+            onPrimary = {},
             secondaryText = "Ещё в магазин",
             onSecondary = {}
         )
@@ -276,7 +279,7 @@ private fun FeedbackPausePreview() {
             stage = PetStage.BABY,
             title = "Шляпа с пером",
             why = "Пауза — тоже решение. Если завтра всё ещё хочется, значит, правда хочется.",
-            onDismiss = {},
+            onPrimary = {},
             secondaryText = null,
             onSecondary = null
         )

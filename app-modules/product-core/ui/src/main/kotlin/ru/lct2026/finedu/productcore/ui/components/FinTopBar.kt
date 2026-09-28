@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -27,7 +28,7 @@ import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
 
 /**
  * Шапка экрана: «назад» (если [onBack] не `null`), заголовок, «?» → словарик и замок → раздел для взрослого.
- * Кнопки, для которых не передан обработчик, не показываются.
+ * Кнопки, для которых не передан обработчик, не показываются. Отступ под статус-бар шапка делает сама.
  */
 @Composable
 fun FinTopBar(
@@ -40,6 +41,7 @@ fun FinTopBar(
 ) {
     Row(
         modifier = modifier
+            .statusBarsPadding()
             .fillMaxWidth()
             .heightIn(min = 64.dp)
             .padding(horizontal = 8.dp),

@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -101,7 +100,6 @@ internal fun ShopScreen(
         topBar = {
             FinTopBar(
                 title = stringResource(R.string.shop_title),
-                modifier = Modifier.statusBarsPadding(),
                 onHelp = navigation.onHelp,
                 onParent = navigation.onParent
             )
@@ -186,7 +184,8 @@ private fun SheetHost(
                 look = state.look,
                 stage = state.stage,
                 title = sheet.item.title,
-                onDismiss = { onTab(FinTab.HOME) },
+                onDismiss = onDismiss,
+                onPrimary = { onTab(FinTab.HOME) },
                 secondaryText = stringResource(if (isPause) R.string.shop_see_quests else R.string.shop_more),
                 onSecondary = if (isPause) ({ onTab(FinTab.QUESTS) }) else onDismiss
             )

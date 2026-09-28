@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -158,8 +157,7 @@ private fun SavingsMain(
             FinTopBar(
                 title = stringResource(R.string.savings_title),
                 onHelp = onHelp,
-                onParent = onParent,
-                modifier = Modifier.statusBarsPadding()
+                onParent = onParent
             )
         },
         bottomBar = {
@@ -247,7 +245,8 @@ private fun SavingsContent(state: SavingsUiState.Content, actions: SavingsAction
             stage = state.stage,
             title = stringResource(feedback.titleRes()),
             why = feedbackWhy(feedback),
-            onDismiss = actions::onFeedbackDismiss
+            onDismiss = actions::onFeedbackDismiss,
+            onPrimary = actions::onGoHomeClick
         )
     }
 }

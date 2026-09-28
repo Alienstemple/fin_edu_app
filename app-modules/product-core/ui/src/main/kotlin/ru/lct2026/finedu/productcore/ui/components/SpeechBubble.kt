@@ -1,5 +1,6 @@
 package ru.lct2026.finedu.productcore.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,13 +12,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
 
-/** Реплика Дзыня. Хвостик — срезанный нижний левый угол, «смотрит» на питомца слева снизу. */
+/**
+ * Реплика Дзыня. Хвостик — срезанный нижний левый угол, «смотрит» на питомца слева снизу. Под стеклом — непрозрачная
+ * подложка: реплика часто лежит поверх сцены уголка и должна читаться.
+ */
 @Composable
 fun SpeechBubble(text: String, modifier: Modifier = Modifier) {
     Text(
         text = text,
         style = MaterialTheme.typography.bodyMedium,
         modifier = modifier
+            .background(MaterialTheme.colorScheme.surface, BubbleShape)
             .glass(shape = BubbleShape, style = GlassStyle.Strong)
             .padding(horizontal = 14.dp, vertical = 10.dp)
     )

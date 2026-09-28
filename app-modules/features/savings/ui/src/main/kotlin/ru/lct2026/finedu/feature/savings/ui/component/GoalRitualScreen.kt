@@ -1,17 +1,20 @@
 package ru.lct2026.finedu.feature.savings.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -38,7 +41,7 @@ import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
 /**
- * Ритуал достигнутой цели: уголок во весь экран, «Куда поставим?» → «Теперь навсегда в уголке».
+ * Ритуал достигнутой цели: уголок с предметом, «Куда поставим?» → «Теперь навсегда в уголке».
  * Предмет появляется в сцене после «Поставить» — [placedGoalIds] уже содержит его id.
  */
 @Composable
@@ -53,8 +56,31 @@ internal fun GoalRitualScreen(
     onGoHome: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier.fillMaxSize()) {
-        RoomScene(placedGoalIds = placedGoalIds, stars = stars, modifier = Modifier.fillMaxSize()) { petModifier ->
+    // Сцена — фиксированной пропорции между карточками: во весь высокий экран она растягивается и перекрывает текст.
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .systemBarsPadding()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        if (ritual.isPlaced) {
+            PlacedHeader(
+                goal = ritual.goal,
+                nextGoal = nextGoal
+            )
+        } else {
+            ReachedHeader(goal = ritual.goal)
+        }
+        RoomScene(
+            placedGoalIds = placedGoalIds,
+            stars = stars,
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(ROOM_ASPECT)
+                .clip(MaterialTheme.shapes.large)
+        ) { petModifier ->
             PetView(
                 look = look,
                 mood = if (ritual.isPlaced) PetMood.PROUD else PetMood.HAPPY,
@@ -62,40 +88,33 @@ internal fun GoalRitualScreen(
                 modifier = petModifier
             )
         }
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .systemBarsPadding()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            if (ritual.isPlaced) {
-                PlacedHeader(goal = ritual.goal, nextGoal = nextGoal)
-                RitualCard(
-                    line = stringResource(
-                        if (ritual.goal.id == RoomItems.WINDOW) {
-                            R.string.savings_ritual_line_window
-                        } else {
-                            R.string.savings_ritual_line_placed
-                        }
-                    ),
-                    text = null,
-                    buttonText = stringResource(R.string.savings_ritual_go_home),
-                    onClick = onGoHome
-                )
-            } else {
-                ReachedHeader(goal = ritual.goal)
-                RitualCard(
-                    line = stringResource(R.string.savings_ritual_line),
-                    text = stringResource(R.string.savings_ritual_forever),
-                    buttonText = stringResource(R.string.savings_ritual_place),
-                    onClick = onPlace,
-                    title = stringResource(R.string.savings_ritual_where)
-                )
-            }
+        if (ritual.isPlaced) {
+            RitualCard(
+                line = stringResource(
+                    if (ritual.goal.id == RoomItems.WINDOW) {
+                        R.string.savings_ritual_line_window
+                    } else {
+                        R.string.savings_ritual_line_placed
+                    }
+                ),
+                text = null,
+                buttonText = stringResource(R.string.savings_ritual_go_home),
+                onClick = onGoHome
+            )
+        } else {
+            RitualCard(
+                line = stringResource(R.string.savings_ritual_line),
+                text = stringResource(R.string.savings_ritual_forever),
+                buttonText = stringResource(R.string.savings_ritual_place),
+                onClick = onPlace,
+                title = stringResource(R.string.savings_ritual_where)
+            )
         }
     }
 }
+
+/** Пропорция сцены уголка из макета: 360 × 340. */
+private const val ROOM_ASPECT = 360f / 340f
 
 @Composable
 private fun ReachedHeader(goal: Goal) {
