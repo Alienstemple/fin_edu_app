@@ -41,6 +41,8 @@ import ru.lct2026.finedu.productcore.ui.components.glass
 import ru.lct2026.finedu.productcore.ui.illustration.PetMood
 import ru.lct2026.finedu.productcore.ui.illustration.PetView
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
+import ru.lct2026.finedu.productcore.ui.sound.PlaySoundOnce
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
 /** Задание с выбором: ситуация → равноценные варианты → разбор с наградой. */
@@ -183,6 +185,7 @@ private fun Review(state: QuestUiState.Choice, result: ChoiceResult, onDoneClick
         style = MaterialTheme.typography.titleMedium
     )
     PetLine(look = state.petLook, stage = state.petStage, mood = PetMood.HAPPY, text = result.option.reaction)
+    if (result.reward > Dzynki.ZERO) PlaySoundOnce(SoundEffect.INCOME, result)
     RewardNote(text = choiceRewardText(result.reward))
     FinButton(text = stringResource(R.string.quest_done), onClick = onDoneClick)
 }

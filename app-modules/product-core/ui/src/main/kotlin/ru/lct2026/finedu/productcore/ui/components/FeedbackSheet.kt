@@ -45,6 +45,8 @@ import ru.lct2026.finedu.productcore.ui.R
 import ru.lct2026.finedu.productcore.ui.illustration.PetMood
 import ru.lct2026.finedu.productcore.ui.illustration.PetView
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
+import ru.lct2026.finedu.productcore.ui.sound.PlaySoundOnce
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
 /**
@@ -67,6 +69,7 @@ fun FeedbackSheet(
     secondaryText: String? = null,
     onSecondary: (() -> Unit)? = null
 ) {
+    feedback.reason.sound?.let { PlaySoundOnce(it, feedback) }
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
@@ -228,6 +231,15 @@ private val FeedbackReason.lineRes: Int
         FeedbackReason.DEPOSITED -> R.string.feedback_line_deposit
         FeedbackReason.WITHDREW -> R.string.feedback_line_withdraw
         FeedbackReason.GOAL_PLACED -> R.string.feedback_line_goal
+    }
+
+/** Звенит монетка, когда дзыньки потрачены или отложены; пауза и снятие из копилки — без звука. */
+private val FeedbackReason.sound: SoundEffect?
+    get() = when (this) {
+        FeedbackReason.BOUGHT_NEED, FeedbackReason.BOUGHT_WANT, FeedbackReason.DEPOSITED, FeedbackReason.GOAL_PLACED ->
+            SoundEffect.COIN
+
+        FeedbackReason.PAUSED, FeedbackReason.WITHDREW -> null
     }
 
 private val FeedbackReason.whyRes: Int

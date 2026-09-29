@@ -1,6 +1,7 @@
 package ru.lct2026.finedu.productcore.data.local
 
 import kotlinx.serialization.Serializable
+import ru.lct2026.finedu.productcore.domain.model.Settings
 
 /** Файл профиля. [state] `null` — профиль ещё не создан или удалён. */
 @Serializable
@@ -37,7 +38,10 @@ internal data class ProfileDto(
 internal data class SettingsDto(
     val ageMode: String = "OLDER",
     val calmMode: Boolean = false,
-    val largeFont: Boolean = false
+    val largeFont: Boolean = false,
+    // Поля звука появились позже: в старых сохранениях их нет, берутся значения по умолчанию.
+    val volume: Int = Settings.MAX_VOLUME,
+    val musicEnabled: Boolean = true
 )
 
 @Serializable

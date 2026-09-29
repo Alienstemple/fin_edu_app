@@ -37,11 +37,14 @@ import ru.lct2026.finedu.productcore.ui.components.AmountStepper
 import ru.lct2026.finedu.productcore.ui.components.FinButton
 import ru.lct2026.finedu.productcore.ui.components.FinButtonStyle
 import ru.lct2026.finedu.productcore.ui.components.GlassStyle
+import ru.lct2026.finedu.productcore.ui.components.SoundSettings
 import ru.lct2026.finedu.productcore.ui.components.glass
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
+import ru.lct2026.finedu.productcore.ui.sound.LocalSoundPlayer
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
-/** Вкладка «Настройки»: бонус, возрастной режим, спокойный режим, крупный шрифт, сброс и удаление. */
+/** Вкладка «Настройки»: бонус, возрастной режим, звук, спокойный режим, крупный шрифт, сброс и удаление. */
 @Composable
 internal fun SettingsTab(
     bonus: BonusUiState,
@@ -53,6 +56,8 @@ internal fun SettingsTab(
     onAgeModeSelect: (AgeMode) -> Unit,
     onCalmModeToggle: () -> Unit,
     onLargeFontToggle: () -> Unit,
+    onVolumeChange: (Int) -> Unit,
+    onMusicToggle: () -> Unit,
     onResetClick: () -> Unit,
     onDeleteClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -78,6 +83,15 @@ internal fun SettingsTab(
                 }
             }
             SecondaryText(stringResource(settings.ageMode.hintRes))
+        }
+        ParentCard {
+            SectionTitle(stringResource(CoreR.string.sound_title))
+            SoundSettings(
+                volume = settings.volume,
+                musicEnabled = settings.musicEnabled,
+                onVolumeChange = onVolumeChange,
+                onMusicToggle = onMusicToggle
+            )
         }
         ParentCard {
             SwitchRow(
@@ -114,6 +128,7 @@ private fun BonusCard(
     onReasonSelect: (BonusReason) -> Unit,
     onGrantClick: (String) -> Unit
 ) {
+    val sound = LocalSoundPlayer.current
     ParentCard {
         SectionTitle(stringResource(R.string.parent_bonus_title))
         SecondaryText(stringResource(R.string.parent_bonus_lead))
@@ -138,7 +153,10 @@ private fun BonusCard(
         val reasonText = stringResource(bonus.reason.labelRes)
         FinButton(
             text = stringResource(R.string.parent_bonus_grant, bonus.amount),
-            onClick = { onGrantClick(reasonText) }
+            onClick = {
+                sound.play(SoundEffect.INCOME)
+                onGrantClick(reasonText)
+            }
         )
         bonus.granted?.let { granted ->
             Row(
@@ -242,6 +260,8 @@ private fun SettingsTabPreview() {
             onAgeModeSelect = {},
             onCalmModeToggle = {},
             onLargeFontToggle = {},
+            onVolumeChange = {},
+            onMusicToggle = {},
             onResetClick = {},
             onDeleteClick = {},
             modifier = Modifier.padding(20.dp)

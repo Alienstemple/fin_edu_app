@@ -31,6 +31,7 @@ class HomeScreenTest {
 
     private val routes = mutableListOf<FinEduRoute>()
     private val clickedBubbles = mutableListOf<HomeBubble>()
+    private var dismissCount = 0
 
     @Test
     fun `тап по пузырьку баланса просит его раскрыть`() {
@@ -39,6 +40,16 @@ class HomeScreenTest {
         composeTestRule.onNode(hasContentDescription("Баланс: 130 дзынек") and hasClickAction()).performClick()
 
         assertEquals(listOf<HomeBubble>(HomeBubble.Balance), clickedBubbles)
+    }
+
+    @Test
+    fun `переход из раскрытого пузырька сворачивает его`() {
+        setContent(state.copy(openBubble = HomeBubble.FinishWeek))
+
+        composeTestRule.onNodeWithText("Завершить неделю").performClick()
+
+        assertEquals(1, dismissCount)
+        assertEquals(listOf<FinEduRoute>(FinEduRoute.PeriodSummary), routes)
     }
 
     @Test
@@ -97,7 +108,7 @@ class HomeScreenTest {
                     onPetClick = {},
                     onPetLongPress = {},
                     onBubbleClick = { clickedBubbles += it },
-                    onBubbleDismiss = {}
+                    onBubbleDismiss = { dismissCount++ }
                 )
             }
         }

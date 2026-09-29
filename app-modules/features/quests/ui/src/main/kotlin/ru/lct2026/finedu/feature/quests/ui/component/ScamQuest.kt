@@ -39,6 +39,8 @@ import ru.lct2026.finedu.productcore.ui.components.dzynkiText
 import ru.lct2026.finedu.productcore.ui.components.glass
 import ru.lct2026.finedu.productcore.ui.illustration.PetMood
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
+import ru.lct2026.finedu.productcore.ui.sound.PlaySoundOnce
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
 /** «Это мошенники?»: сообщение → разбор признаков → итог с главным правилом. Любой ответ — не ошибка. */
@@ -161,6 +163,7 @@ private fun SignRow(number: Int, sign: ScamSign) {
 
 @Composable
 private fun SummaryStep(state: QuestUiState.Scam, reward: Dzynki, onFinishClick: () -> Unit) {
+    if (reward > Dzynki.ZERO) PlaySoundOnce(SoundEffect.INCOME, reward)
     Column(
         modifier = Modifier
             .fillMaxWidth()

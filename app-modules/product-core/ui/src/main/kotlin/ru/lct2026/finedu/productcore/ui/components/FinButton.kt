@@ -20,6 +20,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
+import ru.lct2026.finedu.productcore.ui.sound.LocalSoundPlayer
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
 /** Минимальный размер зоны нажатия для детей (ТЗ: не меньше 48dp). */
@@ -40,12 +42,16 @@ fun FinButton(
     style: FinButtonStyle = FinButtonStyle.Primary,
     enabled: Boolean = true
 ) {
+    val sound = LocalSoundPlayer.current
     when (style) {
         FinButtonStyle.Primary -> {
             val colors = FinEduTheme.colors
             val shape = MaterialTheme.shapes.medium
             Button(
-                onClick = onClick,
+                onClick = {
+                    sound.play(SoundEffect.TAP)
+                    onClick()
+                },
                 enabled = enabled,
                 shape = shape,
                 colors = ButtonDefaults.buttonColors(
@@ -68,7 +74,10 @@ fun FinButton(
         }
 
         FinButtonStyle.Secondary -> OutlinedButton(
-            onClick = onClick,
+            onClick = {
+                sound.play(SoundEffect.TAP)
+                onClick()
+            },
             enabled = enabled,
             shape = MaterialTheme.shapes.medium,
             border = BorderStroke(1.dp, FinEduTheme.colors.glassBorder),

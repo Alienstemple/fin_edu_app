@@ -47,8 +47,21 @@ enum class AgeMode {
     OLDER
 }
 
-/** Настройки из раздела для взрослого. */
-data class Settings(val ageMode: AgeMode = AgeMode.OLDER, val calmMode: Boolean = false, val largeFont: Boolean = false)
+/**
+ * Настройки из раздела для взрослого. [volume] — громкость игры от 0 (без звука) до [MAX_VOLUME],
+ * [musicEnabled] — фоновая мелодия. По умолчанию звук на максимуме и мелодия включена.
+ */
+data class Settings(
+    val ageMode: AgeMode = AgeMode.OLDER,
+    val calmMode: Boolean = false,
+    val largeFont: Boolean = false,
+    val volume: Int = MAX_VOLUME,
+    val musicEnabled: Boolean = true
+) {
+    companion object {
+        const val MAX_VOLUME = 10
+    }
+}
 
 /** Текущая игровая неделя. */
 data class Period(

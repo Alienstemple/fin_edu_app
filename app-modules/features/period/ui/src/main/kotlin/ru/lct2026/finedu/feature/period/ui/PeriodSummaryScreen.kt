@@ -47,6 +47,8 @@ import ru.lct2026.finedu.productcore.ui.event.ObserveEvents
 import ru.lct2026.finedu.productcore.ui.illustration.PetMood
 import ru.lct2026.finedu.productcore.ui.illustration.PetView
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
+import ru.lct2026.finedu.productcore.ui.sound.LocalSoundPlayer
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
 @Composable
@@ -116,6 +118,7 @@ private fun SummaryContent(
     modifier: Modifier = Modifier
 ) {
     val result = state.result
+    val sound = LocalSoundPlayer.current
     Scaffold(
         modifier = modifier,
         containerColor = Color.Transparent,
@@ -130,7 +133,11 @@ private fun SummaryContent(
         bottomBar = {
             FinButton(
                 text = stringResource(R.string.period_summary_next_week),
-                onClick = onNextWeekClick,
+                // Новая неделя — новый доход.
+                onClick = {
+                    sound.play(SoundEffect.INCOME)
+                    onNextWeekClick()
+                },
                 modifier = Modifier
                     .navigationBarsPadding()
                     .padding(horizontal = 20.dp, vertical = 12.dp)

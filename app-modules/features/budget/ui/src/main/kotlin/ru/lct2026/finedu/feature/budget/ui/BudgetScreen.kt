@@ -48,6 +48,8 @@ import ru.lct2026.finedu.productcore.ui.components.labelRes
 import ru.lct2026.finedu.productcore.ui.illustration.PetMood
 import ru.lct2026.finedu.productcore.ui.illustration.PetView
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
+import ru.lct2026.finedu.productcore.ui.sound.PlaySoundOnce
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 
 @Composable
 internal fun BudgetRoute(
@@ -307,6 +309,7 @@ private fun DzynLine(look: PetLook, stage: PetStage, mood: PetMood, text: String
 
 @Composable
 private fun QuestRewardBanner(reward: QuestReward) {
+    PlaySoundOnce(SoundEffect.INCOME, reward)
     Column(
         modifier = Modifier
             .fillMaxWidth()

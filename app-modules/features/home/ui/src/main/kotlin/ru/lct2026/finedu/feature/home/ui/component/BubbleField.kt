@@ -50,6 +50,8 @@ import kotlin.math.roundToInt
 import kotlin.math.sign
 import kotlin.math.sin
 import ru.lct2026.finedu.feature.home.ui.HomeBubble
+import ru.lct2026.finedu.productcore.ui.sound.LocalSoundPlayer
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
 /**
@@ -84,7 +86,17 @@ internal fun BubbleField(
     collapseLabel: String,
     modifier: Modifier = Modifier
 ) {
-    BackHandler(enabled = openBubble != null, onBack = onDismiss)
+    // «Пузынь» — и когда пузырёк раскрывается, и когда сворачивается.
+    val sound = LocalSoundPlayer.current
+    val onBubbleTap: (HomeBubble) -> Unit = { bubble ->
+        sound.play(SoundEffect.BUBBLE)
+        onBubbleClick(bubble)
+    }
+    val onBubbleDismiss = {
+        sound.play(SoundEffect.BUBBLE)
+        onDismiss()
+    }
+    BackHandler(enabled = openBubble != null, onBack = onBubbleDismiss)
     val reduceMotion = FinEduTheme.reduceMotion
     val spec: AnimationSpec<Float> = if (reduceMotion) snap() else spring(OPEN_DAMPING, Spring.StiffnessMediumLow)
     val time = if (reduceMotion) null else rememberAmbientTime()
@@ -113,7 +125,7 @@ internal fun BubbleField(
                         if (openBubble != null) {
                             Modifier
                                 .clearAndSetSemantics {}
-                                .clickable(interactionSource = null, indication = null, onClick = onDismiss)
+                                .clickable(interactionSource = null, indication = null, onClick = onBubbleDismiss)
                         } else {
                             Modifier
                         }
@@ -128,8 +140,8 @@ internal fun BubbleField(
                     open = progress.getValue(bubble).open,
                     time = time,
                     isOpen = isOpen,
-                    onClick = { onBubbleClick(bubble) },
-                    onCollapse = onDismiss,
+                    onClick = { onBubbleTap(bubble) },
+                    onCollapse = onBubbleDismiss,
                     collapseLabel = collapseLabel,
                     collapsed = { collapsed(bubble) },
                     expanded = { expanded(bubble) },

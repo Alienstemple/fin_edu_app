@@ -139,6 +139,14 @@ internal class ParentViewModel @Inject constructor(
         updateSettings { copy(calmMode = !calmMode) }
     }
 
+    fun onVolumeChange(volume: Int) {
+        updateSettings { copy(volume = volume.coerceIn(0, Settings.MAX_VOLUME)) }
+    }
+
+    fun onMusicToggle() {
+        updateSettings { copy(musicEnabled = !musicEnabled) }
+    }
+
     fun onLargeFontToggle() {
         updateSettings { copy(largeFont = !largeFont) }
     }

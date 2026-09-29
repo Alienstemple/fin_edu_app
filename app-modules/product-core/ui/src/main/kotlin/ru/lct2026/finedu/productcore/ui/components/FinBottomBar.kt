@@ -18,11 +18,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import ru.lct2026.finedu.productcore.ui.R
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
+import ru.lct2026.finedu.productcore.ui.sound.LocalSoundPlayer
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
 /** Нижняя навигация: Главная / Задания / Магазин / Копилка. */
 @Composable
 fun FinBottomBar(selected: FinTab, onSelect: (FinTab) -> Unit, modifier: Modifier = Modifier) {
+    val sound = LocalSoundPlayer.current
     NavigationBar(
         modifier = modifier.glass(shape = MaterialTheme.shapes.extraLarge, style = GlassStyle.Strong),
         containerColor = Color.Transparent,
@@ -32,7 +35,10 @@ fun FinBottomBar(selected: FinTab, onSelect: (FinTab) -> Unit, modifier: Modifie
             val label = stringResource(tab.labelRes)
             NavigationBarItem(
                 selected = tab == selected,
-                onClick = { onSelect(tab) },
+                onClick = {
+                    sound.play(SoundEffect.TAP)
+                    onSelect(tab)
+                },
                 icon = { Icon(painter = painterResource(tab.iconRes), contentDescription = null) },
                 label = {
                     // Четыре вкладки на 360dp с крупным системным шрифтом не помещаются: подпись уменьшается,

@@ -43,6 +43,8 @@ class ParentScreenTest {
                     onAgeModeSelect = {},
                     onCalmModeToggle = {},
                     onLargeFontToggle = {},
+                    onVolumeChange = {},
+                    onMusicToggle = {},
                     onResetClick = {},
                     onDeleteClick = {},
                     onDialogConfirm = {},

@@ -40,6 +40,8 @@ import ru.lct2026.finedu.productcore.ui.components.dzynkiText
 import ru.lct2026.finedu.productcore.ui.components.glass
 import ru.lct2026.finedu.productcore.ui.illustration.PetMood
 import ru.lct2026.finedu.productcore.ui.illustration.PetView
+import ru.lct2026.finedu.productcore.ui.sound.PlaySoundOnce
+import ru.lct2026.finedu.productcore.ui.sound.SoundEffect
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
 /** Лента «Дзынь объясняет за 15 секунд»: одна карточка за раз, «Следующая» и свайп влево. */
@@ -110,6 +112,7 @@ internal fun ShortsFeed(state: ShortsUiState.Content, onWatchClick: () -> Unit, 
 
 @Composable
 private fun RewardBanner(reward: ShortsReward) {
+    PlaySoundOnce(SoundEffect.INCOME, reward)
     Row(
         modifier = Modifier
             .fillMaxWidth()

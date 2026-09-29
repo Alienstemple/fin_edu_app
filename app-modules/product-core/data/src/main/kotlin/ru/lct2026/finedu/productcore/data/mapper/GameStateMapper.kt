@@ -38,7 +38,13 @@ internal fun GameState.toDto(): GameStateDto = GameStateDto(
     completedQuestIds = completedQuestIds,
     history = history.map { it.toDto() },
     ledger = ledger.map { LedgerEntryDto(it.periodNumber, it.source.name, it.amount.amount, it.note) },
-    settings = SettingsDto(settings.ageMode.name, settings.calmMode, settings.largeFont),
+    settings = SettingsDto(
+        settings.ageMode.name,
+        settings.calmMode,
+        settings.largeFont,
+        settings.volume,
+        settings.musicEnabled
+    ),
     lastVisitMillis = lastVisitMillis
 )
 
@@ -60,7 +66,13 @@ internal fun GameStateDto.toDomain(): GameState = GameState(
     completedQuestIds = completedQuestIds,
     history = history.map { it.toDomain() },
     ledger = ledger.map { LedgerEntry(it.periodNumber, it.source.toEnum(), Dzynki(it.amount), it.note) },
-    settings = Settings(settings.ageMode.toEnum(), settings.calmMode, settings.largeFont),
+    settings = Settings(
+        settings.ageMode.toEnum(),
+        settings.calmMode,
+        settings.largeFont,
+        settings.volume.coerceIn(0, Settings.MAX_VOLUME),
+        settings.musicEnabled
+    ),
     lastVisitMillis = lastVisitMillis
 )
 

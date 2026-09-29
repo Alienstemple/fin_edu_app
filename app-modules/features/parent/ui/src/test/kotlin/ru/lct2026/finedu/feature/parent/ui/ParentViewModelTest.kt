@@ -168,10 +168,29 @@ class ParentViewModelTest {
         viewModel.onAgeModeSelect(AgeMode.YOUNGER)
         viewModel.onCalmModeToggle()
         viewModel.onLargeFontToggle()
+        viewModel.onVolumeChange(4)
+        viewModel.onMusicToggle()
 
-        val expected = Settings(ageMode = AgeMode.YOUNGER, calmMode = true, largeFont = true)
+        val expected = Settings(
+            ageMode = AgeMode.YOUNGER,
+            calmMode = true,
+            largeFont = true,
+            volume = 4,
+            musicEnabled = false
+        )
         assertEquals(expected, gameRepository.current().settings)
         assertEquals(expected, viewModel.currentState.settings)
+    }
+
+    @Test
+    fun `громкость не выходит за пределы шкалы`() {
+        val viewModel = viewModel()
+
+        viewModel.onVolumeChange(Settings.MAX_VOLUME + 5)
+        assertEquals(Settings.MAX_VOLUME, gameRepository.current().settings.volume)
+
+        viewModel.onVolumeChange(-1)
+        assertEquals(0, gameRepository.current().settings.volume)
     }
 
     @Test

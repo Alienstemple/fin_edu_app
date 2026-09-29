@@ -129,8 +129,20 @@ internal fun HomeScreen(
                 background = { HomeRoom(state = state, onPetClick = onPetClick, onPetLongPress = onPetLongPress) },
                 header = { HomeHeader(state) },
                 collapsed = { CollapsedBubble(bubble = it, state = state) },
+                // Уходя с главного из карточки, сворачиваем её: по возвращении снова кольцо пузырьков.
                 expanded = {
-                    ExpandedBubble(bubble = it, state = state, onNavigate = onNavigate, onSelectTab = onSelectTab)
+                    ExpandedBubble(
+                        bubble = it,
+                        state = state,
+                        onNavigate = { route ->
+                            onBubbleDismiss()
+                            onNavigate(route)
+                        },
+                        onSelectTab = { tab ->
+                            onBubbleDismiss()
+                            onSelectTab(tab)
+                        }
+                    )
                 },
                 collapseLabel = stringResource(R.string.home_bubble_collapse),
                 modifier = Modifier.fillMaxSize()

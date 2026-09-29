@@ -303,6 +303,12 @@ internal fun ShopRoute(onBack: () -> Unit, viewModel: ShopViewModel = hiltViewMo
   `PetView` — Lottie `anim_dzyn`: эмоция — маркер, шёрстка — dynamic property `Fur`, убор — прозрачность слоёв
   `Bowler` / `Cap` / `Headphones`. JSON не правим руками,
   а пересобираем: `python3 scripts/lottie/generate_dzyn.py`
+- звук — `product-core:ui/sound`: короткий звук — `LocalSoundPlayer.current.play(SoundEffect.X)` или
+  `PlaySoundOnce(effect, key)` для появившейся награды; `FinButton`, вкладки и кнопки шапки уже звучат «тапом».
+  Мелодия раздела выбирается по маршруту в `app/navigation/MusicByRoute.kt`, движок — `app/sound/GameAudio`
+  (`MediaPlayer` для мелодий, `SoundPool` для коротких звуков, пауза в фоне). Файлы — в `app/src/main/res/raw`
+  (`sfx_*`, `music_*`), мелодии выровнены по громкости к −18 LUFS. Громкость (`Settings.volume`, 0–10) и фоновая
+  мелодия (`Settings.musicEnabled`) — в шторке «Звук» из шапки и в настройках раздела для взрослого
 - настройки взрослого «Крупный шрифт» и «Спокойный режим» — параметры `FinEduTheme(largeFont, reduceMotion)`;
   анимации проверяют `FinEduTheme.reduceMotion`
 
