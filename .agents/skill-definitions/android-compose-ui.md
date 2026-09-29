@@ -10,9 +10,10 @@ description: Верстка новых Compose-экранов и компоне�
 1. Открыть макет (Figma MCP или картинку/описание от пользователя), изучить все состояния
    (idle, loading, empty, error, «не хватает дзынек») и edge cases.
 2. Проверить, есть ли готовые компоненты в `ru.lct2026.finedu.productcore.ui.components` — не изобретать своё.
-3. Сверить с макетом: цвет → `MaterialTheme.colorScheme.xxx`, шрифт → `MaterialTheme.typography.xxx`.
+3. Сверить с макетом: цвет → `MaterialTheme.colorScheme.xxx` или `FinEduTheme.colors.xxx` (мешочки, золото, стекло),
+   шрифт → `MaterialTheme.typography.xxx`, радиус → `MaterialTheme.shapes.xxx`.
    Нового токена нет в теме — добавить его в `product-core/ui/theme`, а не хардкодить в фиче.
-4. Написать stateless `XxxScreen(state, callbacks, modifier)`, добавить превью с `@PreviewLightDark`.
+4. Написать stateless `XxxScreen(state, callbacks, modifier)`, добавить превью с `@Preview`.
 
 ## 2. Тема и токены
 
@@ -30,7 +31,11 @@ Text(
 Text(text = title, fontSize = 14.sp, color = Color(0xFF7B4FD6))
 ```
 
-Палитра по мотивам Дзыня: `primary` — фиолетовый, `secondary` — синий (котелок), `tertiary` — золото монетки.
+Приложение **только в тёмной теме** (макет — тёмные экраны Design-канваса, см. `docs/implementation-plan.md`).
+Шрифт — Commissioner. Токены макета, которых нет в Material, — `FinEduTheme.colors`: `needs` / `wants` / `savings`
+(три мешочка), `gold`, `selection`, стекло и градиенты. Фон экранов рисует `FinEduBackground` в `MainActivity`,
+поэтому `Scaffold` экрана — с `containerColor = Color.Transparent`. Карточки — `Modifier.glass()`,
+иконки — `ic_*` из `product-core:ui` (линейные, tint в Compose).
 
 ## 3. Требования ТЗ к UI (дети 7–11 лет)
 
@@ -64,7 +69,7 @@ FinButton(
 ## 5. Строки и ресурсы
 
 - Все тексты — в `src/main/res/values/strings.xml` своего модуля, префикс имени = экран (`shop_title`).
-- Игровой контент (задания, товары, цели, словарик) — в JSON-контенте, не в `strings.xml` и не в коде.
+- Игровой контент (задания, товары, цели, «Полезное») — в JSON-контенте, не в `strings.xml` и не в коде.
 - Изображения: векторные (`ic_`, `bg_`), растр — только WEBP.
 
 ## 6. WindowInsets
@@ -83,10 +88,10 @@ Column(
 ## 7. Превью
 
 ```kotlin
-import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.Preview
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
 
-@PreviewLightDark
+@Preview
 @Composable
 private fun ShopScreenPreview() {
     FinEduPreview {
@@ -121,11 +126,11 @@ Modifier.semantics(mergeDescendants = true) { }
 
 | Неправильно                                   | Правильно                                          |
 |-----------------------------------------------|----------------------------------------------------|
-| Хардкод `Color(0xFF...)`                      | `MaterialTheme.colorScheme.xxx`                    |
+| Хардкод `Color(0xFF...)`                      | `MaterialTheme.colorScheme.xxx` / `FinEduTheme.colors.xxx` |
 | `fontSize = 14.sp`                            | `MaterialTheme.typography.bodyMedium` (≥16sp)      |
 | `material3.Button(onClick = {...})` в фиче    | `FinButton(...)`                                   |
 | Кнопка/иконка-кнопка меньше 48dp              | `Modifier.heightIn(min = MinTouchTarget)`          |
 | Текст в коде                                  | `stringResource(R.string.xxx)`                     |
-| `@Preview`                                    | `@PreviewLightDark`                                |
+| `@PreviewLightDark`, светлая тема             | `@Preview` (тема только тёмная)                    |
 | Превью без обёртки                            | `FinEduPreview { ... }`                            |
 | Статус только цветом                          | Цвет + иконка/подпись                              |

@@ -11,8 +11,9 @@ internal class OnboardingNavigationContribution @Inject constructor() : FeatureN
 
     override fun NavGraphBuilder.register(navController: NavController) {
         composable<FinEduRoute.Onboarding> {
-            OnboardingScreen(
-                onNavigate = { route -> navController.navigate(route) }
+            OnboardingRoute(
+                onOpenHero = { navController.navigate(FinEduRoute.Hero) },
+                onClose = { navController.popBackStack() }
             )
         }
     }

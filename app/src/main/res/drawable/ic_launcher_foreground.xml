@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Временная иконка: монетка-дзынька. Заменить на иконку с Дзынем. -->
+<!-- Монетка-дзынька (app_resources/coin3.png), диаметр 52dp внутри безопасной зоны 66dp, чтобы вокруг читался фиолетовый фон. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
     <path
-        android:fillColor="#F2B233"
-        android:pathData="M54,30a24,24 0,1 1,0 48a24,24 0,1 1,0 -48z" />
+        android:fillColor="#FEDA2C"
+        android:pathData="M28.00,54.00a26.00,26.00 0,1 1,52.00,0a26.00,26.00 0,1 1,-52.00,0z" />
     <path
-        android:fillColor="#3A1C80"
-        android:pathData="M54,40a14,14 0,1 1,0 28a14,14 0,1 1,0 -28z" />
+        android:fillColor="#FCAA17"
+        android:pathData="M34.10,54.00a19.90,19.90 0,1 1,39.79,0a19.90,19.90 0,1 1,-39.79,0z" />
+    <path
+        android:fillColor="#FEDA2C"
+        android:pathData="M54.00,38.85L58.39,47.96L68.41,49.32L61.10,56.31L62.90,66.25L54.00,61.46L45.10,66.25L46.90,56.31L39.59,49.32L49.61,47.96Z" />
 </vector>

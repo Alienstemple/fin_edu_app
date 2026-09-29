@@ -65,6 +65,9 @@ Agent-specific wrappers нужны только для discoverability:
 
 - `context7`: документация SDK/API. Опционально `CONTEXT7_API_KEY`.
 - `figma`: спецификации Figma. Авторизация через OAuth при первом обращении.
+- `lottiefiles-creator`: создание и редактирование Lottie-анимаций через LottieFiles Creator. Нужен Node.js 18+
+  и открытая вкладка LottieFiles Creator в браузере (она работает как локальный bridge); без неё инструменты
+  сервера недоступны.
 
 Если добавляете или удаляете MCP-сервер, обновите оба repo-конфига:
 

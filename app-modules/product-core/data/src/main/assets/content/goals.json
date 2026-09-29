@@ -1,0 +1,6 @@
+[
+  { "id": "plaid", "title": "Плед", "price": 60 },
+  { "id": "lamp", "title": "Лампа для уголка", "price": 100 },
+  { "id": "window", "title": "Окно с видом", "price": 200 },
+  { "id": "scooter", "title": "Самокат", "price": 300 }
+]

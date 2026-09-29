@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Товар: hat -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#3FC79B"
+        android:pathData="M30 27 C34 16 40 8 45 5 C44 13 38 21 31 28 Z" />
+    <path
+        android:pathData="M31 27.5 C35 19 40 11 44.5 5.5"
+        android:strokeColor="#2E9E7A"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+    <path
+        android:fillColor="#6C3FC4"
+        android:pathData="M4,32 A20,6 0 1,0 44,32 A20,6 0 1,0 4,32 Z" />
+    <path
+        android:fillColor="#8A55DE"
+        android:pathData="M12 32 C12 20 16.5 14 24 14 C31.5 14 36 20 36 32 C30 34.5 18 34.5 12 32 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M12.4 26.5 C18 28.5 30 28.5 35.6 26.5 L36 31 C30 33.5 18 33.5 12 31 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.3"
+        android:pathData="M15.5,20 A2.5,4 0 1,0 20.5,20 A2.5,4 0 1,0 15.5,20 Z" />
+</vector>

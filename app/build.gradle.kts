@@ -17,7 +17,7 @@ android {
     defaultConfig {
         applicationId = "ru.lct2026.finedu"
         versionCode = 1
-        versionName = "0.1.0"
+        versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -52,6 +52,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.appModules.productCore.domain)
+    implementation(projects.appModules.productCore.data)
     implementation(projects.appModules.productCore.ui)
     implementation(projects.appModules.productCore.navigation.api)
 
@@ -73,6 +75,8 @@ dependencies {
     implementation(projects.appModules.features.period.data)
     implementation(projects.appModules.features.parent.ui)
     implementation(projects.appModules.features.parent.data)
+    implementation(projects.appModules.features.learn.ui)
+    implementation(projects.appModules.features.learn.data)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)

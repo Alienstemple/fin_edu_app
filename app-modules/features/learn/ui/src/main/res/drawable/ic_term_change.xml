@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Понятие «Полезного»: change -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M6,19 A11,11 0 1,0 28,19 A11,11 0 1,0 6,19 Z" />
+    <path
+        android:fillColor="#FBA91C"
+        android:pathData="M9.08,19 A7.92,7.92 0 1,0 24.92,19 A7.92,7.92 0 1,0 9.08,19 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M17.00,13.94 L18.42,17.48 L22.23,17.74 L19.30,20.19 L20.23,23.89 L17.00,21.86 L13.77,23.89 L14.70,20.19 L11.77,17.74 L15.58,17.48 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M25.5,34 A7.5,7.5 0 1,0 40.5,34 A7.5,7.5 0 1,0 25.5,34 Z" />
+    <path
+        android:fillColor="#FBA91C"
+        android:pathData="M27.6,34 A5.3999999999999995,5.3999999999999995 0 1,0 38.4,34 A5.3999999999999995,5.3999999999999995 0 1,0 27.6,34 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M33.00,30.55 L33.97,32.97 L36.57,33.14 L34.57,34.81 L35.20,37.33 L33.00,35.95 L30.80,37.33 L31.43,34.81 L29.43,33.14 L32.03,32.97 Z" />
+    <path
+        android:pathData="M34 12 C40 16 42 21 40 26"
+        android:strokeColor="#3FC79B"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.4" />
+    <path
+        android:fillColor="#3FC79B"
+        android:pathData="M36.5 24.5 L40.5 29.5 L43.5 23.8 Z" />
+    <path
+        android:pathData="M15 34 C9 32 6 28 6.5 23"
+        android:strokeColor="#3FC79B"
+        android:strokeAlpha="0.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.4" />
+</vector>

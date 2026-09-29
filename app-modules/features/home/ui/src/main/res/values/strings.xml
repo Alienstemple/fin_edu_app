@@ -1,13 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="home_title">Главный</string>
-    <string name="home_loading">Дзынь пересчитывает монетки…</string>
-    <string name="home_summary">Дзыньки: %1$d. В копилке: %2$d. Неделя %3$d.</string>
-    <string name="home_action_budget">План бюджета</string>
-    <string name="home_action_shop">Магазин</string>
-    <string name="home_action_savings">Копилка</string>
-    <string name="home_action_quests">Задания</string>
-    <string name="home_action_finish_period">Завершить период</string>
-    <string name="home_action_parent">Для взрослых</string>
-    <string name="home_action_help">Помощь</string>
+    <string name="home_loading">Дзынь пересчитывает дзыньки…</string>
+    <string name="home_week_of">Неделя %1$d из %2$d</string>
+    <string name="home_week">Неделя %1$d</string>
+    <string name="home_title_default">Уголок Дзыня</string>
+    <string name="home_demo">Демо-режим</string>
+
+    <!-- Реплики Дзыня. -->
+    <string name="home_line_normal">Мешочек стал тяжелее. Приятно!</string>
+    <string name="home_line_unallocated">Пришли дзыньки! Разложим по мешочкам?</string>
+    <string name="home_line_low">Мне сейчас зябко</string>
+    <string name="home_line_return">Ты рядом. Я ждал</string>
+    <string name="home_line_easter_egg">Ой. Это я?</string>
+    <string name="home_pet_a11y">Дзынь. Долгое нажатие — сюрприз</string>
+
+    <!-- Плашки под сценой. -->
+    <string name="home_notice_return">Всё на месте. Показатели подтянулись</string>
+    <string name="home_notice_low_charge">В «Нужном» пусто. Каша или носки согреют</string>
+    <string name="home_notice_low_vibe">Маленькая радость из «Хочу» поднимет вайб</string>
+    <string name="home_notice_low_calm">Пара дзынек в копилку — и станет спокойнее</string>
+
+    <!-- Баланс и мешочки. -->
+    <string name="home_balance">Баланс</string>
+    <string name="home_plan">План недели</string>
+    <string name="home_distribute">Разложить %1$s</string>
+    <string name="home_balance_a11y">Баланс: %1$s</string>
+    <string name="home_balance_unallocated_a11y">Баланс: %1$s. Можно разложить %2$s</string>
+
+    <!-- Показатели. -->
+    <string name="home_stat_hint_charge">Заряд растёт от покупок из «Нужного»</string>
+    <string name="home_stat_hint_vibe">Вайб растёт от радостей из «Хочу»</string>
+    <string name="home_stat_hint_calm">Спокойствие растёт, когда пополняешь копилку</string>
+    <string name="home_to_shop">В магазин</string>
+
+    <!-- Цель. -->
+    <string name="home_goal">Цель</string>
+    <string name="home_to_savings">В копилку</string>
+    <string name="home_goal_progress">%1$s: %2$d из %3$d</string>
+    <string name="home_goal_younger">Копим: %1$s</string>
+    <plurals name="home_goal_weeks">
+        <item quantity="one">≈ %d неделя</item>
+        <item quantity="few">≈ %d недели</item>
+        <item quantity="many">≈ %d недель</item>
+        <item quantity="other">≈ %d недели</item>
+    </plurals>
+    <string name="home_goal_weeks_unknown">пока не посчитать</string>
+    <string name="home_goal_reached">накоплено!</string>
+    <string name="home_goals_done">Все цели в уголке. Ты молодец!</string>
+
+    <!-- Задание. -->
+    <string name="home_quest">Задание: %1$s</string>
+    <string name="home_quests_done">Все задания пройдены. Загляни в «Задания»</string>
+    <string name="home_quest_title">Задание</string>
+    <string name="home_quest_start">Начать</string>
+    <string name="home_to_quests">К заданиям</string>
+
+    <!-- Итоги недели. -->
+    <string name="home_week_results">Итоги недели</string>
+    <string name="home_week_results_hint">Дзынь посчитает, что получилось. А потом придёт новая неделя</string>
+    <string name="home_finish_week">Завершить неделю</string>
+
+    <!-- Пузырьки. -->
+    <string name="home_bubble_collapse">Свернуть</string>
 </resources>

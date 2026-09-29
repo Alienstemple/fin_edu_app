@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="onboarding_title">Как играть</string>
-    <string name="onboarding_description">Дзынь расскажет, зачем планировать бюджет и чем «нужное» отличается от «хочу». Здесь же словарик.</string>
-    <string name="onboarding_action_create_hero">Создать героя</string>
+    <!-- Общее. -->
+    <string name="onboarding_next">Дальше</string>
+    <string name="onboarding_pet_name">Дзынь</string>
+
+    <!-- Сцена: коробка у батареи. -->
+    <string name="onboarding_scene_title">Знакомство</string>
+    <string name="onboarding_scene_warm">Мрр… тепло</string>
+    <string name="onboarding_scene_in_box">Спойлер: в коробке не котик. Но тоже шуршит</string>
+    <string name="onboarding_scene_held">Отряхнулся и мурчит. Кажется, это новоселье</string>
+    <string name="onboarding_scene_pick_up">Взять на руки</string>
+
+    <!-- Сторис. -->
+    <string name="onboarding_story_skip">Пропустить</string>
+    <string name="onboarding_story_progress">Сторис %1$d из %2$d</string>
+    <string name="onboarding_story_go">Погнали</string>
+    <string name="onboarding_story1_title">Привет! Я Дзынь. Собираю дзыньки в мешочек… и сразу трачу</string>
+    <string name="onboarding_story1_tag">финансовый гений (нет)</string>
+    <string name="onboarding_story1_text">Найдёныш, плюш, транжира. Будем воспитывать вместе</string>
+    <string name="onboarding_story2_title">Три мешочка</string>
+    <string name="onboarding_story2_subtitle">Три решения, которые ты будешь принимать каждую неделю</string>
+    <string name="onboarding_story2_needs">Еда, тепло, мыло. Без этого никак</string>
+    <string name="onboarding_story2_wants">Шляпы и радости. Тоже важно, честно</string>
+    <string name="onboarding_story2_savings">Отложить сейчас — большое потом</string>
+    <string name="onboarding_story2_spoiler">Спойлер: Дзынь за «Хочу»</string>
+    <string name="onboarding_story3_title">Да, мы приложение про финграмотность.</string>
+    <string name="onboarding_story3_tag">Потерпи, будет весело</string>
+    <string name="onboarding_story3_meme">Ты, когда слышишь слово «бюджет»:</string>
+    <string name="onboarding_story3_meme_line">Я в порядке</string>
+    <string name="onboarding_story3_text">Дальше — про деньги. Просто и по делу.</string>
+
+    <!-- Первое решение. -->
+    <string name="onboarding_choice_label">Первое решение</string>
+    <string name="onboarding_choice_title">Последние 20 дзынек</string>
+    <string name="onboarding_choice_question">Каша — Дзыню или печенье — себе? Оба варианта нормальные. Правда.</string>
+    <string name="onboarding_choice_pet_line">Мне интересно, что выберешь</string>
+    <string name="onboarding_choice_porridge">Каша для Дзыня</string>
+    <string name="onboarding_choice_cookie">Печенье себе</string>
+    <string name="onboarding_choice_hint">Сложно выбрать? Взрослым тоже. Это нормально</string>
+
+    <!-- Результат. -->
+    <string name="onboarding_result_porridge_line">Мне тепло, спасибо</string>
+    <string name="onboarding_result_porridge_tag">Твой выбор: каша</string>
+    <string name="onboarding_result_porridge_title">Дзынь сыт и доволен</string>
+    <string name="onboarding_result_porridge_why">Каша — из «Нужного»: еда и тепло. Сытый Дзынь — больше Заряда. Всё логично.</string>
+    <string name="onboarding_result_cookie_line">Давай пополам? Так вкуснее</string>
+    <string name="onboarding_result_cookie_tag">Твой выбор: печенье</string>
+    <string name="onboarding_result_cookie_title">Печенье на двоих</string>
+    <string name="onboarding_result_cookie_why">Печенье — из «Хочу». Радость тоже считается: Вайб растёт. А поделиться — база.</string>
+    <string name="onboarding_result_dzynki">Дзыньки</string>
+    <string name="onboarding_result_arrow">→</string>
+    <string name="onboarding_result_dzynki_a11y">Дзыньки: было 20, стало 0</string>
+    <string name="onboarding_result_stat_plus">+10</string>
+    <string name="onboarding_result_stat_a11y">%1$s: плюс 10</string>
+    <string name="onboarding_result_create">Завести своего Дзыня</string>
+    <string name="onboarding_result_back">Вернуться в уголок</string>
 </resources>

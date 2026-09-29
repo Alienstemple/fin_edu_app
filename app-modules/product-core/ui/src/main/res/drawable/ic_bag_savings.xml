@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Мешок с монетой — «Копилка» (макет «Дзынь · 2026»). Линейная иконка, stroke 2dp, цвет задаётся tint в Compose. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M9 5h6l-1.5 3h-3z"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M10.5 8C6 9.5 4.5 13 5 16c0.4 2.6 2.8 4 7 4s6.6-1.4 7-4c0.5-3-1-6.5-5.5-8"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M14.5 14.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0z"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

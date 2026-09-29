@@ -8,3 +8,7 @@ command = "npx"
 
 [mcp_servers.figma]
 url = "https://mcp.figma.com/mcp"
+
+[mcp_servers.lottiefiles-creator]
+args = ["-y", "@lottiefiles/creator-mcp@latest"]
+command = "npx"

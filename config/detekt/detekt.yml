@@ -18,7 +18,9 @@ style:
   MagicNumber:
     ignorePropertyDeclaration: true
     ignoreCompanionObjectPropertyDeclaration: true
-    excludes: ['**/test/**', '**/testDebug/**', '**/androidTest/**', '**/theme/**']
+    ignoreAnnotated: ['Preview']
+    # theme — токены, illustration — координаты SVG-рисунков из макета (питомец, уголок).
+    excludes: ['**/test/**', '**/testDebug/**', '**/androidTest/**', '**/theme/**', '**/illustration/**']
   UnusedPrivateMember:
     ignoreAnnotated: ['Preview', 'PreviewLightDark']
   WildcardImport:

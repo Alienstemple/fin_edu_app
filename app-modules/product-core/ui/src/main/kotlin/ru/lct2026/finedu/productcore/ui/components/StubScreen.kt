@@ -11,11 +11,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
 
@@ -28,9 +30,12 @@ import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
 fun StubScreen(title: String, description: String, actions: List<StubAction>, modifier: Modifier = Modifier) {
     Scaffold(
         modifier = modifier,
+        containerColor = Color.Transparent,
+        contentColor = MaterialTheme.colorScheme.onBackground,
         topBar = {
             TopAppBar(
-                title = { Text(text = title, modifier = Modifier.semantics { heading() }) }
+                title = { Text(text = title, modifier = Modifier.semantics { heading() }) },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
             )
         }
     ) { innerPadding ->
@@ -50,7 +55,7 @@ fun StubScreen(title: String, description: String, actions: List<StubAction>, mo
     }
 }
 
-@PreviewLightDark
+@Preview
 @Composable
 private fun StubScreenPreview() {
     FinEduPreview {

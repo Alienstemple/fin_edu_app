@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Мешочки: подпись всегда рядом с цветом (ТЗ 3.6). -->
+    <string name="bag_needs">Нужное</string>
+    <string name="bag_wants">Хочу</string>
+    <string name="bag_savings">Копилка</string>
+
+    <!-- Показатели питомца. -->
+    <string name="stat_charge">Заряд</string>
+    <string name="stat_vibe">Вайб</string>
+    <string name="stat_calm">Спокойствие</string>
+    <string name="stat_value_a11y">%1$s: %2$d из 100</string>
+    <string name="stat_tired_a11y">%1$s: Дзынь устал</string>
+
+    <!-- Дзыньки. -->
+    <plurals name="dzynki_amount">
+        <item quantity="one">%d дзынька</item>
+        <item quantity="few">%d дзыньки</item>
+        <item quantity="many">%d дзынек</item>
+        <item quantity="other">%d дзынек</item>
+    </plurals>
+
+    <!-- Навигация. -->
+    <string name="nav_home">Главная</string>
+    <string name="nav_quests">Задания</string>
+    <string name="nav_shop">Магазин</string>
+    <string name="nav_savings">Копилка</string>
+    <string name="top_bar_back">Назад</string>
+    <string name="top_bar_help">Полезное и помощь</string>
+    <string name="top_bar_parent">Для взрослых</string>
+
+    <!-- Степпер. -->
+    <string name="stepper_minus">Убрать %1$d</string>
+    <string name="stepper_plus">Добавить %1$d</string>
+
+    <!-- Диалог. -->
+    <string name="dialog_cancel">Отмена</string>
+
+    <!-- Уголок. -->
+    <string name="room_box_label">ДОМ</string>
+    <string name="room_a11y">Уголок Дзыня</string>
+    <string name="pet_a11y">Питомец %1$s</string>
+
+    <!-- Шторка обратной связи: реакция → что изменилось → почему → что дальше (ТЗ 2.5.9). -->
+    <string name="feedback_changed">Что изменилось</string>
+    <string name="feedback_why">Почему</string>
+    <string name="feedback_next">Что дальше</string>
+    <string name="feedback_balance">Баланс</string>
+    <string name="feedback_unchanged">на месте</string>
+    <string name="feedback_back_home">Вернуться в уголок</string>
+    <string name="feedback_minus">−%1$s</string>
+    <string name="feedback_plus">+%1$s</string>
+    <string name="feedback_pause_tag">подождать</string>
+    <string name="feedback_line_need">Мне тепло, спасибо</string>
+    <string name="feedback_line_want">Я так этого ждал</string>
+    <string name="feedback_line_pause">Я подожду, мне интересно</string>
+    <string name="feedback_line_deposit">Я слышу, как в копилке звенит</string>
+    <string name="feedback_line_withdraw">Мы взяли то, что нужно сейчас</string>
+    <string name="feedback_line_goal">Теперь это навсегда в уголке</string>
+    <string name="feedback_why_need">Скучная покупка, зато тёплая. Нужное всегда подзаряжает Дзыня.</string>
+    <string name="feedback_why_want">Радость тоже по плану: дзыньки взяты из «Хочу», Нужное не тронуто.</string>
+    <string name="feedback_why_pause">Пауза — тоже решение. Если завтра всё ещё хочется, значит, правда хочется.</string>
+    <string name="feedback_why_deposit">Копилка потяжелела — цель стала ближе.</string>
+    <string name="feedback_why_withdraw">Копилка для того и есть, чтобы выручать. Срок до цели немного сдвинулся.</string>
+    <string name="feedback_why_goal">Накопил — и вещь твоя. Предметы из уголка не пропадают. Никогда.</string>
+
+    <!-- Звук. -->
+    <string name="sound_title">Звук</string>
+    <string name="sound_volume">Громкость</string>
+    <string name="sound_volume_value">%1$d из %2$d</string>
+    <string name="sound_volume_off">Без звука</string>
+    <string name="sound_music">Фоновая мелодия</string>
+    <string name="top_bar_sound">Звук</string>
+</resources>

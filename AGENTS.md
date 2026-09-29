@@ -75,7 +75,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ## Контекст продукта
 
-- «Питомец Финни» — прототип Android-приложения по финансовой грамотности для детей 7–11 лет (хакатон ЛЦТ 2026,
+- «Питомец Дзынь» — прототип Android-приложения по финансовой грамотности для детей 7–11 лет (хакатон ЛЦТ 2026,
   задача Департамента финансов Москвы). Маскот — Дзынь, игровая валюта — «дзыньки».
 - Ограничения ТЗ, которые нельзя нарушать кодом: нет реальных денег и платежей, рекламы, внутриигровых покупок,
   чатов, рейтингов, сбора персональных данных, сетевых запросов и манипулятивных механик (таймеры-давилки,
@@ -115,6 +115,8 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
   интересующие модули (версии — в `gradle/libs.versions.toml`). При получении устаревших данных переформулируйте
   запрос или уточните версию.
 - **Figma MCP**: используйте для выгрузки спецификаций из Figma, включая размеры, иконки и экспорт ассетов.
+- **LottieFiles Creator MCP** (`lottiefiles-creator`): используйте для создания и правки Lottie-анимаций. Перед
+  работой с ним в браузере должна быть открыта вкладка LottieFiles Creator.
 
 ## Skills
 
@@ -134,6 +136,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 | `.agents/skill-definitions/android-component-test-reviewer.md`  | Ревью Compose component-тестов.                                            |
 | `.agents/skill-definitions/android-e2e-test-automator.md`       | Написание Android e2e UI tests в `app/src/androidTest`.                    |
 | `.agents/skill-definitions/android-e2e-test-reviewer.md`        | Ревью Android e2e UI tests, flaky/infra риски.                             |
+| `.agents/skill-definitions/motion-design.md`                    | Анимации в Compose и Lottie: тайминги, easing, ограничения ТЗ.             |
 
 ## Documentation
 
