@@ -381,5 +381,8 @@ internal fun ShopRoute(onBack: () -> Unit, viewModel: ShopViewModel = hiltViewMo
    Результат: `app/build/outputs/apk/release/app-release.apk` (minSdk 26 — Android 8.0+, R8 включён).
    Без `keystore.properties` собирается неподписанный `app-release-unsigned.apk`.
 4. Установите на устройство: `adb install -r app/build/outputs/apk/release/app-release.apk`.
+5. Для публикации в RuStore — тот же ключ, формат AAB: `./gradlew :app:bundleRelease` →
+   `app/build/outputs/bundle/release/app-release.aab`. Для деобфускации отчётов о падениях сохраните
+   `app/build/outputs/mapping/release/mapping.txt` этой версии.
 
 Версия приложения: `versionCode` / `versionName` в `app/build.gradle.kts`.
