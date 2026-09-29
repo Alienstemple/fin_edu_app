@@ -115,6 +115,8 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
   интересующие модули (версии — в `gradle/libs.versions.toml`). При получении устаревших данных переформулируйте
   запрос или уточните версию.
 - **Figma MCP**: используйте для выгрузки спецификаций из Figma, включая размеры, иконки и экспорт ассетов.
+- **LottieFiles Creator MCP** (`lottiefiles-creator`): используйте для создания и правки Lottie-анимаций. Перед
+  работой с ним в браузере должна быть открыта вкладка LottieFiles Creator.
 
 ## Skills
 
@@ -134,6 +136,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 | `.agents/skill-definitions/android-component-test-reviewer.md`  | Ревью Compose component-тестов.                                            |
 | `.agents/skill-definitions/android-e2e-test-automator.md`       | Написание Android e2e UI tests в `app/src/androidTest`.                    |
 | `.agents/skill-definitions/android-e2e-test-reviewer.md`        | Ревью Android e2e UI tests, flaky/infra риски.                             |
+| `.agents/skill-definitions/motion-design.md`                    | Анимации в Compose и Lottie: тайминги, easing, ограничения ТЗ.             |
 
 ## Documentation
 

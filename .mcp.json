@@ -6,6 +6,10 @@
     },
     "figma": {
       "url": "https://mcp.figma.com/mcp"
+    },
+    "lottiefiles-creator": {
+      "command": "npx",
+      "args": ["-y", "@lottiefiles/creator-mcp@latest"]
     }
   }
 }

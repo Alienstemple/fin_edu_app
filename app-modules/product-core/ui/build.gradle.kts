@@ -13,4 +13,5 @@ dependencies {
     // ViewModel — суперкласс StatelessViewModel, торчит в публичном API модуля
     api(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.lottie.compose)
 }
