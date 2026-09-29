@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Понятие «Полезного»: ad -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#6E6680"
+        android:pathData="M14,29 H15 A2,2 0 0,1 17,31 V38 A2,2 0 0,1 15,40 H14 A2,2 0 0,1 12,38 V31 A2,2 0 0,1 14,29 Z" />
+    <path
+        android:fillColor="#F0704F"
+        android:pathData="M8 19 L30 8 V40 L8 29 Z" />
+    <path
+        android:fillColor="#C0543A"
+        android:pathData="M8,18 H10 A3,3 0 0,1 13,21 V27 A3,3 0 0,1 10,30 H8 A3,3 0 0,1 5,27 V21 A3,3 0 0,1 8,18 Z" />
+    <path
+        android:fillColor="#C0543A"
+        android:pathData="M26.5,24 A3.5,16 0 1,0 33.5,24 A3.5,16 0 1,0 26.5,24 Z" />
+    <path
+        android:fillColor="#FF8FB8"
+        android:pathData="M28,24 A2,13 0 1,0 32,24 A2,13 0 1,0 28,24 Z" />
+    <path
+        android:pathData="M37 17 C40 20 40 28 37 31 M41 13 C46 18 46 30 41 35"
+        android:strokeColor="#FDD631"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2" />
+</vector>

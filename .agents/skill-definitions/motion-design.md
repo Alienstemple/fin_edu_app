@@ -32,14 +32,15 @@ description: Принципы моушн-дизайна для анимаций 
 
 - Любая анимация проверяет `FinEduTheme.reduceMotion`. В режиме — без перемещений и пружин, петли не
   проигрываются, показывается статичное состояние (пример — `features/onboarding/ui/.../SceneStep.kt`).
-- `FinLottie` уже учитывает режим (статичный последний кадр) — отдельно проверять не нужно.
+- `FinLottie` уже учитывает режим (статичный кадр: начало маркера или последний кадр) — отдельно проверять не нужно.
 
 ### Реализация
 
 - **Compose:** длительности и кривые из таблиц переводим в `tween(durationMillis, easing = CubicBezierEasing(...))`.
   Для пружин используем `spring(dampingRatio = Spring.Damping..., stiffness = Spring.Stiffness...)` и подбираем на
   глаз: числа stiffness/damping из таблиц рассчитаны на web-библиотеки и напрямую в Compose не переносятся.
-- **Lottie:** создаём через MCP `lottiefiles-creator` (вкладка LottieFiles Creator должна быть открыта),
+- **Lottie:** создаём через MCP `lottiefiles-creator` (вкладка LottieFiles Creator должна быть открыта) или
+  генерируем скриптом, как Дзыня (`scripts/lottie/generate_dzyn.py`, маркер на эмоцию, петля 4 с),
   экспортируем JSON в `res/raw` модуля с префиксом `anim_`, показываем только через `FinLottie` из
   `product-core:ui/components`. Загрузку по URL не используем.
 - Перед сдачей — чек-лист `motion-design/reference/quality-checklist.md` плюс правила этого раздела.

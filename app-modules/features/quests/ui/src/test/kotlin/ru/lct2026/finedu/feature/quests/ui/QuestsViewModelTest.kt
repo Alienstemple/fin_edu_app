@@ -34,7 +34,7 @@ class QuestsViewModelTest {
     }
 
     @Test
-    fun `задания с выбором и развод открывают экран задания, действия — свои экраны`() = runTest {
+    fun `задания с выбором и «Это мошенники?» открывают экран задания, действия — свои экраны`() = runTest {
         viewModel.events.flow.test {
             viewModel.onQuestClick("ad")
             assertEquals(OpenRouteEvent(FinEduRoute.Quest("ad")), awaitItem())

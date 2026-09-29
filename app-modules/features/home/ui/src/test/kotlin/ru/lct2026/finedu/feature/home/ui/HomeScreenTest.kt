@@ -1,6 +1,9 @@
 package ru.lct2026.finedu.feature.home.ui
 
+import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasClickAction
+import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -27,32 +30,53 @@ class HomeScreenTest {
     val composeTestRule = createComposeRule()
 
     private val routes = mutableListOf<FinEduRoute>()
+    private val clickedBubbles = mutableListOf<HomeBubble>()
 
     @Test
-    fun `в начале недели кнопка «Разложить» ведёт в план недели`() {
-        setContent(state.copy(unallocated = Dzynki(300), line = HomeLine.UNALLOCATED))
+    fun `тап по пузырьку баланса просит его раскрыть`() {
+        setContent(state)
 
+        composeTestRule.onNode(hasContentDescription("Баланс: 130 дзынек") and hasClickAction()).performClick()
+
+        assertEquals(listOf<HomeBubble>(HomeBubble.Balance), clickedBubbles)
+    }
+
+    @Test
+    fun `в начале недели «Разложить» в раскрытом балансе ведёт в план недели`() {
+        setContent(
+            state.copy(unallocated = Dzynki(300), line = HomeLine.UNALLOCATED, openBubble = HomeBubble.Balance)
+        )
+
+        // На маленьком экране карточка баланса прокручивается.
         composeTestRule.onNodeWithText("Разложить 300 дзынек").performScrollTo().performClick()
 
         assertEquals(listOf<FinEduRoute>(FinEduRoute.Budget), routes)
     }
 
     @Test
-    fun `полоска задания открывает задание`() {
-        setContent(state)
+    fun `раскрытое задание открывается кнопкой «Начать»`() {
+        setContent(state.copy(openBubble = HomeBubble.Quest))
 
-        composeTestRule.onNodeWithText("Задание: Шляпа или носки?").performScrollTo().performClick()
+        composeTestRule.onNodeWithText("Шляпа или носки?").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Начать").performClick()
 
         assertEquals(listOf<FinEduRoute>(FinEduRoute.Quest("hat_or_socks")), routes)
     }
 
     @Test
-    fun `«Завершить неделю» ведёт к итогам`() {
-        setContent(state)
+    fun `«Завершить неделю» в раскрытом пузырьке ведёт к итогам`() {
+        setContent(state.copy(openBubble = HomeBubble.FinishWeek))
 
-        composeTestRule.onNodeWithText("Завершить неделю").performScrollTo().performClick()
+        composeTestRule.onNodeWithText("Завершить неделю").performClick()
 
         assertEquals(listOf<FinEduRoute>(FinEduRoute.PeriodSummary), routes)
+    }
+
+    @Test
+    fun `у младших нет пузырька задания`() {
+        setContent(state.copy(isYounger = true))
+
+        composeTestRule.onAllNodes(hasContentDescription("Задание", substring = true)).assertCountEquals(0)
     }
 
     @Test
@@ -71,7 +95,9 @@ class HomeScreenTest {
                     onNavigate = { routes += it },
                     onSelectTab = {},
                     onPetClick = {},
-                    onPetLongPress = {}
+                    onPetLongPress = {},
+                    onBubbleClick = { clickedBubbles += it },
+                    onBubbleDismiss = {}
                 )
             }
         }

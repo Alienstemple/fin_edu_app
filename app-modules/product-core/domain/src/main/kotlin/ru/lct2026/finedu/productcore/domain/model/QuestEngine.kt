@@ -9,7 +9,7 @@ object QuestEngine {
         return complete(state, quest, option.statChanges)
     }
 
-    /** Задание без последствий выбора: «Это развод?» или засчитанное действием. */
+    /** Задание без последствий выбора: «Это мошенники?» или засчитанное действием. */
     fun complete(state: GameState, quest: Quest, statChanges: Map<PetStat, Int> = emptyMap()): QuestOutcome {
         val reward = if (quest.id in state.completedQuestIds) Dzynki.ZERO else quest.reward
         val pet = statChanges.entries.fold(state.pet) { pet, (stat, delta) -> pet.change(stat, delta) }

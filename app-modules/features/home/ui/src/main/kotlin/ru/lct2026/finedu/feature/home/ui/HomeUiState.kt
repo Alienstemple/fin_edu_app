@@ -35,8 +35,26 @@ internal sealed interface HomeUiState {
         /** `null` — все цели уже в уголке. */
         val goal: HomeGoal?,
         /** `null` — все задания пройдены. */
-        val quest: HomeQuest?
-    ) : HomeUiState
+        val quest: HomeQuest?,
+        /** Раскрытый пузырёк; `null` — все пузырьки на кольце вокруг Дзыня. */
+        val openBubble: HomeBubble? = null
+    ) : HomeUiState {
+
+        /** Пузырьки вокруг Дзыня. Младшим задания не показываем, как и раньше. */
+        val bubbles: List<HomeBubble>
+            get() = PetStat.entries.map(HomeBubble::Stat) +
+                listOfNotNull(HomeBubble.Balance, HomeBubble.Goal, HomeBubble.Quest.takeUnless { isYounger }) +
+                HomeBubble.FinishWeek
+    }
+}
+
+/** Пузырёк главного экрана: в свёрнутом виде — иконка и число, в раскрытом — подробности и кнопка. */
+internal sealed interface HomeBubble {
+    data class Stat(val stat: PetStat) : HomeBubble
+    data object Balance : HomeBubble
+    data object Goal : HomeBubble
+    data object Quest : HomeBubble
+    data object FinishWeek : HomeBubble
 }
 
 /** Реплика Дзыня над сценой. */

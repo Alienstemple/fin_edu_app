@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Товар: ball -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#1A1130"
+        android:fillAlpha="0.35"
+        android:pathData="M15,43 A9,2 0 1,0 33,43 A9,2 0 1,0 15,43 Z" />
+    <path
+        android:fillColor="#FF8FB8"
+        android:pathData="M10,21 A14,14 0 1,0 38,21 A14,14 0 1,0 10,21 Z" />
+    <path
+        android:pathData="M10.5 18 C17 24 31 13 37.5 20"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.85"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="3" />
+    <path
+        android:pathData="M12 29 C18 33 30 31 35 28"
+        android:strokeColor="#8A55DE"
+        android:strokeAlpha="0.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.45"
+        android:pathData="M14,13 A4,2.5 0 1,0 22,13 A4,2.5 0 1,0 14,13 Z" />
+    <path
+        android:pathData="M4 34 H9 M39 34 H44"
+        android:strokeColor="#F6EFE4"
+        android:strokeAlpha="0.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1.8" />
+</vector>

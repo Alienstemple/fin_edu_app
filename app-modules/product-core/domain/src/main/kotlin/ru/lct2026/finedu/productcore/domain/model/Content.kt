@@ -61,7 +61,7 @@ sealed interface Quest {
         val explanation: String
     ) : Quest
 
-    /** «Это развод?»: сообщения с признаками мошенничества. */
+    /** «Это мошенники?»: сообщения с признаками мошенничества. */
     data class Scam(
         override val id: String,
         override val theme: QuestTheme,
@@ -104,7 +104,8 @@ data class ScamSign(val name: String, val why: String)
 /** Сюжетный поворот недели. */
 data class WeekStory(val number: Int, val title: String, val tagline: String)
 
-data class GlossaryTerm(val term: String, val definition: String)
+/** Понятие «Полезного»; [id] — стабильный ключ для картинки, не меняется при правке текста. */
+data class GlossaryTerm(val id: String, val term: String, val definition: String)
 
 /** Шортс «Дзынь объясняет за 15 секунд». */
 data class ShortsStory(val title: String, val frames: List<ShortsFrame>)

@@ -85,7 +85,7 @@ internal data class ScamSignDto(val name: String, val why: String)
 internal data class WeekStoryDto(val number: Int, val title: String, val tagline: String)
 
 @Serializable
-internal data class GlossaryTermDto(val term: String, val definition: String)
+internal data class GlossaryTermDto(val id: String, val term: String, val definition: String)
 
 @Serializable
 internal data class LearnDto(val shorts: ShortsStoryDto, val feed: List<FeedCardDto>)

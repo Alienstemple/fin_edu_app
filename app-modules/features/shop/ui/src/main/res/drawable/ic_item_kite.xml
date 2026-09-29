@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Товар: kite -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:pathData="M24 34 C19 37 29 40 24 45"
+        android:strokeColor="#F6EFE4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1.5" />
+    <path
+        android:fillColor="#FF8FB8"
+        android:pathData="M22 38 L20 36.5 L20.5 39.5 Z M26.5 41 L28.5 39.5 L28.2 42.5 Z" />
+    <path
+        android:fillColor="#4DC9FF"
+        android:pathData="M24 3 L12 18 L24 18 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M24 3 L36 18 L24 18 Z" />
+    <path
+        android:fillColor="#F0704F"
+        android:pathData="M12 18 L24 34 L24 18 Z" />
+    <path
+        android:fillColor="#8A55DE"
+        android:pathData="M36 18 L24 34 L24 18 Z" />
+    <path
+        android:pathData="M24 3 V34 M12 18 H36"
+        android:strokeColor="#6E3C1A"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+</vector>

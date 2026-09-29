@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Товар: bow_tie -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#F0704F"
+        android:pathData="M24 24 C18 16 8 13 5.5 17 C4 21 4 27 5.5 31 C8 35 18 32 24 24 Z" />
+    <path
+        android:fillColor="#F0704F"
+        android:pathData="M24 24 C30 16 40 13 42.5 17 C44 21 44 27 42.5 31 C40 35 30 32 24 24 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M7.4,20 A1.6,1.6 0 1,0 10.6,20 A1.6,1.6 0 1,0 7.4,20 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12.4,26 A1.6,1.6 0 1,0 15.6,26 A1.6,1.6 0 1,0 12.4,26 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M7.4,28 A1.6,1.6 0 1,0 10.6,28 A1.6,1.6 0 1,0 7.4,28 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14.4,20.5 A1.6,1.6 0 1,0 17.6,20.5 A1.6,1.6 0 1,0 14.4,20.5 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M37.4,20 A1.6,1.6 0 1,0 40.6,20 A1.6,1.6 0 1,0 37.4,20 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32.4,26 A1.6,1.6 0 1,0 35.6,26 A1.6,1.6 0 1,0 32.4,26 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M37.4,28 A1.6,1.6 0 1,0 40.6,28 A1.6,1.6 0 1,0 37.4,28 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30.4,20.5 A1.6,1.6 0 1,0 33.6,20.5 A1.6,1.6 0 1,0 30.4,20.5 Z" />
+    <path
+        android:fillColor="#C0543A"
+        android:pathData="M23.0,19 H25.0 A2.5,2.5 0 0,1 27.5,21.5 V26.5 A2.5,2.5 0 0,1 25.0,29 H23.0 A2.5,2.5 0 0,1 20.5,26.5 V21.5 A2.5,2.5 0 0,1 23.0,19 Z" />
+</vector>

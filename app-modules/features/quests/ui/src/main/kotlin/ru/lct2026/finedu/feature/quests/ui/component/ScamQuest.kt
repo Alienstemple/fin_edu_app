@@ -41,7 +41,7 @@ import ru.lct2026.finedu.productcore.ui.illustration.PetMood
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
 
-/** «Это развод?»: сообщение → разбор признаков → итог с главным правилом. Любой ответ — не ошибка. */
+/** «Это мошенники?»: сообщение → разбор признаков → итог с главным правилом. Любой ответ — не ошибка. */
 @Composable
 internal fun ScamQuest(
     state: QuestUiState.Scam,
@@ -224,7 +224,7 @@ private val previewState = QuestUiState.Scam(
         id = "scam",
         theme = QuestTheme.SAVINGS,
         level = QuestLevel.MEDIUM,
-        title = "Это развод?",
+        title = "Это мошенники?",
         reward = Dzynki(30),
         messages = listOf(previewMessage, previewMessage, previewMessage),
         rules = listOf("Коды из СМС — никому", "Странные ссылки — мимо")

@@ -1,5 +1,7 @@
 package ru.lct2026.finedu.feature.shop.ui.component
 
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -138,28 +140,63 @@ internal fun ShortageContent(
     FinButton(text = stringResource(R.string.shop_cheaper), onClick = onCheaper, style = FinButtonStyle.Secondary)
 }
 
-/** Картинка товара: иллюстраций пока нет, показываем значок мешочка. */
+/**
+ * Картинка товара на кружке цвета мешочка. Рисунок выбирается по `id` из `shop.json`; для товара без рисунка
+ * (например, добавленного в контент позже) — значок мешочка.
+ */
 @Composable
-internal fun ItemPicture(bag: Bag, size: Dp, modifier: Modifier = Modifier) {
+internal fun ItemPicture(item: ShopItem, size: Dp, modifier: Modifier = Modifier) {
+    val bag = item.bag
     Box(
         modifier = modifier
             .size(size)
             .background(bag.color.copy(alpha = PICTURE_BACKGROUND_ALPHA), CircleShape),
         contentAlignment = Alignment.Center
     ) {
-        Icon(
-            painter = painterResource(bag.iconRes),
-            contentDescription = null,
-            tint = bag.color,
-            modifier = Modifier.size(size / 2)
-        )
+        val pictureRes = item.pictureRes
+        if (pictureRes != null) {
+            Image(
+                painter = painterResource(pictureRes),
+                contentDescription = null,
+                modifier = Modifier.size(size * PICTURE_SCALE)
+            )
+        } else {
+            Icon(
+                painter = painterResource(bag.iconRes),
+                contentDescription = null,
+                tint = bag.color,
+                modifier = Modifier.size(size / 2)
+            )
+        }
     }
 }
+
+@get:DrawableRes
+private val ShopItem.pictureRes: Int?
+    get() = when (id) {
+        "kasha" -> R.drawable.ic_item_kasha
+        "socks" -> R.drawable.ic_item_socks
+        "soap" -> R.drawable.ic_item_soap
+        "brush" -> R.drawable.ic_item_brush
+        "scarf" -> R.drawable.ic_item_scarf
+        "slippers" -> R.drawable.ic_item_slippers
+        "hot_water_bottle" -> R.drawable.ic_item_hot_water_bottle
+        "apples" -> R.drawable.ic_item_apples
+        "ball" -> R.drawable.ic_item_ball
+        "hat" -> R.drawable.ic_item_hat
+        "garland" -> R.drawable.ic_item_garland
+        "stickers" -> R.drawable.ic_item_stickers
+        "kite" -> R.drawable.ic_item_kite
+        "bow_tie" -> R.drawable.ic_item_bow_tie
+        "headphones" -> R.drawable.ic_item_headphones
+        "puzzle" -> R.drawable.ic_item_puzzle
+        else -> null
+    }
 
 @Composable
 private fun ItemHeader(item: ShopItem) {
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-        ItemPicture(bag = item.bag, size = 64.dp)
+        ItemPicture(item = item, size = 64.dp)
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(
                 text = item.title,
@@ -204,6 +241,7 @@ private val Bag.noteRes: Int
     }
 
 private const val PICTURE_BACKGROUND_ALPHA = 0.18f
+private const val PICTURE_SCALE = 0.78f
 
 private val PreviewBall = ShopItem("ball", "Мячик-попрыгун", Dzynki(30), Bag.WANTS, shortageLine = null)
 private val PreviewHat = ShopItem("hat", "Шляпа с пером", Dzynki(100), Bag.WANTS, "Шляпа такая красивая…")

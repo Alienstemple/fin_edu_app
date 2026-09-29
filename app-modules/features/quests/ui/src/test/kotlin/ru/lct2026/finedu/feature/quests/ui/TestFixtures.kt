@@ -74,7 +74,7 @@ internal object TestContent {
         id = "scam",
         theme = QuestTheme.SAVINGS,
         level = QuestLevel.MEDIUM,
-        title = "Это развод?",
+        title = "Это мошенники?",
         reward = Dzynki(30),
         messages = listOf(message, message.copy(sender = "Мама (новый номер)")),
         rules = listOf("Коды из СМС — никому")

@@ -25,7 +25,7 @@ class QuestEngineTest {
         id = "scam",
         theme = QuestTheme.SAVINGS,
         level = QuestLevel.MEDIUM,
-        title = "Это развод?",
+        title = "Это мошенники?",
         reward = Dzynki(30),
         messages = emptyList(),
         rules = emptyList()

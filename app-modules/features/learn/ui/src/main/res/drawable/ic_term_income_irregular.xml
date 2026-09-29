@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Понятие «Полезного»: income_irregular -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#FF8FB8"
+        android:pathData="M12,22 H36 A2,2 0 0,1 38,24 V39 A2,2 0 0,1 36,41 H12 A2,2 0 0,1 10,39 V24 A2,2 0 0,1 12,22 Z" />
+    <path
+        android:fillColor="#F0704F"
+        android:pathData="M10,16 H38 A2,2 0 0,1 40,18 V21 A2,2 0 0,1 38,23 H10 A2,2 0 0,1 8,21 V18 A2,2 0 0,1 10,16 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M22,16 H26 V41 H22 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M24 16 C19 9 13 11 16 15 C17 16 20 16 24 16 Z M24 16 C29 9 35 11 32 15 C31 16 28 16 24 16 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M32,9 A5,5 0 1,0 42,9 A5,5 0 1,0 32,9 Z" />
+    <path
+        android:fillColor="#FBA91C"
+        android:pathData="M33.4,9 A3.5999999999999996,3.5999999999999996 0 1,0 40.6,9 A3.5999999999999996,3.5999999999999996 0 1,0 33.4,9 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M37.00,6.70 L37.65,8.31 L39.38,8.43 L38.05,9.54 L38.47,11.22 L37.00,10.30 L35.53,11.22 L35.95,9.54 L34.62,8.43 L36.35,8.31 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M10.00,5.00 L10.78,7.22 L13.00,8.00 L10.78,8.78 L10.00,11.00 L9.22,8.78 L7.00,8.00 L9.22,7.22 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M42.00,17.80 L42.57,19.43 L44.20,20.00 L42.57,20.57 L42.00,22.20 L41.43,20.57 L39.80,20.00 L41.43,19.43 Z" />
+</vector>

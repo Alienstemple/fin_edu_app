@@ -1,7 +1,6 @@
 package ru.lct2026.finedu.feature.home.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,16 +8,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -28,14 +22,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import ru.lct2026.finedu.productcore.domain.model.Bag
+import ru.lct2026.finedu.feature.home.ui.component.BubbleField
+import ru.lct2026.finedu.feature.home.ui.component.CollapsedBubble
+import ru.lct2026.finedu.feature.home.ui.component.ExpandedBubble
+import ru.lct2026.finedu.feature.home.ui.component.lowNoticeRes
+import ru.lct2026.finedu.feature.home.ui.component.slot
+import ru.lct2026.finedu.feature.home.ui.component.style
 import ru.lct2026.finedu.productcore.domain.model.Dzynki
 import ru.lct2026.finedu.productcore.domain.model.GameRules
 import ru.lct2026.finedu.productcore.domain.model.Pet
@@ -44,19 +41,12 @@ import ru.lct2026.finedu.productcore.domain.model.PetHat
 import ru.lct2026.finedu.productcore.domain.model.PetLook
 import ru.lct2026.finedu.productcore.domain.model.PetStat
 import ru.lct2026.finedu.productcore.navigation.api.FinEduRoute
-import ru.lct2026.finedu.productcore.ui.R as CoreR
-import ru.lct2026.finedu.productcore.ui.components.BagChip
-import ru.lct2026.finedu.productcore.ui.components.DzynkiAmount
 import ru.lct2026.finedu.productcore.ui.components.FinBottomBar
-import ru.lct2026.finedu.productcore.ui.components.FinButton
 import ru.lct2026.finedu.productcore.ui.components.FinTab
 import ru.lct2026.finedu.productcore.ui.components.FinTopBar
 import ru.lct2026.finedu.productcore.ui.components.GlassStyle
-import ru.lct2026.finedu.productcore.ui.components.MinTouchTarget
 import ru.lct2026.finedu.productcore.ui.components.SpeechBubble
-import ru.lct2026.finedu.productcore.ui.components.TubeIndicator
 import ru.lct2026.finedu.productcore.ui.components.color
-import ru.lct2026.finedu.productcore.ui.components.dzynkiText
 import ru.lct2026.finedu.productcore.ui.components.glass
 import ru.lct2026.finedu.productcore.ui.components.iconRes
 import ru.lct2026.finedu.productcore.ui.illustration.PetMood
@@ -78,10 +68,16 @@ internal fun HomeRoute(
         onNavigate = onNavigate,
         onSelectTab = onSelectTab,
         onPetClick = viewModel::onPetClick,
-        onPetLongPress = viewModel::onPetLongPress
+        onPetLongPress = viewModel::onPetLongPress,
+        onBubbleClick = viewModel::onBubbleClick,
+        onBubbleDismiss = viewModel::onBubbleDismiss
     )
 }
 
+/**
+ * Главный: уголок Дзыня на весь экран, поверх — прозрачные шапка и нижнее меню, а вокруг питомца — пузырьки
+ * с показателями, деньгами, целью, заданием и итогами недели.
+ */
 @Composable
 internal fun HomeScreen(
     state: HomeUiState,
@@ -89,6 +85,8 @@ internal fun HomeScreen(
     onSelectTab: (FinTab) -> Unit,
     onPetClick: () -> Unit,
     onPetLongPress: () -> Unit,
+    onBubbleClick: (HomeBubble) -> Unit,
+    onBubbleDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -120,12 +118,22 @@ internal fun HomeScreen(
                 Text(text = stringResource(R.string.home_loading), style = MaterialTheme.typography.bodyMedium)
             }
 
-            is HomeUiState.Content -> HomeContent(
-                state = state,
-                onNavigate = onNavigate,
-                onPetClick = onPetClick,
-                onPetLongPress = onPetLongPress,
-                modifier = Modifier.padding(innerPadding)
+            is HomeUiState.Content -> BubbleField(
+                bubbles = state.bubbles,
+                openBubble = state.openBubble,
+                slot = { it.slot(state.isYounger) },
+                style = { it.style(state) },
+                onBubbleClick = onBubbleClick,
+                onDismiss = onBubbleDismiss,
+                contentPadding = innerPadding,
+                background = { HomeRoom(state = state, onPetClick = onPetClick, onPetLongPress = onPetLongPress) },
+                header = { HomeHeader(state) },
+                collapsed = { CollapsedBubble(bubble = it, state = state) },
+                expanded = {
+                    ExpandedBubble(bubble = it, state = state, onNavigate = onNavigate, onSelectTab = onSelectTab)
+                },
+                collapseLabel = stringResource(R.string.home_bubble_collapse),
+                modifier = Modifier.fillMaxSize()
             )
         }
     }
@@ -158,74 +166,32 @@ private fun HomeTopBar(state: HomeUiState.Content, onNavigate: (FinEduRoute) -> 
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun HomeContent(
-    state: HomeUiState.Content,
-    onNavigate: (FinEduRoute) -> Unit,
-    onPetClick: () -> Unit,
-    onPetLongPress: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        HomeScene(state = state, onPetClick = onPetClick, onPetLongPress = onPetLongPress)
-        state.notice?.let { HomeNoticeBanner(notice = it) }
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-            PetStat.entries.forEach { stat ->
-                TubeIndicator(stat = stat, value = state.pet[stat], showValue = !state.isYounger)
-            }
-        }
-        if (state.unallocated > Dzynki.ZERO) {
-            FinButton(
-                text = stringResource(R.string.home_distribute, dzynkiText(state.unallocated)),
-                onClick = { onNavigate(FinEduRoute.Budget) }
-            )
-        }
-        BalanceCard(state = state, onClick = { onNavigate(FinEduRoute.Budget) })
-        GoalCard(goal = state.goal, isYounger = state.isYounger, onClick = { onNavigate(FinEduRoute.Savings) })
-        if (!state.isYounger) QuestStrip(quest = state.quest, onNavigate = onNavigate)
-        FinButton(
-            text = stringResource(R.string.home_finish_week),
-            onClick = { onNavigate(FinEduRoute.PeriodSummary) },
-            modifier = if (state.isYounger) Modifier.heightIn(min = YoungerButtonHeight) else Modifier
+private fun HomeRoom(state: HomeUiState.Content, onPetClick: () -> Unit, onPetLongPress: () -> Unit) {
+    RoomScene(
+        placedGoalIds = state.placedGoalIds,
+        stars = state.stars,
+        dim = state.isDim,
+        fillScreen = true,
+        modifier = Modifier.fillMaxSize()
+    ) { petModifier ->
+        PetView(
+            look = state.look,
+            mood = state.mood,
+            stage = state.pet.stage,
+            contentDescription = stringResource(R.string.home_pet_a11y),
+            modifier = petModifier.combinedClickable(onClick = onPetClick, onLongClick = onPetLongPress)
         )
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+/** Над кольцом пузырьков: реплика Дзыня и плашка о возвращении или низком показателе. */
 @Composable
-private fun HomeScene(state: HomeUiState.Content, onPetClick: () -> Unit, onPetLongPress: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(SceneHeight)
-            .glass()
-    ) {
-        RoomScene(
-            placedGoalIds = state.placedGoalIds,
-            stars = state.stars,
-            dim = state.isDim,
-            modifier = Modifier.fillMaxSize()
-        ) { petModifier ->
-            PetView(
-                look = state.look,
-                mood = state.mood,
-                stage = state.pet.stage,
-                contentDescription = stringResource(R.string.home_pet_a11y),
-                modifier = petModifier.combinedClickable(onClick = onPetClick, onLongClick = onPetLongPress)
-            )
-        }
-        SpeechBubble(
-            text = stringResource(state.line.textRes),
-            modifier = Modifier
-                .align(Alignment.TopStart)
-                .padding(12.dp)
-        )
+private fun HomeHeader(state: HomeUiState.Content) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        SpeechBubble(text = stringResource(state.line.textRes))
+        state.notice?.let { HomeNoticeBanner(notice = it) }
     }
 }
 
@@ -259,139 +225,6 @@ private fun HomeNoticeBanner(notice: HomeNotice) {
     }
 }
 
-@Composable
-private fun BalanceCard(state: HomeUiState.Content, onClick: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .glass()
-            .clickable(onClick = onClick)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
-    ) {
-        if (state.isYounger) {
-            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                BigAmount(label = stringResource(R.string.home_balance), amount = state.balance)
-                BigAmount(label = stringResource(CoreR.string.bag_savings), amount = state.savings)
-            }
-        } else {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = stringResource(R.string.home_balance),
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(end = 12.dp)
-                )
-                DzynkiAmount(amount = state.balance, modifier = Modifier.weight(1f))
-                if (state.unallocated == Dzynki.ZERO) {
-                    Text(
-                        text = stringResource(R.string.home_plan_link),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = FinEduTheme.colors.gold
-                    )
-                }
-            }
-            Bag.entries.forEach { bag -> BagChip(bag = bag, amount = state.amountIn(bag)) }
-        }
-    }
-}
-
-@Composable
-private fun BigAmount(label: String, amount: Dzynki) {
-    Column(modifier = Modifier.semantics(mergeDescendants = true) {}) {
-        Text(text = label, style = MaterialTheme.typography.titleMedium)
-        DzynkiAmount(amount = amount, style = MaterialTheme.typography.displaySmall, coinSize = 32.dp)
-    }
-}
-
-@Composable
-private fun GoalCard(goal: HomeGoal?, isYounger: Boolean, onClick: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .glass()
-            .clickable(onClick = onClick)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        if (goal == null) {
-            Text(text = stringResource(R.string.home_goals_done), style = MaterialTheme.typography.titleMedium)
-        } else {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = if (isYounger) {
-                        stringResource(R.string.home_goal_younger, goal.title)
-                    } else {
-                        stringResource(R.string.home_goal_progress, goal.title, goal.saved.amount, goal.price.amount)
-                    },
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.weight(1f)
-                )
-                if (!isYounger) {
-                    Text(
-                        text = goalWeeksText(goal.weeksLeft),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-            }
-            LinearProgressIndicator(
-                progress = { (goal.saved.amount.toFloat() / goal.price.amount).coerceIn(0f, 1f) },
-                color = FinEduTheme.colors.savings,
-                trackColor = FinEduTheme.colors.glassBorder,
-                drawStopIndicator = {},
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(8.dp)
-            )
-        }
-    }
-}
-
-@Composable
-private fun goalWeeksText(weeksLeft: Int?): String = when (weeksLeft) {
-    null -> stringResource(R.string.home_goal_weeks_unknown)
-    0 -> stringResource(R.string.home_goal_reached)
-    else -> pluralStringResource(R.plurals.home_goal_weeks, weeksLeft, weeksLeft)
-}
-
-@Composable
-private fun QuestStrip(quest: HomeQuest?, onNavigate: (FinEduRoute) -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = MinTouchTarget)
-            .glass()
-            .clickable { onNavigate(quest?.let { FinEduRoute.Quest(it.id) } ?: FinEduRoute.Quests) }
-            .padding(horizontal = 16.dp, vertical = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            painter = painterResource(CoreR.drawable.ic_nav_quests),
-            contentDescription = null,
-            tint = FinEduTheme.colors.gold,
-            modifier = Modifier.size(24.dp)
-        )
-        Text(
-            text = quest?.let { stringResource(R.string.home_quest, it.title) }
-                ?: stringResource(R.string.home_quests_done),
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.weight(1f)
-        )
-        Icon(
-            painter = painterResource(CoreR.drawable.ic_chevron_right),
-            contentDescription = null,
-            modifier = Modifier.size(20.dp)
-        )
-    }
-}
-
-private fun HomeUiState.Content.amountIn(bag: Bag): Dzynki = when (bag) {
-    Bag.NEEDS -> needsLeft
-    Bag.WANTS -> wantsLeft
-    Bag.SAVINGS -> savings
-}
-
 private val HomeLine.textRes: Int
     get() = when (this) {
         HomeLine.NORMAL -> R.string.home_line_normal
@@ -400,16 +233,6 @@ private val HomeLine.textRes: Int
         HomeLine.RETURN -> R.string.home_line_return
         HomeLine.EASTER_EGG -> R.string.home_line_easter_egg
     }
-
-private val PetStat.lowNoticeRes: Int
-    get() = when (this) {
-        PetStat.CHARGE -> R.string.home_notice_low_charge
-        PetStat.VIBE -> R.string.home_notice_low_vibe
-        PetStat.CALM -> R.string.home_notice_low_calm
-    }
-
-private val SceneHeight = 240.dp
-private val YoungerButtonHeight = 72.dp
 
 private val previewState = HomeUiState.Content(
     weekNumber = 2,
@@ -436,17 +259,25 @@ private val previewState = HomeUiState.Content(
 @Composable
 private fun HomePreview(state: HomeUiState) {
     FinEduPreview {
-        HomeScreen(state = state, onNavigate = {}, onSelectTab = {}, onPetClick = {}, onPetLongPress = {})
+        HomeScreen(
+            state = state,
+            onNavigate = {},
+            onSelectTab = {},
+            onPetClick = {},
+            onPetLongPress = {},
+            onBubbleClick = {},
+            onBubbleDismiss = {}
+        )
     }
 }
 
-@Preview(heightDp = 1100)
+@Preview(heightDp = 860)
 @Composable
 private fun HomeScreenPreview() {
     HomePreview(previewState)
 }
 
-@Preview(heightDp = 1100)
+@Preview(heightDp = 860)
 @Composable
 private fun HomeScreenStartPreview() {
     HomePreview(
@@ -465,7 +296,7 @@ private fun HomeScreenStartPreview() {
     )
 }
 
-@Preview(heightDp = 1100)
+@Preview(heightDp = 860)
 @Composable
 private fun HomeScreenLowPreview() {
     HomePreview(
@@ -482,7 +313,7 @@ private fun HomeScreenLowPreview() {
     )
 }
 
-@Preview(heightDp = 1100)
+@Preview(heightDp = 860)
 @Composable
 private fun HomeScreenReturnPreview() {
     HomePreview(
@@ -495,13 +326,13 @@ private fun HomeScreenReturnPreview() {
     )
 }
 
-@Preview(heightDp = 1000)
+@Preview(heightDp = 860)
 @Composable
 private fun HomeScreenYoungerPreview() {
     HomePreview(previewState.copy(isYounger = true))
 }
 
-@Preview(heightDp = 1100)
+@Preview(heightDp = 860)
 @Composable
 private fun HomeScreenEasterEggPreview() {
     HomePreview(
@@ -513,6 +344,12 @@ private fun HomeScreenEasterEggPreview() {
             quest = null
         )
     )
+}
+
+@Preview(heightDp = 860)
+@Composable
+private fun HomeScreenOpenBubblePreview() {
+    HomePreview(previewState.copy(openBubble = HomeBubble.Balance))
 }
 
 @Preview

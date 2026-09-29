@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Словарик. -->
-    <string name="glossary_title">Словарик</string>
-    <string name="glossary_intro">Да, у приложения про деньги есть словарик. Зато каждое слово — одной фразой.</string>
-    <string name="glossary_tag">без занудства</string>
+    <!-- Полезное. -->
+    <string name="glossary_title">Полезное</string>
+    <string name="glossary_intro">Слова про деньги — каждое одной фразой.</string>
     <string name="glossary_shorts_link">Дзынь объясняет за 15 секунд</string>
     <string name="glossary_onboarding_again">Показать знакомство ещё раз</string>
 

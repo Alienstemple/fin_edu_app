@@ -59,7 +59,10 @@ internal object LearnFixtures {
         goals = emptyList(),
         quests = listOf(shortsQuest),
         weeks = emptyList(),
-        glossary = listOf(GlossaryTerm("Доход", "Деньги, что приходят."), GlossaryTerm("Расход", "Что уходит.")),
+        glossary = listOf(
+            GlossaryTerm("income_regular", "Доход", "Деньги, что приходят."),
+            GlossaryTerm("expense", "Расход", "Что уходит.")
+        ),
         shorts = ShortsStory(
             title = "Дзынь объясняет",
             frames = listOf(

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Товар: socks -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <group
+        android:pivotX="24"
+        android:pivotY="24"
+        android:translateX="7"
+        android:translateY="-3">
+        <path
+            android:fillColor="#FF8FB8"
+            android:pathData="M13 7 H25 V25 L33 31 C37 34 35 41 29 41 H22 C16 41 13 37 13 31 Z" />
+        <path
+            android:fillColor="#F6EFE4"
+            android:pathData="M14.5,7 H23.5 A1.5,1.5 0 0,1 25,8.5 V11.5 A1.5,1.5 0 0,1 23.5,13 H14.5 A1.5,1.5 0 0,1 13,11.5 V8.5 A1.5,1.5 0 0,1 14.5,7 Z" />
+    </group>
+    <path
+        android:fillColor="#4DC9FF"
+        android:pathData="M13 7 H25 V25 L33 31 C37 34 35 41 29 41 H22 C16 41 13 37 13 31 Z" />
+    <path
+        android:fillColor="#F6EFE4"
+        android:pathData="M14.5,7 H23.5 A1.5,1.5 0 0,1 25,8.5 V11.5 A1.5,1.5 0 0,1 23.5,13 H14.5 A1.5,1.5 0 0,1 13,11.5 V8.5 A1.5,1.5 0 0,1 14.5,7 Z" />
+    <path
+        android:fillColor="#2E3D99"
+        android:pathData="M13,17 H25 V20 H13 Z" />
+    <path
+        android:fillColor="#2E3D99"
+        android:pathData="M13,22 H25 V24 H13 Z" />
+    <path
+        android:fillColor="#2E3D99"
+        android:pathData="M29 32 C33 33 36 36 34 39 C33 41 31 41 29 41 C31 38 31 35 29 32 Z" />
+    <path
+        android:fillColor="#2E3D99"
+        android:pathData="M13 31 C13 36 16 40 21 41 C18 38 17 35 17 31 Z" />
+</vector>

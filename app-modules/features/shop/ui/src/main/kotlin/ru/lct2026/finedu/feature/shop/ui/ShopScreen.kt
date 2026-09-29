@@ -280,7 +280,7 @@ private fun ItemCard(item: ShopItem, onClick: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        ItemPicture(bag = item.bag, size = 56.dp)
+        ItemPicture(item = item, size = 56.dp)
         Text(
             text = item.title,
             style = MaterialTheme.typography.bodyMedium,

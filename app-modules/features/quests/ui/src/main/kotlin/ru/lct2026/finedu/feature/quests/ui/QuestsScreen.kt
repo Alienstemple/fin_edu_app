@@ -355,7 +355,7 @@ private val previewState = QuestsUiState.Content(
         ),
         QuestGroup(
             QuestTheme.SAVINGS,
-            listOf(QuestCardItem("scam", "Это развод?", QuestLevel.MEDIUM, Dzynki(30), false))
+            listOf(QuestCardItem("scam", "Это мошенники?", QuestLevel.MEDIUM, Dzynki(30), false))
         )
     ),
     isChallengeJoined = false

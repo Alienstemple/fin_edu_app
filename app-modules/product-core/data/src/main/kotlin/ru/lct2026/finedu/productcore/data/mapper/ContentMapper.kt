@@ -70,7 +70,7 @@ private fun ScamMessageDto.toDomain() = ScamMessage(app, sender, text, signs.map
 
 internal fun WeekStoryDto.toDomain() = WeekStory(number, title, tagline)
 
-internal fun GlossaryTermDto.toDomain() = GlossaryTerm(term, definition)
+internal fun GlossaryTermDto.toDomain() = GlossaryTerm(id, term, definition)
 
 internal fun ShortsStoryDto.toDomain() =
     ShortsStory(title, frames.map { ShortsFrame(it.kicker, it.headline, it.subtitle) })

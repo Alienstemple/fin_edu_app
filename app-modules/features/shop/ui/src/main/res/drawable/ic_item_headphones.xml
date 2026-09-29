@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Товар: headphones -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:pathData="M9 29 C9 12 39 12 39 29"
+        android:strokeColor="#2E3D99"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4" />
+    <path
+        android:fillColor="#4DC9FF"
+        android:pathData="M8.5,25 H9.5 A4.5,4.5 0 0,1 14,29.5 V35.5 A4.5,4.5 0 0,1 9.5,40 H8.5 A4.5,4.5 0 0,1 4,35.5 V29.5 A4.5,4.5 0 0,1 8.5,25 Z" />
+    <path
+        android:fillColor="#4DC9FF"
+        android:pathData="M38.5,25 H39.5 A4.5,4.5 0 0,1 44,29.5 V35.5 A4.5,4.5 0 0,1 39.5,40 H38.5 A4.5,4.5 0 0,1 34,35.5 V29.5 A4.5,4.5 0 0,1 38.5,25 Z" />
+    <path
+        android:fillColor="#2E3D99"
+        android:pathData="M12,27 H13 A2,2 0 0,1 15,29 V36 A2,2 0 0,1 13,38 H12 A2,2 0 0,1 10,36 V29 A2,2 0 0,1 12,27 Z" />
+    <path
+        android:fillColor="#2E3D99"
+        android:pathData="M35,27 H36 A2,2 0 0,1 38,29 V36 A2,2 0 0,1 36,38 H35 A2,2 0 0,1 33,36 V29 A2,2 0 0,1 35,27 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.4"
+        android:pathData="M6.5,27 H6.5 A1,1 0 0,1 7.5,28 V34 A1,1 0 0,1 6.5,35 H6.5 A1,1 0 0,1 5.5,34 V28 A1,1 0 0,1 6.5,27 Z" />
+    <path
+        android:pathData="M26 9 V3 L31 2 V7"
+        android:strokeColor="#FDD631"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1.3" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M23.0,9 A1.8,1.8 0 1,0 26.6,9 A1.8,1.8 0 1,0 23.0,9 Z" />
+    <path
+        android:fillColor="#FDD631"
+        android:pathData="M28.0,7 A1.8,1.8 0 1,0 31.6,7 A1.8,1.8 0 1,0 28.0,7 Z" />
+</vector>

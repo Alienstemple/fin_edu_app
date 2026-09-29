@@ -84,6 +84,7 @@ class DemoScenarioTest {
 
     /** 5. Распределение по мешочкам (раскладка по умолчанию 150 / 120 / 30) и засчитанное задание. */
     private fun distributeBudget() {
+        openBubble("Баланс")
         click("Разложить 300 дзынек")
         waitForText("Осталось разложить: 0 из 300")
         click("Зафиксировать план")
@@ -93,10 +94,10 @@ class DemoScenarioTest {
         click("На главную")
     }
 
-    /** 6. Задание «Это развод?» и награда в дзыньках. */
+    /** 6. Задание «Это мошенники?» и награда в дзыньках. */
     private fun completeQuest() {
         tab("Задания")
-        click("Это развод?", scroll = true)
+        click("Это мошенники?", scroll = true)
         repeat(SCAM_MESSAGES - 1) {
             click("Подозрительно")
             click("Следующее сообщение")
@@ -137,7 +138,8 @@ class DemoScenarioTest {
 
     /** 10. Следующий период: итоги недели и опыт роста. */
     private fun nextPeriod() {
-        click("Завершить неделю", scroll = true)
+        openBubble("Завершить неделю")
+        click("Завершить неделю")
         waitForText("Итоги недели")
         waitForText("Опыт за неделю", scroll = true)
         click("Следующая неделя")
@@ -177,6 +179,14 @@ class DemoScenarioTest {
     private fun tab(name: String) {
         val matcher = (hasText(name) or hasAnyDescendant(hasText(name))) and
             SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab)
+        composeRule.waitUntil(TIMEOUT_MS) { composeRule.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+        composeRule.onAllNodes(matcher)[0].performClick()
+        composeRule.waitForIdle()
+    }
+
+    /** Пузырёк на главном: подпись — в contentDescription, раскрытие — тапом. */
+    private fun openBubble(description: String) {
+        val matcher = hasContentDescription(description, substring = true) and hasClickAction()
         composeRule.waitUntil(TIMEOUT_MS) { composeRule.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
         composeRule.onAllNodes(matcher)[0].performClick()
         composeRule.waitForIdle()

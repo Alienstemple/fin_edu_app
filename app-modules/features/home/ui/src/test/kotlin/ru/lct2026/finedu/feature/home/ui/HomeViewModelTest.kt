@@ -193,6 +193,52 @@ class HomeViewModelTest {
         assertEquals(PetMood.NEUTRAL, viewModel.content().mood)
     }
 
+    @Test
+    fun `тап по пузырьку раскрывает его, повторный — сворачивает`() {
+        gameRepository.state.value = game()
+        val viewModel = HomeViewModel(gameRepository, contentRepository)
+
+        viewModel.onBubbleClick(HomeBubble.Balance)
+        assertEquals(HomeBubble.Balance, viewModel.content().openBubble)
+
+        viewModel.onBubbleClick(HomeBubble.Balance)
+        assertNull(viewModel.content().openBubble)
+    }
+
+    @Test
+    fun `тап по другому пузырьку переключает раскрытый`() {
+        gameRepository.state.value = game()
+        val viewModel = HomeViewModel(gameRepository, contentRepository)
+        viewModel.onBubbleClick(HomeBubble.Balance)
+
+        viewModel.onBubbleClick(HomeBubble.Stat(PetStat.CALM))
+
+        assertEquals(HomeBubble.Stat(PetStat.CALM), viewModel.content().openBubble)
+    }
+
+    @Test
+    fun `тап мимо сворачивает пузырёк и переживает обновление игры`() {
+        gameRepository.state.value = game()
+        val viewModel = HomeViewModel(gameRepository, contentRepository)
+        viewModel.onBubbleClick(HomeBubble.Goal)
+
+        gameRepository.state.value = requireNotNull(gameRepository.state.value).copy(unallocated = Dzynki.ZERO)
+        assertEquals(HomeBubble.Goal, viewModel.content().openBubble)
+
+        viewModel.onBubbleDismiss()
+        assertNull(viewModel.content().openBubble)
+    }
+
+    @Test
+    fun `у младших нет пузырька задания, итоги недели — последним`() {
+        gameRepository.state.value = game().copy(settings = Settings(ageMode = AgeMode.YOUNGER))
+
+        val bubbles = HomeViewModel(gameRepository, contentRepository).content().bubbles
+
+        assertFalse(HomeBubble.Quest in bubbles)
+        assertEquals(HomeBubble.FinishWeek, bubbles.last())
+    }
+
     private fun HomeViewModel.content(): HomeUiState.Content = when (val state = currentState) {
         HomeUiState.Loading -> error("Ожидали содержимое главного")
         is HomeUiState.Content -> state

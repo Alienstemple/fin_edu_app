@@ -2,26 +2,14 @@ package ru.lct2026.finedu.productcore.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Палитра иллюстраций: питомец (архивный макет «Финни») и уголок (ночная сцена «Дзынь · 2026»).
+// Палитра иллюстраций: питомец (Lottie `anim_dzyn`) и уголок (ночная сцена «Дзынь · 2026»).
 // Это цвета рисунка, а не интерфейса, поэтому они не входят в FinEduColors.
 
-// Питомец: шёрстка — радиальный градиент блик → основной → тень, уши и хвост темнее.
-internal val PetLilac = listOf(Color(0xFFCBA4FF), Color(0xFF8A55DE), Color(0xFF43247E))
-internal val PetLilacEar = Color(0xFF6C3FC4)
-internal val PetMint = listOf(Color(0xFFA9FFE2), Color(0xFF3FC79B), Color(0xFF14624A))
-internal val PetMintEar = Color(0xFF2E9E7A)
-internal val PetCoral = listOf(Color(0xFFFFC0A8), Color(0xFFF0704F), Color(0xFF7C2A18))
-internal val PetCoralEar = Color(0xFFC0543A)
-internal val PetBellyLight = Color(0xFFFFEFC6)
-internal val PetBelly = Color(0xFFFFC24B)
-internal val PetBellyMark = Color(0xFFB4812A)
-internal val PetInk = Color(0xFF1A1130)
-internal val PetShadow = Color(0xFF07040E)
-internal val PetStageGlow = Color(0xFF8B5CF6)
-internal val PetBlush = Color(0xFFFF8FB8)
-internal val PetCap = Color(0xFFFF6FB5)
-internal val PetCapBrim = Color(0xFFE14C93)
-internal val PetHeadphones = Color(0xFF4DC9FF)
+// Питомец: шёрстка перекрашивает слой `Fur` анимации; блики и тени — полупрозрачные слои поверх.
+// Остальные цвета Дзыня (котелок, монетка, мешочек) — в `scripts/lottie/generate_dzyn.py`.
+internal val PetLilacFur = Color(0xFFAA7CEE)
+internal val PetMintFur = Color(0xFF74E3BE)
+internal val PetCoralFur = Color(0xFFF8987B)
 
 // Уголок: ночная палитра.
 internal val RoomWall = Color(0xFF2E2A33)

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Товар: apples -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <group
+        android:pivotX="24"
+        android:pivotY="40"
+        android:scaleX="0.62"
+        android:scaleY="0.62"
+        android:translateX="-9"
+        android:translateY="7">
+        <path
+            android:fillColor="#9BD65A"
+            android:pathData="M24 14 C18 10 9 13 9 23 C9 33 15 41 20 41 C22 41 23 40 24 40 C25 40 26 41 28 41 C33 41 39 33 39 23 C39 13 30 10 24 14 Z" />
+    </group>
+    <path
+        android:fillColor="#F0704F"
+        android:pathData="M24 14 C18 10 9 13 9 23 C9 33 15 41 20 41 C22 41 23 40 24 40 C25 40 26 41 28 41 C33 41 39 33 39 23 C39 13 30 10 24 14 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.35"
+        android:pathData="M13,22 A3,5 0 1,0 19,22 A3,5 0 1,0 13,22 Z" />
+    <path
+        android:pathData="M24 14 C24 11 25 8 27 6"
+        android:strokeColor="#6E3C1A"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2" />
+    <path
+        android:fillColor="#6CC24A"
+        android:pathData="M26 10 C29 6 34 6 36 8 C33 11 29 12 26 10 Z" />
+</vector>

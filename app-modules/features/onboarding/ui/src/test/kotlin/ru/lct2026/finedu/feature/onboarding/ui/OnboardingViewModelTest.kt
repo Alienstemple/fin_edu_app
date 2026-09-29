@@ -90,7 +90,7 @@ class OnboardingViewModelTest {
     }
 
     @Test
-    fun `повторный онбординг из словарика возвращает назад`() = runTest {
+    fun `повторный онбординг из «Полезного» возвращает назад`() = runTest {
         val repository = FakeGameRepository(existingGame)
         val viewModel = OnboardingViewModel(repository)
         assertTrue(viewModel.currentState.hasProfile)

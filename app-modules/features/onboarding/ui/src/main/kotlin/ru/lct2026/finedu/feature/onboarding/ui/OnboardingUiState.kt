@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import ru.lct2026.finedu.productcore.ui.event.Event
 
 /**
- * Знакомство с Дзынем. [hasProfile] — онбординг открыт повторно из словарика: финальная кнопка возвращает назад.
+ * Знакомство с Дзынем. [hasProfile] — онбординг открыт повторно из «Полезного»: финальная кнопка возвращает назад.
  */
 @Immutable
 internal data class OnboardingUiState(

@@ -28,7 +28,7 @@
     <string name="onboarding_story3_tag">Потерпи, будет весело</string>
     <string name="onboarding_story3_meme">Ты, когда слышишь слово «бюджет»:</string>
     <string name="onboarding_story3_meme_line">Я в порядке</string>
-    <string name="onboarding_story3_text">Дальше — про деньги без занудства. Честно, мы пытались.</string>
+    <string name="onboarding_story3_text">Дальше — про деньги. Просто и по делу.</string>
 
     <!-- Первое решение. -->
     <string name="onboarding_choice_label">Первое решение</string>

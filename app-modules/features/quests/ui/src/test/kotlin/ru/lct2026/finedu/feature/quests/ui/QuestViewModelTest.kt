@@ -30,7 +30,7 @@ class QuestViewModelTest {
 
     private fun QuestViewModel.scamStep(): ScamStep = when (val state = currentState) {
         is QuestUiState.Scam -> state.step
-        QuestUiState.Loading, is QuestUiState.Choice -> error("Ожидали «Это развод?»: $state")
+        QuestUiState.Loading, is QuestUiState.Choice -> error("Ожидали «Это мошенники?»: $state")
     }
 
     @Test
@@ -70,7 +70,7 @@ class QuestViewModelTest {
     }
 
     @Test
-    fun `развод проходит сообщения по очереди и в итоге выдаёт награду`() {
+    fun `«Это мошенники?» проходит сообщения по очереди и в итоге выдаёт награду`() {
         val (viewModel, repository) = viewModel("scam")
         assertEquals(ScamStep.Message(0), viewModel.scamStep())
 

@@ -71,7 +71,8 @@ import ru.lct2026.finedu.productcore.ui.theme.RoomWarm
  * Уголок Дзыня — ночная сцена «Дзынь · 2026» (viewBox 360×340, выравнивание по низу): стена, батарея, коробка «ДОМ»
  * и предметы достигнутых целей — плед со звёздочками, лампа, окно с видом, самокат. Предметы и звёздочки не
  * пропадают. [dim] — низкое состояние: сцена приглушена, без красного и без «пустой миски». [pet] — питомец,
- * он сидит в коробке между задним и передним слоями.
+ * он сидит в коробке между задним и передним слоями. [fillScreen] — сцена на весь экран: масштаб по ширине, питомец
+ * в центре, стена продолжается вверх, пол — вниз.
  */
 @Composable
 fun RoomScene(
@@ -79,6 +80,7 @@ fun RoomScene(
     stars: Int,
     modifier: Modifier = Modifier,
     dim: Boolean = false,
+    fillScreen: Boolean = false,
     pet: @Composable (Modifier) -> Unit
 ) {
     val paths = remember { RoomPaths() }
@@ -90,25 +92,23 @@ fun RoomScene(
             .clipToBounds()
             .semantics { contentDescription = description }
     ) {
-        val scale = max(maxWidth / SCENE_WIDTH.dp, maxHeight / SCENE_HEIGHT.dp)
-        val offsetX = (maxWidth - SCENE_WIDTH.dp * scale) / 2
-        val offsetY = maxHeight - SCENE_HEIGHT.dp * scale
-        val petWidth = PET_WIDTH.dp * scale
+        val frame = SceneFrame.of(maxWidth.value, maxHeight.value, fillScreen)
+        val petWidth = PET_WIDTH.dp * frame.scale
         val petHeight = petWidth * PET_ASPECT
         Canvas(modifier = Modifier.fillMaxSize()) {
-            inScene { drawBackLayer(paths, placedGoalIds) }
+            inScene(fillScreen) { drawBackLayer(paths, placedGoalIds, fillScreen) }
         }
         pet(
             Modifier
                 .offset(
-                    x = offsetX + PET_CENTER_X.dp * scale - petWidth / 2,
-                    y = offsetY + PET_GROUND_Y.dp * scale - petHeight * PET_GROUND_FRACTION
+                    x = frame.offsetX.dp + PET_CENTER_X.dp * frame.scale - petWidth / 2,
+                    y = frame.offsetY.dp + PET_GROUND_Y.dp * frame.scale - petHeight * PET_GROUND_FRACTION
                 )
                 .width(petWidth)
                 .height(petHeight)
         )
         Canvas(modifier = Modifier.fillMaxSize()) {
-            inScene { drawFrontLayer(paths, placedGoalIds, stars, measurer, boxLabel) }
+            inScene(fillScreen) { drawFrontLayer(paths, placedGoalIds, stars, measurer, boxLabel) }
             if (dim) drawRect(RoomDim.copy(alpha = DIM_ALPHA))
         }
     }
@@ -120,18 +120,39 @@ private const val PET_WIDTH = 150f
 private const val PET_CENTER_X = 175f
 private const val PET_GROUND_Y = 262f
 
-// Пропорции PetView: высота = 190/200 ширины, «земля» на 158/190 высоты.
+// Полноэкранный режим: центр кадра — середина питомца с коробкой; запас масштаба и насколько продлить стену и пол.
+private const val FOCUS_Y = 225f
+private const val FULL_SCREEN_ZOOM = 1.35f
+private const val FULL_SCREEN_EXTEND = 2000f
+
+// Пропорции PetView: высота = 190/200 ширины, «земля» на 160/190 высоты.
 private const val PET_ASPECT = 0.95f
-private const val PET_GROUND_FRACTION = 158f / 190f
+private const val PET_GROUND_FRACTION = 160f / 190f
 private const val DIM_ALPHA = 0.35f
 private const val MAX_STARS = 5
 
-/** Координаты сцены: масштаб «slice» и выравнивание по низу, как `preserveAspectRatio="xMidYMax slice"`. */
-private fun DrawScope.inScene(block: DrawScope.() -> Unit) {
-    val scale = max(size.width / SCENE_WIDTH, size.height / SCENE_HEIGHT)
+/**
+ * Положение сцены в области размером [width]×[height] (в любых единицах). Обычный режим — масштаб «slice» и
+ * выравнивание по низу, как `preserveAspectRatio="xMidYMax slice"`. Полноэкранный — масштаб по ширине с запасом
+ * [FULL_SCREEN_ZOOM], питомец с коробкой в центре области.
+ */
+private class SceneFrame(val scale: Float, val offsetX: Float, val offsetY: Float) {
+    companion object {
+        fun of(width: Float, height: Float, fillScreen: Boolean): SceneFrame = if (fillScreen) {
+            val scale = width / SCENE_WIDTH * FULL_SCREEN_ZOOM
+            SceneFrame(scale, width / 2 - PET_CENTER_X * scale, height / 2 - FOCUS_Y * scale)
+        } else {
+            val scale = max(width / SCENE_WIDTH, height / SCENE_HEIGHT)
+            SceneFrame(scale, (width - SCENE_WIDTH * scale) / 2, height - SCENE_HEIGHT * scale)
+        }
+    }
+}
+
+private fun DrawScope.inScene(fillScreen: Boolean, block: DrawScope.() -> Unit) {
+    val frame = SceneFrame.of(size.width, size.height, fillScreen)
     withTransform({
-        translate((size.width - SCENE_WIDTH * scale) / 2, size.height - SCENE_HEIGHT * scale)
-        scale(scale, scale, pivot = Offset.Zero)
+        translate(frame.offsetX, frame.offsetY)
+        scale(frame.scale, frame.scale, pivot = Offset.Zero)
     }, block)
 }
 
@@ -175,21 +196,27 @@ private const val STAR_POINTS = 10
 private const val STAR_OUTER = 7f
 private const val STAR_INNER = 3f
 
-private fun DrawScope.drawBackLayer(paths: RoomPaths, items: Set<String>) {
-    drawRect(RoomWall, size = Size(SCENE_WIDTH, SCENE_HEIGHT))
+private fun DrawScope.drawBackLayer(paths: RoomPaths, items: Set<String>, fillScreen: Boolean) {
+    // На весь экран стена уходит вверх, а пол — вниз за пределы viewBox; передней доски нет.
+    val extend = if (fillScreen) FULL_SCREEN_EXTEND else 0f
+    drawRect(RoomWall, topLeft = Offset(0f, -extend), size = Size(SCENE_WIDTH, SCENE_HEIGHT + extend))
     var x = 0f
     while (x < SCENE_WIDTH) {
-        drawRect(RoomWallStripe, topLeft = Offset(x, 0f), size = Size(10f, 238f))
+        drawRect(RoomWallStripe, topLeft = Offset(x, -extend), size = Size(10f, 238f + extend))
         x += 28f
     }
     if (RoomItems.WINDOW in items) drawWindow(paths)
     drawRect(RoomBaseboard, topLeft = Offset(0f, 238f), size = Size(SCENE_WIDTH, 8f))
-    drawRect(RoomFloor, topLeft = Offset(0f, 246f), size = Size(SCENE_WIDTH, 74f))
-    listOf(270f, 296f).forEach { y ->
+    drawRect(RoomFloor, topLeft = Offset(0f, 246f), size = Size(SCENE_WIDTH, 74f + extend))
+    var y = 270f
+    while (y < 318f + extend) {
         drawLine(RoomOutline.copy(alpha = FLOOR_LINE_ALPHA), Offset(0f, y), Offset(SCENE_WIDTH, y), strokeWidth = 1f)
+        y += 26f
     }
-    drawRect(RoomBoxLight, topLeft = Offset(0f, 318f), size = Size(SCENE_WIDTH, 22f))
-    drawLine(RoomOutline, Offset(0f, 318f), Offset(SCENE_WIDTH, 318f), strokeWidth = 2.5f)
+    if (!fillScreen) {
+        drawRect(RoomBoxLight, topLeft = Offset(0f, 318f), size = Size(SCENE_WIDTH, 22f))
+        drawLine(RoomOutline, Offset(0f, 318f), Offset(SCENE_WIDTH, 318f), strokeWidth = 2.5f)
+    }
     drawRadiator(glow = RoomItems.LAMP !in items)
     if (RoomItems.LAMP in items) drawLamp(paths)
     drawPath(paths.boxBackTop, RoomBoxMid)

@@ -1,5 +1,7 @@
 package ru.lct2026.finedu.feature.learn.ui
 
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -107,21 +109,13 @@ internal fun GlossaryScreen(
 
 @Composable
 private fun GlossaryIntro() {
-    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        Text(text = stringResource(R.string.glossary_intro), style = MaterialTheme.typography.bodyLarge)
-        Text(
-            text = stringResource(R.string.glossary_tag),
-            style = MaterialTheme.typography.titleSmall,
-            color = FinEduTheme.colors.onGold,
-            modifier = Modifier
-                .rotate(-TILT_DEGREES)
-                .background(FinEduTheme.colors.gold, MaterialTheme.shapes.extraSmall)
-                .padding(horizontal = 12.dp, vertical = 4.dp)
-        )
-    }
+    Text(text = stringResource(R.string.glossary_intro), style = MaterialTheme.typography.bodyLarge)
 }
 
-/** Карточка термина: мини-Дзынь на цветной плашке. Шёрстка, убор, эмоция и наклон меняются по [index]. */
+/**
+ * Карточка термина: рисунок понятия на цветной плашке. Для понятия без рисунка (добавленного в контент позже) —
+ * мини-Дзынь; его шёрстка, эмоция и наклон плашки меняются по [index].
+ */
 @Composable
 private fun GlossaryTermCard(term: GlossaryTerm, index: Int) {
     val plateColors = with(FinEduTheme.colors) { listOf(wants, gold, selection, needs, savings) }
@@ -144,14 +138,19 @@ private fun GlossaryTermCard(term: GlossaryTerm, index: Int) {
                 ),
             contentAlignment = Alignment.Center
         ) {
-            PetView(
-                look = PetLook(
-                    fur = PetFur.entries[index % PetFur.entries.size],
-                    hat = PetHat.entries[index / PetFur.entries.size % PetHat.entries.size]
-                ),
-                mood = GlossaryMoods[index % GlossaryMoods.size],
-                modifier = Modifier.width(64.dp)
-            )
+            val pictureRes = term.pictureRes
+            if (pictureRes != null) {
+                Image(painter = painterResource(pictureRes), contentDescription = null, modifier = Modifier.size(56.dp))
+            } else {
+                PetView(
+                    look = PetLook(
+                        fur = PetFur.entries[index % PetFur.entries.size],
+                        hat = PetHat.entries[index / PetFur.entries.size % PetHat.entries.size]
+                    ),
+                    mood = GlossaryMoods[index % GlossaryMoods.size],
+                    modifier = Modifier.width(64.dp)
+                )
+            }
         }
         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(text = term.term, style = MaterialTheme.typography.titleMedium)
@@ -200,10 +199,27 @@ private fun GlossaryFooter(onShortsClick: () -> Unit, onOnboardingClick: () -> U
     }
 }
 
+@get:DrawableRes
+private val GlossaryTerm.pictureRes: Int?
+    get() = when (id) {
+        "income_regular" -> R.drawable.ic_term_income_regular
+        "income_irregular" -> R.drawable.ic_term_income_irregular
+        "expense" -> R.drawable.ic_term_expense
+        "expense_mandatory" -> R.drawable.ic_term_expense_mandatory
+        "savings" -> R.drawable.ic_term_savings
+        "goal" -> R.drawable.ic_term_goal
+        "term" -> R.drawable.ic_term_term
+        "price" -> R.drawable.ic_term_price
+        "change" -> R.drawable.ic_term_change
+        "ad" -> R.drawable.ic_term_ad
+        "safety_cushion" -> R.drawable.ic_term_safety_cushion
+        else -> null
+    }
+
 private const val TILT_DEGREES = 3f
 private const val PLATE_ALPHA = 0.35f
 
-/** Эмоции мини-Дзыня по порядку терминов — как в макете. */
+/** Эмоции мини-Дзыня для понятий без рисунка — по порядку терминов, как в макете. */
 private val GlossaryMoods = listOf(
     PetMood.HAPPY,
     PetMood.SHOCK,
@@ -225,9 +241,13 @@ private fun GlossaryScreenPreview() {
         GlossaryScreen(
             state = GlossaryUiState.Content(
                 listOf(
-                    GlossaryTerm("Доход регулярный", "Деньги, что приходят по расписанию — как дзыньки каждую неделю."),
-                    GlossaryTerm("Расход", "Всё, на что уходят деньги — от каши до шляпы с пером."),
-                    GlossaryTerm("Накопления", "Деньги, которые не тратишь сразу, а откладываешь в Копилку.")
+                    GlossaryTerm(
+                        "income_regular",
+                        "Доход регулярный",
+                        "Деньги, что приходят по расписанию — как дзыньки каждую неделю."
+                    ),
+                    GlossaryTerm("expense", "Расход", "Всё, на что уходят деньги — от каши до шляпы с пером."),
+                    GlossaryTerm("savings", "Накопления", "Деньги, которые не тратишь сразу, а откладываешь в Копилку.")
                 )
             ),
             onBack = {},

@@ -47,7 +47,7 @@
     <string name="quest_ad_note_only">«Только» — чтобы стало жалко упустить</string>
     <string name="quest_ad_note_timer">Таймер завтра снова начнёт с 10 минут</string>
 
-    <!-- «Это развод?». -->
+    <!-- «Это мошенники?». -->
     <string name="quest_scam_counter">%1$d из %2$d</string>
     <string name="quest_scam_question">Такие сообщения прилетают всем. Как думаешь, что это?</string>
     <string name="quest_scam_now">сейчас</string>

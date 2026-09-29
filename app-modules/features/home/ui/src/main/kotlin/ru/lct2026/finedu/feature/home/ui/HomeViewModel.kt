@@ -28,6 +28,7 @@ internal class HomeViewModel @Inject constructor(
     private var isReturn = false
     private var isEasterEgg = false
     private var easterEggJob: Job? = null
+    private var openBubble: HomeBubble? = null
     private var game: GameState? = null
     private var content: GameContent? = null
 
@@ -61,6 +62,19 @@ internal class HomeViewModel @Inject constructor(
     fun onPetClick() {
         easterEggJob?.cancel()
         hideEasterEgg()
+    }
+
+    /** Тап по пузырьку раскрывает его; по уже раскрытому — сворачивает. */
+    fun onBubbleClick(bubble: HomeBubble) {
+        openBubble = bubble.takeUnless { it == openBubble }
+        render()
+    }
+
+    /** Тап мимо раскрытого пузырька или «Назад» — все пузырьки возвращаются на кольцо. */
+    fun onBubbleDismiss() {
+        if (openBubble == null) return
+        openBubble = null
+        render()
     }
 
     private fun hideEasterEgg() {
@@ -114,7 +128,8 @@ internal class HomeViewModel @Inject constructor(
                     weeksLeft = SavingsEngine.weeksToGoal(this, it)
                 )
             },
-            quest = content.quests.firstOrNull { it.id !in completedQuestIds }?.let { HomeQuest(it.id, it.title) }
+            quest = content.quests.firstOrNull { it.id !in completedQuestIds }?.let { HomeQuest(it.id, it.title) },
+            openBubble = openBubble
         )
     }
 

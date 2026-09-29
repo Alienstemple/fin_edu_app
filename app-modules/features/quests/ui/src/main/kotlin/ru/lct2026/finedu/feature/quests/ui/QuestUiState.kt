@@ -25,7 +25,7 @@ internal sealed interface QuestUiState {
         val isAd: Boolean get() = quest.id == AD_QUEST_ID
     }
 
-    /** «Это развод?». */
+    /** «Это мошенники?». */
     data class Scam(val quest: Quest.Scam, val petLook: PetLook, val petStage: PetStage, val step: ScamStep) :
         QuestUiState
 }

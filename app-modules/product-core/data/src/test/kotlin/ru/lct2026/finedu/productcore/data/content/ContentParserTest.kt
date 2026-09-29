@@ -40,7 +40,7 @@ class ContentParserTest {
     }
 
     @Test
-    fun `у каждого задания с выбором есть варианты и разбор, у «Это развод?» — три сообщения`() {
+    fun `у каждого задания с выбором есть варианты и разбор, у «Это мошенники?» — три сообщения`() {
         content.quests.forEach { quest ->
             when (quest) {
                 is Quest.Choice -> {
@@ -77,7 +77,7 @@ class ContentParserTest {
     }
 
     @Test
-    fun `словарик, шортс, лента и материалы для взрослого на месте`() {
+    fun `«Полезное», шортс, лента и материалы для взрослого на месте`() {
         assertEquals(11, content.glossary.size)
         assertEquals(4, content.shorts.frames.size)
         assertEquals(4, content.feed.size)

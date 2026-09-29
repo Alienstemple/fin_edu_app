@@ -22,10 +22,20 @@
 
     <!-- Баланс и мешочки. -->
     <string name="home_balance">Баланс</string>
-    <string name="home_plan_link">План недели →</string>
+    <string name="home_plan">План недели</string>
     <string name="home_distribute">Разложить %1$s</string>
+    <string name="home_balance_a11y">Баланс: %1$s</string>
+    <string name="home_balance_unallocated_a11y">Баланс: %1$s. Можно разложить %2$s</string>
+
+    <!-- Показатели. -->
+    <string name="home_stat_hint_charge">Заряд растёт от покупок из «Нужного»</string>
+    <string name="home_stat_hint_vibe">Вайб растёт от радостей из «Хочу»</string>
+    <string name="home_stat_hint_calm">Спокойствие растёт, когда пополняешь копилку</string>
+    <string name="home_to_shop">В магазин</string>
 
     <!-- Цель. -->
+    <string name="home_goal">Цель</string>
+    <string name="home_to_savings">В копилку</string>
     <string name="home_goal_progress">%1$s: %2$d из %3$d</string>
     <string name="home_goal_younger">Копим: %1$s</string>
     <plurals name="home_goal_weeks">
@@ -41,6 +51,15 @@
     <!-- Задание. -->
     <string name="home_quest">Задание: %1$s</string>
     <string name="home_quests_done">Все задания пройдены. Загляни в «Задания»</string>
+    <string name="home_quest_title">Задание</string>
+    <string name="home_quest_start">Начать</string>
+    <string name="home_to_quests">К заданиям</string>
 
+    <!-- Итоги недели. -->
+    <string name="home_week_results">Итоги недели</string>
+    <string name="home_week_results_hint">Дзынь посчитает, что получилось. А потом придёт новая неделя</string>
     <string name="home_finish_week">Завершить неделю</string>
+
+    <!-- Пузырьки. -->
+    <string name="home_bubble_collapse">Свернуть</string>
 </resources>

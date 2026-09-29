@@ -47,7 +47,7 @@ sealed interface FinEduRoute {
     @Serializable
     data object Parent : FinEduRoute
 
-    /** Словарик и помощь (фича `learn`). */
+    /** «Полезное» и помощь (фича `learn`). */
     @Serializable
     data object Glossary : FinEduRoute
 
