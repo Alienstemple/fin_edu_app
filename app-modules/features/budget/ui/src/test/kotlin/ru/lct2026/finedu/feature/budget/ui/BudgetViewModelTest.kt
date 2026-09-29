@@ -22,18 +22,24 @@ class BudgetViewModelTest {
     private fun viewModel(content: FakeContentRepository = FakeContentRepository(TestGame.content())) =
         BudgetViewModel(gameRepository, content)
 
+    /** Раскладка с нуля: сначала убираем раскладку по умолчанию. */
     private fun BudgetViewModel.fill(needs: Int, wants: Int, savings: Int) {
+        Bag.entries.forEach { bag -> repeat(MAX_STEPS) { onMinusClick(bag) } }
         repeat(needs / 10) { onPlusClick(Bag.NEEDS) }
         repeat(wants / 10) { onPlusClick(Bag.WANTS) }
         repeat(savings / 10) { onPlusClick(Bag.SAVINGS) }
     }
 
     @Test
-    fun `новая неделя показывает раскладку регулярного дохода с пустыми мешочками`() {
+    fun `новая неделя начинает раскладку регулярного дохода с раскладки по умолчанию`() {
         val viewModel = viewModel()
 
         assertEquals(
-            BudgetMode.Distribute(income = 300, sources = listOf(IncomeSource.POCKET_MONEY), draft = BagAmounts()),
+            BudgetMode.Distribute(
+                income = 300,
+                sources = listOf(IncomeSource.POCKET_MONEY),
+                draft = BagAmounts(Dzynki(150), Dzynki(120), Dzynki(30))
+            ),
             viewModel.currentState.mode
         )
     }
@@ -42,6 +48,7 @@ class BudgetViewModelTest {
     fun `степпер не уходит ниже нуля и не раскладывает больше, чем пришло`() {
         val viewModel = viewModel()
 
+        viewModel.fill(needs = 0, wants = 0, savings = 0)
         viewModel.onMinusClick(Bag.NEEDS)
         viewModel.fill(needs = 200, wants = 100, savings = 50)
 
@@ -81,7 +88,11 @@ class BudgetViewModelTest {
         assertTrue(TestGame.planQuest.id in saved.completedQuestIds)
         assertEquals(QuestReward(amount = 20, title = TestGame.planQuest.title), viewModel.currentState.questReward)
         assertEquals(
-            BudgetMode.Distribute(income = 20, sources = listOf(IncomeSource.QUEST_REWARD), draft = BagAmounts()),
+            BudgetMode.Distribute(
+                income = 20,
+                sources = listOf(IncomeSource.QUEST_REWARD),
+                draft = GameEngine.suggestPlan(Dzynki(20))
+            ),
             viewModel.currentState.mode
         )
     }
@@ -115,7 +126,11 @@ class BudgetViewModelTest {
         val viewModel = viewModel()
 
         assertEquals(
-            BudgetMode.Distribute(income = 50, sources = listOf(IncomeSource.PARENT_BONUS), draft = BagAmounts()),
+            BudgetMode.Distribute(
+                income = 50,
+                sources = listOf(IncomeSource.PARENT_BONUS),
+                draft = GameEngine.suggestPlan(Dzynki(50))
+            ),
             viewModel.currentState.mode
         )
     }
@@ -123,5 +138,10 @@ class BudgetViewModelTest {
     private fun draft(viewModel: BudgetViewModel): BagAmounts = when (val mode = viewModel.currentState.mode) {
         is BudgetMode.Distribute -> mode.draft
         BudgetMode.Loading, is BudgetMode.Fixed -> error("Ожидали раскладку: $mode")
+    }
+
+    private companion object {
+        /** С запасом больше, чем шагов по 10 в любом мешочке. */
+        const val MAX_STEPS = 40
     }
 }

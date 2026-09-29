@@ -27,6 +27,13 @@ object GameRules {
     /** Пауза, после которой срабатывает «возврат»: сутки. */
     const val RETURN_AFTER_MILLIS = 24L * 60 * 60 * 1000
 
+    /** Раскладка по умолчанию: доля «Нужного» и «Копилки» в процентах, остаток — в «Хочу». */
+    const val SUGGESTED_NEEDS_PERCENT = 50
+    const val SUGGESTED_SAVINGS_PERCENT = 10
+
+    /** Шаг сумм: всё кратно 10 (ТЗ: простые вычисления). */
+    const val AMOUNT_STEP = 10
+
     /** Опыт для стадий «Шустрик» и «Мастер мешочка». */
     const val SPRY_XP = 4
     const val MASTER_XP = 10

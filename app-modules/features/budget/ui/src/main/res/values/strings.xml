@@ -11,6 +11,7 @@
     <string name="budget_left">Осталось разложить: %1$d из %2$d</string>
     <string name="budget_bar_a11y">Нужное %1$d, Хочу %2$d, Копилка %3$d, не разложено %4$d</string>
     <string name="budget_bag_a11y">%1$s: %2$d</string>
+    <string name="budget_dzyn_suggested">Я разложил как обычно: половину — на Нужное, чуть-чуть — в копилку. Поменяй, если хочешь по-другому</string>
     <string name="budget_dzyn_full">Мешочки полные. Больше не влезет</string>
     <string name="budget_dzyn_left">Свободно ещё %1$d. Кнопка оживёт, когда разложено всё до нуля.</string>
     <string name="budget_fix">Зафиксировать план</string>

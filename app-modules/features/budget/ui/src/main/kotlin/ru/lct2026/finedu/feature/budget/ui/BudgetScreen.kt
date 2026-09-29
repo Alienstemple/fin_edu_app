@@ -30,6 +30,7 @@ import ru.lct2026.finedu.feature.budget.ui.component.PlanFactBar
 import ru.lct2026.finedu.productcore.domain.model.Bag
 import ru.lct2026.finedu.productcore.domain.model.BagAmounts
 import ru.lct2026.finedu.productcore.domain.model.Dzynki
+import ru.lct2026.finedu.productcore.domain.model.GameEngine
 import ru.lct2026.finedu.productcore.domain.model.IncomeSource
 import ru.lct2026.finedu.productcore.domain.model.PetLook
 import ru.lct2026.finedu.productcore.domain.model.PetStage
@@ -213,7 +214,9 @@ private fun DistributeContent(
         look = look,
         stage = stage,
         mood = if (left == 0) PetMood.JOY else PetMood.THINKING,
-        text = if (left == 0) {
+        text = if (left == 0 && mode.draft == GameEngine.suggestPlan(Dzynki(mode.income))) {
+            stringResource(R.string.budget_dzyn_suggested)
+        } else if (left == 0) {
             stringResource(R.string.budget_dzyn_full)
         } else {
             stringResource(R.string.budget_dzyn_left, left)

@@ -104,7 +104,12 @@ private fun GameState.toMode(previous: BudgetMode): BudgetMode {
         is BudgetMode.Distribute -> previous.draft.takeIf { previous.income == income }
         BudgetMode.Loading, is BudgetMode.Fixed -> null
     }
-    return BudgetMode.Distribute(income = income, sources = incomeSources(), draft = draft ?: BagAmounts())
+    return BudgetMode.Distribute(
+        income = income,
+        sources = incomeSources(),
+        draft =
+            draft ?: GameEngine.suggestPlan(unallocated)
+    )
 }
 
 /** Откуда пришли неразложенные дзыньки: регулярный доход — до первой раскладки недели, плюс бонусы и награды. */

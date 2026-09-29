@@ -45,6 +45,21 @@ class GameEngineTest {
     }
 
     @Test
+    fun `раскладка по умолчанию — половина на Нужное, десятая в копилку, остаток в Хочу`() {
+        assertEquals(BagAmounts(Dzynki(150), Dzynki(120), Dzynki(30)), GameEngine.suggestPlan(Dzynki(300)))
+    }
+
+    @Test
+    fun `раскладка по умолчанию кратна 10 и всегда сходится до нуля`() {
+        listOf(0, 10, 20, 50, 70, 320, 350).forEach { amount ->
+            val plan = GameEngine.suggestPlan(Dzynki(amount))
+            assertEquals(Dzynki(amount), plan.total)
+            assertTrue(listOf(plan.needs, plan.wants, plan.savings).all { it.amount % GameRules.AMOUNT_STEP == 0 })
+        }
+        assertEquals(BagAmounts(Dzynki(10), Dzynki(10)), GameEngine.suggestPlan(Dzynki(20)))
+    }
+
+    @Test
     fun `бонус взрослого раскладывается повторно и добавляется к плану`() {
         val bonus = GameEngine.grantParentBonus(planned, Dzynki(50), "Помог с уборкой")
 

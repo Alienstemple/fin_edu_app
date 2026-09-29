@@ -49,6 +49,24 @@ object GameEngine {
         )
     }
 
+    /**
+     * Раскладка по умолчанию, с которой ребёнок начинает план: половина — на «Нужное», десятая часть — в копилку,
+     * остальное — в «Хочу», всё кратно 10. Для 300: 150 / 120 / 30. Ребёнок меняет её как хочет.
+     */
+    fun suggestPlan(amount: Dzynki): BagAmounts {
+        val needs = roundDown(amount.amount * GameRules.SUGGESTED_NEEDS_PERCENT / PERCENT)
+        val savings = roundDown(amount.amount * GameRules.SUGGESTED_SAVINGS_PERCENT / PERCENT)
+        return BagAmounts(
+            needs = Dzynki(needs),
+            wants = Dzynki(amount.amount - needs - savings),
+            savings = Dzynki(savings)
+        )
+    }
+
+    private fun roundDown(value: Int): Int = value / GameRules.AMOUNT_STEP * GameRules.AMOUNT_STEP
+
+    private const val PERCENT = 100
+
     /** Покупка из остатка мешочка товара. В минус уйти нельзя. */
     fun buy(state: GameState, item: ShopItem): GameResult {
         val left = state.amountIn(item.bag).minusOrNull(item.price)
