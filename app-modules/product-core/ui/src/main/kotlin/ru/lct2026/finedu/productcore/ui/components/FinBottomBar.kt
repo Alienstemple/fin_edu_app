@@ -2,6 +2,7 @@ package ru.lct2026.finedu.productcore.ui.components
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import ru.lct2026.finedu.productcore.ui.R
 import ru.lct2026.finedu.productcore.ui.preview.FinEduPreview
 import ru.lct2026.finedu.productcore.ui.theme.FinEduTheme
@@ -32,7 +34,18 @@ fun FinBottomBar(selected: FinTab, onSelect: (FinTab) -> Unit, modifier: Modifie
                 selected = tab == selected,
                 onClick = { onSelect(tab) },
                 icon = { Icon(painter = painterResource(tab.iconRes), contentDescription = null) },
-                label = { Text(text = label, style = MaterialTheme.typography.labelMedium) },
+                label = {
+                    // Четыре вкладки на 360dp с крупным системным шрифтом не помещаются: подпись уменьшается,
+                    // а не переносится посреди слова. Смысл вкладки дублирует иконка.
+                    val style = MaterialTheme.typography.labelMedium
+                    Text(
+                        text = label,
+                        style = style,
+                        maxLines = 1,
+                        softWrap = false,
+                        autoSize = TextAutoSize.StepBased(minFontSize = MIN_LABEL_SIZE, maxFontSize = style.fontSize)
+                    )
+                },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = FinEduTheme.colors.onGold,
                     indicatorColor = FinEduTheme.colors.gold,
@@ -44,6 +57,8 @@ fun FinBottomBar(selected: FinTab, onSelect: (FinTab) -> Unit, modifier: Modifie
         }
     }
 }
+
+private val MIN_LABEL_SIZE = 11.sp
 
 private val FinTab.labelRes: Int
     get() = when (this) {
